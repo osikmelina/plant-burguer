@@ -1,14 +1,36 @@
-/* .campo-texto {
-  margin: 5rem;
+.campo-texto {
+  margin: 6rem;
+  margin-top: 13rem;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  background-color: #435C3D;
+  width: 50rem;
+  height: 26rem;
+  border-radius: 15px;
+  box-shadow: 0px 3px 3px #000000;
+}
+
+h1 {
+  color: #FFFFFF;
+  font-size: 2rem;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 2.5rem;
 }
 
 .campo-texto input{
-  width: 20rem;
+  width: 80%;
   height: 4rem;
   background-color: rgba(146, 184, 109, 0.85);
-  box-shadow: 0px 4px 4px #000000;
+  opacity: 85%;
+  box-shadow: 0px 3px 3px #000000;
   border-radius: 10px;
-  display: flex;
-} */
+  margin: 0.5rem auto;
+}
+
+.campo-texto ::placeholder{
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}

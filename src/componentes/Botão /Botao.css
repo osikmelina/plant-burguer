@@ -1,0 +1,14 @@
+.botao {
+  width: 60%;
+  height: 4rem;
+  background-color: #D65D1A;
+  opacity: 80%;
+  box-shadow: 0px 3px 3px #000000;
+  border-radius: 10px;
+  margin: auto;
+  color: #FFFFFF;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
