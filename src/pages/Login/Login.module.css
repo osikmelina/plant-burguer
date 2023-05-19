@@ -1,0 +1,11 @@
+.login {
+    display: flex;
+    align-items: center;
+    background-size: auto;
+  }
+
+  .botao {
+    margin-top: 2rem;
+    display: flex;
+  }
+  
