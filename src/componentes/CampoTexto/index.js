@@ -1,4 +1,4 @@
-import Botao from '../Botão ';
+import Botao from './Botao ';
 import './CampoTexto.css';
 
 const CampoTexto = () => {
