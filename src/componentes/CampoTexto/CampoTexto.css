@@ -1,13 +1,5 @@
 .campo-texto {
-  margin: 6rem;
-  margin-top: 13rem;
   display: flex;
-  flex-direction: column;
-  background-color: #435C3D;
-  width: 50rem;
-  height: 26rem;
-  border-radius: 15px;
-  box-shadow: 0px 3px 3px #000000;
 }
 
 h1 {
@@ -23,7 +15,7 @@ h1 {
   height: 4rem;
   background-color: rgba(146, 184, 109, 0.85);
   opacity: 85%;
-  box-shadow: 0px 3px 3px #000000;
+  box-shadow: 2px 3px 0px #000000;
   border-radius: 10px;
   margin: 0.5rem auto;
 }

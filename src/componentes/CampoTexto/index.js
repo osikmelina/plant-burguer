@@ -1,13 +1,10 @@
-import Botao from './Botao ';
+// import Botao from '../Botao';
 import './CampoTexto.css';
 
-const CampoTexto = () => {
+const CampoTexto = (props) => {
   return (
      <div className="campo-texto">
-      <h1> LOGIN </h1>
-      <input placeholder='EMAIL'/>
-      <input placeholder='SENHA' />
-      <Botao texto="ENTRAR"/>
+      <input placeholder={props.placeholder}/>
     </div>
   )
 }
