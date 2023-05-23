@@ -5,9 +5,10 @@ body {
 
 .logo {
   display: flex;
-  margin-top: 6rem;
+  width: 100%;
 }
 
 .logo img {
-  width: 38rem;
+  max-width: 38rem;
+  width: 100%;
 }
