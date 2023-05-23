@@ -1,13 +1,16 @@
-const API_URL = 'https://burger-queen-api-mock-ten.vercel.app'
+const API_URL = 'http://localhost:8080'
 
-const login = (email, password) => {
-  return fetch(`${API_URL/login}`, {
+const login = (email, senha) => {
+  return fetch(`${API_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({email, password})
+    body: JSON.stringify({
+      email: email,
+      password: senha,
+    })
   })
 }
 

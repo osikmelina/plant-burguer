@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FormLogin from "./pages/Login";
 import NovoPedido from "./pages/Atendimento";
 
-
 function AppRoutes() {
   return (
     <BrowserRouter>
