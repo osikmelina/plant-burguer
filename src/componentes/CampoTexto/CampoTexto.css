@@ -2,14 +2,6 @@
   display: flex;
 }
 
-h1 {
-  color: #FFFFFF;
-  font-size: 2rem;
-  text-align: center;
-  font-family: Helvetica, Arial, sans-serif;
-  margin: 2.5rem;
-}
-
 .campo-texto input{
   width: 80%;
   height: 4rem;

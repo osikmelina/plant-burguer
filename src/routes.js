@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
+import FormLogin from "./pages/Login";
+import NovoPedido from "./pages/Atendimento";
 
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/" element={<FormLogin />}></Route>
+        <Route path="/atendimento" element={<NovoPedido />}></Route>
       </Routes>
     </BrowserRouter>
   )
