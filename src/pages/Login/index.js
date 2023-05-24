@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom";
 import Botao from "../../componentes/Botao";
 import CaixaFundo from "../../componentes/CaixaFundo";
 import CampoTexto from "../../componentes/CampoTexto";
@@ -25,10 +24,9 @@ const FormLogin = () => {
       if (response.status === 200){
       navegar('/atendimento')
       } else {
-        setErro('Ocorreu um erro ao efetuar o login')
+        setErro(alert('Ocorreu um erro ao efetuar o login'))
       }
-
-  
+ 
       // if (loginUsuario.user.role === 'Atendimento') {
       //   navegar('/atendimento')
       // }
@@ -57,10 +55,11 @@ const FormLogin = () => {
         />
         <CampoTexto
           obrigatorio={true}
+          secureTextEntry={true}
           placeholder="SENHA"
           valor={senha}
           aoAlterado={valor => setSenha(valor)}
-          tipo="password"
+        
         />
         <div className={styles.botao}>
           <Botao texto="ENTRAR"/>
