@@ -48,12 +48,14 @@ const FormLogin = () => {
       <h1> LOGIN </h1>
       <form onSubmit={aoLogar}>
         <CampoTexto
+          type="e-mail"
           obrigatorio={true}
           placeholder="E-MAIL"
           valor={email}
           aoAlterado={valor => setEmail(valor)}
         />
         <CampoTexto
+          type="password"
           obrigatorio={true}
           secureTextEntry={true}
           placeholder="SENHA"
