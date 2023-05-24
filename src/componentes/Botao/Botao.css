@@ -12,3 +12,7 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.botao:hover{
+  background-color: #435C3D;
+}

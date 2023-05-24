@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import Botao from "../../componentes/Botao";
 import CaixaFundo from "../../componentes/CaixaFundo";
 import CampoTexto from "../../componentes/CampoTexto";
 import Logo from "../../componentes/Logo";
 import styles from "./Login.module.css"
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import login from "../../API/usuarios";
+import login from "../../API/login";
 
-const Login = () => {
+const FormLogin = () => {
 
   const navegar = useNavigate()
   const [email, setEmail] = useState('');
@@ -19,18 +19,23 @@ const Login = () => {
     setErro('')
 
   try {
-      const loginUsuario = await login(email, senha)
-      console.log(loginUsuario)
-
-      if (loginUsuario.user.role === 'Atendimento') {
-        navegar('/atendimento')
+      const response = await login(email, senha);
+     
+      if (response.status === 200){
+      navegar('/atendimento')
+      } else {
+        setErro(alert('Ocorreu um erro ao efetuar o login'))
       }
-      if (loginUsuario.user.role === 'Cozinha') {
-        navegar('/cozinha')
-      }
-      if (loginUsuario.user.role === 'Admin') {
-        navegar('/admin')
-      }
+ 
+      // if (loginUsuario.user.role === 'Atendimento') {
+      //   navegar('/atendimento')
+      // }
+      // if (loginUsuario.user.role === 'Cozinha') {
+      //   navegar('/cozinha')
+      // }
+      // if (loginUsuario === 'Admin') {
+      //   navegar('/admin')
+      // }
     } catch (error) {
       setErro(error.message)
     }
@@ -46,12 +51,15 @@ const Login = () => {
           obrigatorio={true}
           placeholder="E-MAIL"
           valor={email}
+          aoAlterado={valor => setEmail(valor)}
         />
         <CampoTexto
           obrigatorio={true}
+          secureTextEntry={true}
           placeholder="SENHA"
           valor={senha}
-          tipo="password"
+          aoAlterado={valor => setSenha(valor)}
+        
         />
         <div className={styles.botao}>
           <Botao texto="ENTRAR"/>
@@ -62,4 +70,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default FormLogin;
