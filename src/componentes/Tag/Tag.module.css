@@ -1,6 +1,6 @@
-.botao {
-  width: 60%;
-  height: 4rem;
+.tag {
+  width: 40%;
+  height: 8rem;
   background-color: #D65D1A;
   opacity: 80%;
   box-shadow: 1px 2px 0px #000000;
@@ -11,8 +11,4 @@
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-}
-
-.botao:hover{
-  background-color: #92B86D;
-}
+  }

@@ -1,4 +1,8 @@
-.botao {
+.logo {
+  width: 3rem;
+}
+
+.tag {
   width: 60%;
   height: 4rem;
   background-color: #D65D1A;
@@ -13,6 +17,8 @@
   cursor: pointer;
 }
 
-.botao:hover{
-  background-color: #92B86D;
+.txtItens {
+  font-size: 20px;
+  color: #FFFFFF;
+  margin-left: 2rem;
 }
