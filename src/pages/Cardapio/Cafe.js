@@ -7,8 +7,8 @@ const Cafe = () => {
   return (
     <CaixaFundo>
       <h3 className={styles.txtItens}>CAFÉS</h3>
-      <Tag className={styles.tag} texto="americano" />
-      <Tag className={styles.tag} texto="com leite" />
+      <Tag className="bla" texto="americano" />
+      <Tag className="la" texto="com leite" />
       <h3 className={styles.txtItens}>SUCOS</h3>
       <Tag className={styles.tag} texto="fruta natural" />
       <h3 className={styles.txtItens}>LANCHES</h3>

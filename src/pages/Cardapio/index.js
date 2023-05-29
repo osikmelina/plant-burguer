@@ -1,14 +1,16 @@
-import Logo from "../../componentes/Logo";
 import styles from "./Cardapio.module.css";
 import Tag from "../../componentes/Tag";
 import Cafe from "./Cafe";
+import LogoMenor from "../../componentes/LogoMenor";
 
 const Cardapio = () => {
   return (
     <section>
-      <Logo />
-      <Tag className={styles.tag} texto="café da manhã" />
-      <Tag className={styles.tag} texto="almoço e jantar" />
+      <LogoMenor />
+      <div className={styles.tipoCardapio}>
+        <Tag className={styles.tag} texto="CAFÉ DA MANHÃ" />
+        <Tag className={styles.tag} texto="ALMOÇO E JANTAR" />
+      </div>
       <Cafe />
     </section>
   )     

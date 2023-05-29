@@ -1,14 +1,14 @@
 .tag {
-  width: 40%;
-  height: 8rem;
+  width: 15%;
+  height: 5.5rem;
   background-color: #D65D1A;
   opacity: 80%;
   box-shadow: 1px 2px 0px #000000;
   border-radius: 10px;
-  margin: auto;
+  margin: 1rem;
   color: #FFFFFF;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
   }
