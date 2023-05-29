@@ -1,0 +1,9 @@
+.logoMenor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoMenor img {
+  width: 15rem;
+}
