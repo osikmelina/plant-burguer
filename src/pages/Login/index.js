@@ -5,7 +5,7 @@ import Logo from "../../componentes/Logo";
 import styles from "./Login.module.css"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import login from "../../API/login";
+import login from "../../API/users";
 import Modal from "react-modal"
 
 const FormLogin = () => {
@@ -23,6 +23,8 @@ const FormLogin = () => {
   try {
       console.log("Valor da senha: ", senha)
       const response = await login(email, senha);
+      const jsonData = await response.json()
+      localStorage.setItem("token", jsonData.accessToken);
       if (response.status === 200){
       navegar('/atendimento')
       } else {
