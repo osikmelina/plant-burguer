@@ -7,12 +7,12 @@ const Cafe = () => {
   return (
     <CaixaFundo>
       <h3 className={styles.txtItens}>CAFÉS</h3>
-      <Tag className="bla" texto="americano" />
-      <Tag className="la" texto="com leite" />
+      <Tag className={styles.txtCafe} texto="americano" />
+      <Tag className={styles.txtCafe} texto="com leite" />
       <h3 className={styles.txtItens}>SUCOS</h3>
-      <Tag className={styles.tag} texto="fruta natural" />
+      <Tag className={styles.txtCafe} texto="fruta natural" />
       <h3 className={styles.txtItens}>LANCHES</h3>
-      <Tag className={styles.tag} texto="sanduíche de queijo" />
+      <Tag className={styles.txtCafe} texto="sanduíche de queijo" />
     </CaixaFundo>
   )
 }

@@ -21,6 +21,7 @@ const FormLogin = () => {
     setErro('')
 
   try {
+      console.log("Valor da senha: ", senha)
       const response = await login(email, senha);
       if (response.status === 200){
       navegar('/atendimento')
@@ -74,7 +75,7 @@ const FormLogin = () => {
           aoAlterado={valor => setSenha(valor)}
         />
         <div className={styles.botao}>
-          <Botao texto="ENTRAR"/>
+          <Botao> ENTRAR </Botao>
         </div>
       </form>
       </CaixaFundo>
