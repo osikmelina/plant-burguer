@@ -1,7 +1,6 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom"
-
-const { render, screen } = require("@testing-library/react")
-const { default: FormLogin } = require("../pages/Login")
+import { render, screen } from "@testing-library/react";
+import  FormLogin  from "../pages/Login";
 
 
 describe('Deve fazer login', () => {
