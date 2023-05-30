@@ -1,4 +1,3 @@
-// import Botao from '../Botao';
 import './CampoTexto.css';
 
 const CampoTexto = (props) => {
