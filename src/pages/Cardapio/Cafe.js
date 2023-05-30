@@ -5,26 +5,44 @@ import { useEffect, useState } from "react";
 import produtos from "../../API/products";
 
 const Cafe = () => {
+  const [produtosCafe, setProdutosCafe] = useState([]);
+  //aqui o useState vai ser usado para criar uma variável de estado chamada produtosCafe que o valor inicial é um array vazio;
+  //produtosCafe é uma variavel que está vazia
+  //setProdutos é a função que vai adicionar os produtos dentro da variavel produtosCafe
+
   useEffect(() => {
     async function fetchData() {
       const token = localStorage.getItem("token")
       const response = await produtos(token)
       const listaProdutos = await response.json()
+      setProdutosCafe(listaProdutos)
       console.log(listaProdutos)
     }
     fetchData()
-  }) 
-  return (
-    <CaixaFundo>
-      <h3 className={styles.txtItens}>CAFÉS</h3>
-      <Tag className={styles.txtCafe} texto="americano" />
-      <Tag className={styles.txtCafe} texto="com leite" />
-      <h3 className={styles.txtItens}>SUCOS</h3>
-      <Tag className={styles.txtCafe} texto="fruta natural" />
-      <h3 className={styles.txtItens}>LANCHES</h3>
-      <Tag className={styles.txtCafe} texto="sanduíche de queijo" />
-    </CaixaFundo>
-  )
-}
+  }, []);
+  
+  // const ListaProdutosCafe = () => {
+  //   return (
+  //   <>
+  //     {produtosCafe.map((item) => (
+  //        <li key={item.id}>
+  //        {item.name}
+  //        </li> 
+  //     ))}
+  //   </>
+  // )}
 
+
+  return (
+    <>
+    <CaixaFundo>
+    {produtosCafe.map((item) => ( 
+      <Tag
+        key={item.id}
+        texto={item.name} />   
+  ))}
+  </CaixaFundo>
+  </>
+)}
+ 
 export default Cafe

@@ -2,8 +2,11 @@ import styles from "./Cardapio.module.css";
 import Tag from "../../componentes/Tag";
 import Cafe from "./Cafe";
 import LogoMenor from "../../componentes/LogoMenor";
+import { useContext } from 'react';
+import { clienteContext } from "../../context/clienteContext";
 
 const Cardapio = () => {
+  const cliente = useContext(clienteContext);
   return (
     <section>
       <LogoMenor />

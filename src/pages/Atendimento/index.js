@@ -13,7 +13,7 @@ const NovoPedido = () => {
             placeholder="NOME DO CLIENTE"
           />
           <div className={styles.botao}>
-          <Botao> Novo Pedido </Botao>
+          <Botao> NOVO PEDIDO </Botao>
           </div>
           </CaixaFundo>
         </section>    
