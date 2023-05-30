@@ -7,6 +7,7 @@ import { clienteContext } from "../../context/clienteContext";
 
 const Cardapio = () => {
   const cliente = useContext(clienteContext);
+  console.log(cliente)
   return (
     <section>
       <LogoMenor />
