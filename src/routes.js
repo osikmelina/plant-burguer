@@ -13,7 +13,7 @@ const Store = ({children}) => {
   const [cliente, setCliente] = useState('');
 
   return (
-      <clienteContext.Provider value={cliente}>
+      <clienteContext.Provider value={{cliente, setCliente}}>
           {children}
       </clienteContext.Provider>
   )
