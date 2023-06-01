@@ -1,6 +1,5 @@
 import CaixaFundo from "../../componentes/CaixaFundo"
 import Tag from "../../componentes/Tag"
-import styles from "./Cardapio.module.css"
 import { useEffect, useState } from "react";
 import produtos from "../../API/products";
 
@@ -20,29 +19,18 @@ const Cafe = () => {
     }
     fetchData()
   }, []);
-  
-  // const ListaProdutosCafe = () => {
-  //   return (
-  //   <>
-  //     {produtosCafe.map((item) => (
-  //        <li key={item.id}>
-  //        {item.name}
-  //        </li> 
-  //     ))}
-  //   </>
-  // )}
-
 
   return (
     <>
     <CaixaFundo>
-    {produtosCafe.map((item) => ( 
+    {produtosCafe.map((item) => (
       <Tag
         key={item.id}
-        texto={item.name} />   
+        texto={item.name} />
   ))}
-  </CaixaFundo>
-  </>
+    </CaixaFundo>
+    </>
 )}
+
  
 export default Cafe

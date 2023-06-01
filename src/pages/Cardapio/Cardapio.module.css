@@ -8,11 +8,11 @@
   margin-left: 2rem;
 }
 
-.tipoCardapio {
- margin: 2rem;
-}
-
 .txtCafe{
   display: flex;
   flex-direction: column;
+}
+
+.caixasPedido {
+  display: flex;
 }

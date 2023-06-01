@@ -3,29 +3,18 @@ import FormLogin from "./pages/Login";
 import NovoPedido from "./pages/Atendimento";
 import Modal from 'react-modal';
 import Cardapio from "./pages/Cardapio";
-import { clienteContext } from "./context/clienteContext";
-import { useState } from "react";
+import { ClienteStore } from "./context/ClienteContext";
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
-
-const Store = ({children}) => {
-  const [cliente, setCliente] = useState('');
-
-  return (
-      <clienteContext.Provider value={{cliente, setCliente}}>
-          {children}
-      </clienteContext.Provider>
-  )
-};
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FormLogin />}></Route>       
-        <Route path="/atendimento" element={<Store> <NovoPedido /> </Store> }></Route>
-        <Route path="/cardapio" element={<Store> <Cardapio /> </Store>}></Route>
+        <Route path="/atendimento" element={<ClienteStore> <NovoPedido /> </ClienteStore> }></Route>
+        <Route path="/cardapio" element={<ClienteStore> <Cardapio /> </ClienteStore>}></Route>
       </Routes>
     </BrowserRouter>
   )
