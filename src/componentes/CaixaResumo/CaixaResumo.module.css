@@ -1,0 +1,33 @@
+.fundoResumo {
+  margin: 6rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #435C3D;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: 0px 3px 3px #000000;
+}
+
+.textoResumo {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.fundoBranco {
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+
+.txtItens {
+  display: flex;
+  gap: 80px;
+}
