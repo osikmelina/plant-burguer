@@ -5,14 +5,17 @@
 .txtItens {
   font-size: 20px;
   color: #FFFFFF;
-  margin-left: 2rem;
-}
-
-.txtCafe{
-  display: flex;
-  flex-direction: column;
+  margin-left: 1rem;
 }
 
 .caixasPedido {
   display: flex;
+}
+
+.tagProdutos {
+  width: 80px;
+}
+
+Tag texto {
+  align-items: center;
 }
