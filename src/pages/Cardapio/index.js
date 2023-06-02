@@ -68,7 +68,7 @@ const Cardapio = () => {
   ))}
     </CaixaFundo>
     </>
-      <CaixaResumo itemSelecionado={itemSelecionado}/>
+      <CaixaResumo itemSelecionado={itemSelecionado} />
       </div>
     </section>
   )
