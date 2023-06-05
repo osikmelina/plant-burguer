@@ -1,16 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./CaixaResumo.module.css";
 import { ClienteContext } from "../../context/ClienteContext";
 import Botao from "../Botao";
 
-const CaixaResumo = ({ itemSelecionado }) => {
+const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   const { cliente } = useContext(ClienteContext);
-  const [itemRemovido, setItemRemovido] = useState();
 
-  const removerItem = (item) => {
-    itemSelecionado.find((i) => i.id === item.id);
-    item.quantidade--;
-    setItemRemovido([...itemSelecionado]);
+    const removerItem = (item) => {
+    const itemResumo = itemSelecionado.find((i) => i.id === item.id);
+    if (itemResumo) {
+      if (itemResumo.quantidade > 1) {
+      itemResumo.quantidade--;
+      setItemSelecionado([...itemSelecionado]);
+    } else {
+      setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
+    }}
   };
 
   const calcularTotal = () => {
@@ -40,13 +44,13 @@ const CaixaResumo = ({ itemSelecionado }) => {
               <span>{item.name}</span>
                 <span className={styles.numerosResumo}>{item.quantidade}</span>
                 <span>{`R$ ${item.price}`}</span>
-                <button onClick={() => removerItem(item)}> 
                 <img
                   className={styles.imgLixo}
                   src="/imagens/icon-lixo.png"
-                  alt="icone lixo">
-                  </img> </button>
-              
+                  alt="icone lixo"
+                  onClick={() => removerItem(item)}
+                  >
+                  </img>
             </div>
           ))}
         <div className={styles.totalPedido}>

@@ -46,12 +46,7 @@ const Cardapio = () => {
     console.log(itemSelecionado)
   }
 
-  const removerItem = (item) => {
-    const novoItemSelecionado = itemSelecionado.filter((i) => i.id !== item.id);
-    setItemSelecionado(novoItemSelecionado);
-  }
-
-  return (
+   return (
     <section>
       <LogoMenor />
         <div className={styles.txtItens}>
@@ -69,11 +64,14 @@ const Cardapio = () => {
               imagem={item.image}
               onClick={() => adicionarItem(item)}
               />
-              </div>
+            </div>
           ))}
           </div>
         </CaixaFundo>
-        <CaixaResumo itemSelecionado={itemSelecionado} />
+        <CaixaResumo
+        itemSelecionado={itemSelecionado}
+        setItemSelecionado={setItemSelecionado}
+        />
       </div>
     </section>
   )
