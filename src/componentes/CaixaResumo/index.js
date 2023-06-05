@@ -9,17 +9,17 @@ const CaixaResumo = ({ itemSelecionado }) => {
 
     const removerItem = (item) => {
         itemSelecionado.find((i) => i.id === item.id)
-          item.quantidade --
-          setItemRemovido([...itemSelecionado])
-      }
+        item.quantidade--
+        setItemRemovido([...itemSelecionado])
+    }
 
     const calcularTotal = () => {
         let total = 0;
         itemSelecionado.forEach((item) => {
-          total += item.price * item.quantidade;
+            total += item.price * item.quantidade;
         });
         return total
-      };
+    };
 
     return (
         <section className={styles.fundoResumo}>
@@ -30,29 +30,25 @@ const CaixaResumo = ({ itemSelecionado }) => {
             <div className={styles.fundoBranco}>
                 <div className={styles.txtItens}>
                     <h3> ITEM </h3>
-                    <div className={styles.qtdValor}>
-                        <h3> QTD </h3>
-                        <h3> VALOR </h3>
-                    </div>
+                    <h3> QTD </h3>
+                    <h3> VALOR </h3>
                 </div>
                 {itemSelecionado.map((item) => (
                     <div className={styles.txtSpan} key={item.id}>
                         <span>
                             {item.name}
                         </span>
-                        <div className={styles.itemQtdValor}>
-                            <span>
-                                {item.quantidade}
-                            </span>
-                            <span>
-                                {`R$ ${item.price}`}
-                            </span>
-                            <img
-                            className={styles.imgLixo} 
-                            src='/imagens/icon-lixo.png' 
+                        <span>
+                            {item.quantidade}
+                        </span>
+                        <span>
+                            {`R$ ${item.price}`}
+                        </span>
+                        <img
+                            className={styles.imgLixo}
+                            src='/imagens/icon-lixo.png'
                             alt='icone lixo'
                             onClick={() => removerItem(itemRemovido)} />
-                        </div>
                     </div>
                 ))}
                 <div className={styles.totalPedido}>
@@ -63,7 +59,7 @@ const CaixaResumo = ({ itemSelecionado }) => {
                 </div>
             </div>
             <Botao> ENVIAR </Botao>
-        </section>
+        </section >
     )
 }
 

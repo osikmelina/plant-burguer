@@ -24,29 +24,30 @@
   border-radius: 15px;
 }
 
-.qtdValor {
+/* .qtdValor {
   display: flex;
   justify-content: space-between;
   gap: 1.6rem;
   margin-right: 3.5rem;
-}
+} */
 
-.itemQtdValor {
+/* .itemQtdValor {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-}
+} */
 
 .txtItens {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2.5fr 0.9fr 1fr; /* Define 3 colunas (item, qtd e valor) */
 }
 
 .txtSpan {
-  display: flex;
-  justify-content: space-between;
-  font-size: larger;
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.6fr 0fr; /* Define as 4 colunas no resumo (item, qtd, valor e a imagem do lixo)*/
+  font-size: 1.2rem;
 }
+
 
 .totalPedido {
   display: flex;
@@ -57,6 +58,8 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
 .imgLixo {
-  width: 1.5rem;
+  width: 25px; 
+  height: 25px; 
 }
