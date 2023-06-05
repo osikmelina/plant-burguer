@@ -46,6 +46,11 @@ const Cardapio = () => {
     console.log(itemSelecionado)
   }
 
+  const removerItem = (item) => {
+    const novoItemSelecionado = itemSelecionado.filter((i) => i.id !== item.id);
+    setItemSelecionado(novoItemSelecionado);
+  }
+
   return (
     <section>
       <LogoMenor />

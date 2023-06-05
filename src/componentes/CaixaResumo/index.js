@@ -40,12 +40,13 @@ const CaixaResumo = ({ itemSelecionado }) => {
               <span>{item.name}</span>
                 <span className={styles.numerosResumo}>{item.quantidade}</span>
                 <span>{`R$ ${item.price}`}</span>
+                <button onClick={() => removerItem(item)}> 
                 <img
                   className={styles.imgLixo}
                   src="/imagens/icon-lixo.png"
-                  alt="icone lixo"
-                  onClick={() => removerItem(itemRemovido)}
-                />
+                  alt="icone lixo">
+                  </img> </button>
+              
             </div>
           ))}
         <div className={styles.totalPedido}>
