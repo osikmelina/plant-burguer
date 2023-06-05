@@ -54,21 +54,21 @@ const Cardapio = () => {
           <Tag onClick={() => filtrarTipoCardapio('Almuerzo')}texto="ALMOÇO E JANTAR" />
         </div>
       <div className={styles.caixasPedido}>
-      <>
-    <CaixaFundo>
-    {produtosCardapio &&
-      produtosFiltrados.map((item) => (
-      <div className={styles.tagProdutos} key={item.id}>
-      <Card         
-        texto={item.name}
-        imagem={item.image}
-        onClick={() => adicionarItem(item)}
-        />
-        </div>
-  ))}
-    </CaixaFundo>
-    </>
-      <CaixaResumo itemSelecionado={itemSelecionado} />
+        <CaixaFundo>
+          <div className={styles.caixaProdutos}>
+          {produtosCardapio &&
+            produtosFiltrados.map((item) => (
+            <div className={styles.tagProdutos} key={item.id}>
+            <Card         
+              texto={item.name}
+              imagem={item.image}
+              onClick={() => adicionarItem(item)}
+              />
+              </div>
+          ))}
+          </div>
+        </CaixaFundo>
+        <CaixaResumo itemSelecionado={itemSelecionado} />
       </div>
     </section>
   )
