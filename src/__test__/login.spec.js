@@ -1,17 +1,21 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { render, screen } from "@testing-library/react";
-import  FormLogin  from "../pages/Login";
+import  Login  from "../pages/Login";
+import userEvent from "@testing-library/user-event";
 
+jest.mock("react-router-dom")
 
-describe('Deve fazer login', () => {
-    it('renderiza o componente login', () => {
+describe('login', () => {
+    it('deve redirecionar para a página de atendimento após o login com sucesso', () => {
         render(
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<FormLogin />}></Route>
-                </Routes>
-            </BrowserRouter>
+            <Login />
         )
+        const email = screen.getByPlaceholderText("E-MAIL")
+        const senha = screen.getByPlaceholderText("SENHA")
+        userEvent.type(email, 'teste@gmail.com')
+        userEvent.type(senha, '1234')
+        const btn = screen.getByText("ENTRAR")
+        userEvent.click(btn)
         expect(screen.getByText('LOGIN')).toBeInTheDocument()
         // const loginElements = FormLogin()
     })

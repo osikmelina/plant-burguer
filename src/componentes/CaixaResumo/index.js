@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styles from "./CaixaResumo.module.css";
 import { ClienteContext } from "../../context/ClienteContext";
 import Botao from "../Botao";
+import { pedidos } from "../../API/orders";
 
 const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   const { cliente } = useContext(ClienteContext);
@@ -24,6 +25,12 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
     });
     return total;
   };
+
+  const enviarPedido = () => {
+    const token = localStorage.getItem("token")
+    const userId = localStorage.getItem("userId")
+    pedidos(token, userId, cliente, itemSelecionado)
+  }
 
   return (
     <section className={styles.fundoResumo}>
@@ -58,7 +65,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
           <p>R$ {calcularTotal()}</p>
         </div>
       </div>
-      <Botao> ENVIAR </Botao>
+      <Botao onClick={() => enviarPedido()}> ENVIAR </Botao>
     </section>
   );
 };

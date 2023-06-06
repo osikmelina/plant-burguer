@@ -25,6 +25,7 @@ const FormLogin = () => {
       const response = await login(email, senha);
       const jsonData = await response.json()
       localStorage.setItem("token", jsonData.accessToken);
+      localStorage.setItem("userId", jsonData.user.id);
       if (response.status === 200){
       navegar('/atendimento')
       } else {
