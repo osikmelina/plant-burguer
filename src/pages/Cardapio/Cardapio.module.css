@@ -17,4 +17,5 @@
 
 .caixasPedido {
   display: flex;
+  grid-template-columns: 1fr 1rem 1rem;
 }

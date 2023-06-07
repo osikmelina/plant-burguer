@@ -4,6 +4,7 @@ import Tag from "../../componentes/Tag";
 import CaixaFundo from "../../componentes/CaixaFundo";
 import { useEffect, useState } from "react";
 import { obterPedidos } from "../../API/orders";
+import Botao from "../../componentes/Botao";
 
 const Cozinha = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -24,24 +25,33 @@ const Cozinha = () => {
       <LogoMenor />
       <div className={styles.txtItens}>
         <Tag texto="EM PREPARO" />
-        <Tag texto="PARA SERVIR" />
         <Tag texto="PEDIDOS FINALIZADOS" />
       </div>
-      <CaixaFundo>
-        <div>
-          {pedidos.map((pedido) => (
-            <div key={pedido.id}>
-              <span>{pedido.client}</span>
+      {pedidos.map((pedido) => (
+        <CaixaFundo>
+          <div key={pedido.id}>
+            <span className={styles.nomeCliente}>Cliente: {pedido.client.toUpperCase()}</span>
+            <div className={styles.fundoBranco}>
+              <div className={styles.qtdValor}>
+                <span>ITEM</span>
+                <span>QTD</span>
+              </div>
+              <div className={styles.pedidosCozinha}>
+                <div>
+                  {pedido.products.map((product) => (
+                    <div className={styles.produtos} key={product.id}>
+                      <span>{product.name}</span>
+                      <span>{product.quantidade}</span>
+                    </div>
+                  ))}
+                </div>
+              <Botao>PRONTO</Botao>
+              </div>
             </div>
-          ))}
-          {/* {pedidos.products.map((product) => (
-            <div key={product.id}>
-              <span>{product.name}</span>
-              <span>{product.quantidade}</span>
-            </div> */}
-          {/* ))} */}
-        </div>
-      </CaixaFundo>
+          </div>
+        </CaixaFundo>
+      ))}
+
     </section>
   )
 }
