@@ -2,11 +2,18 @@ import React, { useContext } from "react";
 import styles from "./CaixaResumo.module.css";
 import { ClienteContext } from "../../context/ClienteContext";
 import Botao from "../Botao";
+import { useNavigate } from "react-router-dom";
 import { pedidos } from "../../API/orders";
 
 const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   const { cliente } = useContext(ClienteContext);
 
+  const navegar = useNavigate();
+
+  const navegarParaCozinha = () => {
+    navegar("/cozinha");
+  }
+  
     const removerItem = (item) => {
     const itemResumo = itemSelecionado.find((i) => i.id === item.id);
     if (itemResumo) {
@@ -65,7 +72,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
           <p>R$ {calcularTotal()}</p>
         </div>
       </div>
-      <Botao onClick={() => enviarPedido()}> ENVIAR </Botao>
+      <Botao onClick={() => {enviarPedido(); navegarParaCozinha(); }}> ENVIAR </Botao>
     </section>
   );
 };
