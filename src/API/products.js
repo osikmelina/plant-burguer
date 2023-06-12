@@ -1,4 +1,4 @@
-const API_URL = 'https://burger-queen-api-mock-ten.vercel.app'
+const API_URL = 'http://localhost:8080'
 
 const produtos = (token) => {
   return fetch(`${API_URL}/products`, {

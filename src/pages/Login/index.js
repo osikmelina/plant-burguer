@@ -21,7 +21,6 @@ const FormLogin = () => {
     setErro('')
 
   try {
-      console.log("Valor da senha: ", senha)
       const response = await login(email, senha);
       const jsonData = await response.json()
       localStorage.setItem("token", jsonData.accessToken);

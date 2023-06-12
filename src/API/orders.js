@@ -1,4 +1,4 @@
-const API_URL = 'https://burger-queen-api-mock-ten.vercel.app'
+const API_URL = 'http://localhost:8080'
 
 export const pedidos = (token, userId, cliente, produtos) => {
   return fetch(`${API_URL}/orders`, {
@@ -24,6 +24,21 @@ export const obterPedidos = (token) => {
       "Content-Type": "application/json",
       'Authorization': `Bearer ${token}`
     },
+  })
+}
+
+export const finalizados = (token, orderId) => {
+  return fetch(`${API_URL}/orders/${orderId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      orderId,
+      status: "finalizado",
+      dateEntry: new Date()
+    })
   })
 }
 
