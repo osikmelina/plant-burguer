@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { obterPedidos } from "../../API/orders";
 import Botao from "../../componentes/Botao";
 
-const Cozinha = () => {
+const Finalizados = () => {
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
@@ -56,4 +56,4 @@ const Cozinha = () => {
   )
 }
 
-export default Cozinha
+export default Finalizados

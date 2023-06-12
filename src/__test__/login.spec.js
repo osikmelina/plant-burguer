@@ -33,4 +33,3 @@ describe('login', () => {
         // await waitFor(() => expect(login).toHaveBeenCalledTimes(1));
         expect(login).toHaveBeenCalledWith('teste@gmail.com', '123456');
     });
-});
