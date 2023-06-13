@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import login from "../../API/users";
 import Modal from "react-modal"
+import { setItem } from "../../storage/localStorage";
 
 const FormLogin = () => {
 
@@ -22,16 +23,10 @@ const FormLogin = () => {
 
   try {
       const response = await login(email, senha);
-      const jsonData = await response.json()
-      localStorage.setItem("token", jsonData.accessToken);
-      localStorage.setItem("userId", jsonData.user.id);
-      if (response.status === 200){
+      setItem("token", response.data.accessToken);
+      setItem("userId", response.data.user.id);
       navegar('/atendimento')
-      } else {
-        setErro('Ocorreu um erro ao efetuar o login')
-        abrirModal()
-      }
- 
+      
       // if (loginUsuario.user.role === 'Atendimento') {
       //   navegar('/atendimento')
       // }
