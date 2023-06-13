@@ -12,7 +12,7 @@ export async function request (endpoint, method="GET", headers={}, body={}) {
     })
     const data = await response.json()
     const value = {data, status:response.status}
-    if (response.status !== 200) {
+    if (!response.status.ok) {
         throw new Error(value);
     }
     return value
