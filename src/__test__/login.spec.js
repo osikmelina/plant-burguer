@@ -1,19 +1,35 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { render, screen, waitFor } from "@testing-library/react";
+import  Login  from "../pages/Login";
+import userEvent from "@testing-library/user-event";
+import login from "../API/users";
 
-const { render, screen } = require("@testing-library/react")
-const { default: FormLogin } = require("../pages/Login")
+jest.mock("react-router-dom");
+jest.mock('../../api/users');
+jest.mock('../../storage/localStorage');
 
+describe('login', () => {
+    it('deve redirecionar para a página de atendimento após o login com sucesso', async () => {
+        const mockUsuario = {
+            acessToken: 'teste-token',
+        }
+        login.mockResolvedValueOnce(mockUsuario);
+        const mockNavigate = jest.fn();
+        useNavigate.mockReturnValue(mockNavigate);
 
-describe('Deve fazer login', () => {
-    it('renderiza o componente login', () => {
         render(
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<FormLogin />}></Route>
-                </Routes>
-            </BrowserRouter>
+            <Login />
         )
-        expect(screen.getByText('LOGIN')).toBeInTheDocument()
-        // const loginElements = FormLogin()
-    })
-})
+        const email = screen.getByPlaceholderText("E-MAIL")
+        const senha = screen.getByPlaceholderText("SENHA")
+        const btn = screen.getByText("ENTRAR")
+
+        // await waitFor(() => {
+            userEvent.type(email, 'teste@gmail.com');
+            userEvent.type(senha, '123456');
+            userEvent.click(btn);
+        });
+        
+        // await waitFor(() => expect(login).toHaveBeenCalledTimes(1));
+        expect(login).toHaveBeenCalledWith('teste@gmail.com', '123456');
+    });

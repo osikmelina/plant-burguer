@@ -1,9 +1,7 @@
 .caixaFundo {
-  margin: 6rem;
-  display: flex;
-  flex-direction: column;
+  margin: 2rem;
   background-color: #435C3D;
-  width: 80%;
+  width: 95%;
   padding: 3rem 0;
   border-radius: 15px;
   box-shadow: 0px 3px 3px #000000;

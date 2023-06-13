@@ -5,7 +5,8 @@ import Logo from "../../componentes/Logo";
 import styles from "./Login.module.css"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import login from "../../API/login";
+import login from "../../API/users";
+import Modal from "react-modal"
 
 const FormLogin = () => {
 
@@ -13,6 +14,7 @@ const FormLogin = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const aoLogar = async (evento) => {
     evento.preventDefault()
@@ -20,11 +22,14 @@ const FormLogin = () => {
 
   try {
       const response = await login(email, senha);
-     
+      const jsonData = await response.json()
+      localStorage.setItem("token", jsonData.accessToken);
+      localStorage.setItem("userId", jsonData.user.id);
       if (response.status === 200){
       navegar('/atendimento')
       } else {
-        setErro(alert('Ocorreu um erro ao efetuar o login'))
+        setErro('Ocorreu um erro ao efetuar o login')
+        abrirModal()
       }
  
       // if (loginUsuario.user.role === 'Atendimento') {
@@ -37,8 +42,17 @@ const FormLogin = () => {
       //   navegar('/admin')
       // }
     } catch (error) {
-      setErro(error.message)
+      setErro('Algo inesperado aconteceu, tente novamente.')
+      abrirModal()
     }
+  }
+
+  function abrirModal() {
+    setIsOpen(true);
+  }
+
+  function fecharModal() {
+    setIsOpen(false);
   }
 
   return (
@@ -61,13 +75,23 @@ const FormLogin = () => {
           placeholder="SENHA"
           valor={senha}
           aoAlterado={valor => setSenha(valor)}
-        
         />
         <div className={styles.botao}>
-          <Botao texto="ENTRAR"/>
+          <Botao> ENTRAR </Botao>
         </div>
       </form>
       </CaixaFundo>
+      <Modal
+        className="modal"
+        overlayClassName="modal-fundo"
+        isOpen={modalIsOpen}
+        onRequestClose={fecharModal}
+      >
+        <div className="modal-conteudo">
+          <p className="textoModal">{erro}</p>
+          <button className="botao-ok" onClick={fecharModal}>OK</button>
+        </div>
+      </Modal>
     </section>
   );
 }

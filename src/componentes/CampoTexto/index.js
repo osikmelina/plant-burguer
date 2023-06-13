@@ -1,9 +1,9 @@
-// import Botao from '../Botao';
 import './CampoTexto.css';
 
 const CampoTexto = (props) => {
   const aoDigitado = (evento) => {
     props.aoAlterado(evento.target.value)
+    console.log(evento.target.value)
   }
 
   return (

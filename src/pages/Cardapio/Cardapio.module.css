@@ -1,0 +1,21 @@
+.logo {
+  width: 3rem;
+}
+
+.caixaProdutos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-gap: 0.6rem;
+  margin: 0 1.2rem;
+}
+
+.txtItens {
+  font-size: 20px;
+  color: #FFFFFF;
+  margin-left: 2rem;
+}
+
+.caixasPedido {
+  display: flex;
+  grid-template-columns: 1fr 1rem 1rem;
+}

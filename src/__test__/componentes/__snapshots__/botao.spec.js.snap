@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Deve renderizar o botão corretamente 1`] = `
+<button
+  class="botao"
+>
+   ENTRAR 
+</button>
+`;

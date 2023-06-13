@@ -1,0 +1,72 @@
+.fundoResumo {
+  margin: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #435C3D;
+  width: 60%;
+  border-radius: 15px;
+  box-shadow: 0px 3px 3px #000000;
+  padding: 1rem 0;
+}
+
+.textoResumo {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.textoResumo h3 {
+  margin: 0 0 1rem 0;
+}
+
+.fundoBranco {
+  background-color: #FFF;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 15px;
+}
+
+.qtdValor {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.6rem;
+  margin-right: 3.5rem;
+}
+
+.itemQtdValor {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.txtItens {
+  display: flex;
+  justify-content: space-between;
+}
+
+.txtSpan {
+  display: grid;
+  grid-template-columns: 1fr 2.5rem 5rem 1.5rem;
+  grid-gap: 1rem;
+  font-size: larger;
+}
+
+.numerosResumo {
+  text-align: center;
+}
+
+.totalPedido {
+  display: flex;
+  justify-content: space-between;
+}
+
+.totalPedido p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.imgLixo {
+  width: 1.5rem;
+}
