@@ -8,9 +8,11 @@ import Botao from "../../componentes/Botao";
 import Modal from "react-modal";
 import { finalizados } from "../../API/orders";
 import { setItem } from "../../storage/localStorage";
+import { useNavigate } from "react-router-dom";
 
 const EmPreparo = () => {
   const [pedidos, setPedidos] = useState([]);
+  const navegar = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
@@ -64,7 +66,7 @@ const EmPreparo = () => {
       <LogoMenor />
       <div className={styles.txtItens}>
         <Tag texto="EM PREPARO" />
-        <Tag texto="PEDIDOS FINALIZADOS" />
+        <Tag onClick={() => navegar('/finalizados')} texto="PEDIDOS FINALIZADOS" />
       </div>
       {pedidos.map((pedido) => (
         <CaixaFundo>
