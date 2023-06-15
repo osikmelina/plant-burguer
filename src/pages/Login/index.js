@@ -6,7 +6,7 @@ import styles from "./Login.module.css"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import login from "../../API/users";
-import Modal from "react-modal"
+import Modal from "react-modal";
 import { setItem } from "../../storage/localStorage";
 
 const FormLogin = () => {
