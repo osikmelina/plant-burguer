@@ -6,7 +6,6 @@ import CaixaFundo from "../../componentes/CaixaFundo"
 import React, { useEffect, useState } from "react";
 import produtos from "../../API/products";
 import Card from "../../componentes/Card";
-import { useNavigate } from "react-router-dom";
 
 const Cardapio = () => {
   const [produtosCardapio, setProdutosCardapio] = useState([]); //estado que armazena todos os produtos
@@ -15,16 +14,11 @@ const Cardapio = () => {
   //aqui o useState vai ser usado para criar uma variável de estado chamada produtosCafe que o valor inicial é um array vazio;
   //produtosCafe é uma variavel que está vazia
   //setProdutos é a função que vai adicionar os produtos dentro da variavel produtosCafe
-  const navegar = useNavigate();
 
-  const navegarParaCozinha = () => {
-    navegar("/cozinha");
-  }
   useEffect(() => {
     async function fetchData() {
-      const token = localStorage.getItem("token")
-      const response = await produtos(token)
-      const listaProdutos = await response.json()
+      const response = await produtos()
+      const listaProdutos = response.data
       setProdutosCardapio(listaProdutos)
       console.log(listaProdutos)
     }

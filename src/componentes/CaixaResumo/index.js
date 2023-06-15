@@ -11,7 +11,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   const navegar = useNavigate();
 
   const navegarParaCozinha = () => {
-    navegar("/cozinha");
+    navegar("/preparo");
   }
   
     const removerItem = (item) => {
@@ -34,9 +34,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   };
 
   const enviarPedido = () => {
-    const token = localStorage.getItem("token")
-    const userId = localStorage.getItem("userId")
-    pedidos(token, userId, cliente, itemSelecionado)
+    pedidos(cliente, itemSelecionado)
   }
 
   return (
