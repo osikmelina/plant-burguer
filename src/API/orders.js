@@ -22,21 +22,9 @@ export const finalizados = (orderId) => {
     {
     orderId,
     status: "finalizado",
-    dateEntry: new Date()
+    dateFinal: new Date(),
   })
 }
-  // return fetch(`${API_URL}/orders/${orderId}`, {
-  //   method: "PATCH",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     'Authorization': `Bearer ${token}`
-  //   },
-  //   body: JSON.stringify({
-  //     orderId,
-  //     status: "finalizado",
-  //     dateEntry: new Date()
-  //   })
-  // })
 
 
 

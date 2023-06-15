@@ -1,10 +1,11 @@
-import styles from "./Cozinha.module.css"
+import styles from "./Cozinha.module.css";
 import LogoMenor from "../../componentes/LogoMenor";
 import Tag from "../../componentes/Tag";
 import CaixaFundo from "../../componentes/CaixaFundo";
 import { useEffect, useState } from "react";
 import { obterPedidos } from "../../API/orders";
 import Botao from "../../componentes/Botao";
+import { differenceInMinutes } from 'date-fns';
 
 const Finalizados = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -12,7 +13,7 @@ const Finalizados = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await obterPedidos();
-      const listaPedidos = await response.json();
+      const listaPedidos = response.data;
       setPedidos(listaPedidos.filter(pedido => pedido.status === "finalizado"));
       console.log(listaPedidos)
     }
@@ -44,7 +45,9 @@ const Finalizados = () => {
                     </div>
                   ))}
                 </div>
-              <Botao>PRONTO</Botao>
+              <Botao>
+                Tempo de preparo: {differenceInMinutes (new Date(pedido.dateFinal), new Date(pedido.dateEntry))} minuto(s)
+              </Botao>
               </div>
             </div>
           </div>
