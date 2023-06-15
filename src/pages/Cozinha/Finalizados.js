@@ -11,10 +11,9 @@ const Finalizados = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const token = localStorage.getItem("token");
-      const response = await obterPedidos(token);
+      const response = await obterPedidos();
       const listaPedidos = await response.json();
-      setPedidos(listaPedidos);
+      setPedidos(listaPedidos.filter(pedido => pedido.status === "finalizado"));
       console.log(listaPedidos)
     }
     fetchData()

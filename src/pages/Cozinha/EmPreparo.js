@@ -5,25 +5,23 @@ import CaixaFundo from "../../componentes/CaixaFundo";
 import { useEffect, useState } from "react";
 import { obterPedidos } from "../../API/orders";
 import Botao from "../../componentes/Botao";
-import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { finalizados } from "../../API/orders";
+import { setItem } from "../../storage/localStorage";
 
 const EmPreparo = () => {
   const [pedidos, setPedidos] = useState([]);
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     async function fetchData() {
-      const response = await obterPedidos(token);
-      const listaPedidos = await response.json();
-      setPedidos(listaPedidos);
+      const response = await obterPedidos();
+      const listaPedidos = response.data;
+      setPedidos(listaPedidos.filter(pedido => pedido.status !== "finalizado"));
       console.log(listaPedidos);
     }
     fetchData();
-  },[]);
+  }, []);
 
-  const navegar = useNavigate();
   const [erro, setErro] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -31,17 +29,22 @@ const EmPreparo = () => {
     console.log(orderId);
     setErro("");
     try {
-      const response = await finalizados(token, orderId);
-      const jsonData = await response.json();
-      localStorage.setItem("orderId", jsonData.orders.id);
-      if (response.status === "finalizado") {
-        abrirModal("O pedido foi finalizado.");
-        navegar("/finalizados");
+      const response = await finalizados(orderId);
+      const jsonData = response.data;
+      console.log(jsonData)
+      setItem("orderId", jsonData.id);
+      setPedidos(prevStat => prevStat.filter(pedido => pedido.id !== orderId))
+      
+      if (jsonData.status === "finalizado") {
+        setErro("O pedido foi finalizado");
+        abrirModal();
+        // navegar("/finalizados");
       } else {
         setErro("Ocorreu um erro ao finalizar o pedido.");
         abrirModal();
       }
     } catch (error) {
+      console.log(error)
       setErro("Algo inesperado aconteceu, tente novamente.");
       abrirModal();
     }
