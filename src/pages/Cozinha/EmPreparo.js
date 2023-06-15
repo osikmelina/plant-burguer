@@ -20,7 +20,7 @@ const EmPreparo = () => {
       console.log(listaPedidos);
     }
     fetchData();
-  }, []);
+  },  []);
 
   const [erro, setErro] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -34,15 +34,16 @@ const EmPreparo = () => {
       console.log(jsonData)
       setItem("orderId", jsonData.id);
       setPedidos(prevStat => prevStat.filter(pedido => pedido.id !== orderId))
-      
       if (jsonData.status === "finalizado") {
+      // const timer = formatDistance(new Date(), new Date(orderId.dateEntry))
         setErro("O pedido foi finalizado");
         abrirModal();
         // navegar("/finalizados");
-      } else {
-        setErro("Ocorreu um erro ao finalizar o pedido.");
-        abrirModal();
-      }
+      } 
+      // else {
+      //   setErro("Ocorreu um erro ao finalizar o pedido.");
+      //   abrirModal();
+      // }
     } catch (error) {
       console.log(error)
       setErro("Algo inesperado aconteceu, tente novamente.");

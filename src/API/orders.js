@@ -1,4 +1,3 @@
-
 import { request, getAuthorizationHeader} from "./request"
 import { getItem } from "../storage/localStorage"
 
@@ -23,7 +22,7 @@ export const finalizados = (orderId) => {
     {
     orderId,
     status: "finalizado",
-    dateEntry: new Date()
+    dateFinal: new Date(),
   })
 }
   // return fetch(`${API_URL}/orders/${orderId}`, {
@@ -38,6 +37,8 @@ export const finalizados = (orderId) => {
   //     dateEntry: new Date()
   //   })
   // })
+
+
 
 
 
