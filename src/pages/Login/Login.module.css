@@ -10,4 +10,10 @@
   margin-top: 2rem;
   display: flex;
 }
-  
+
+@media only screen and (max-width: 767px) {
+  .login {
+    display: flex;
+    flex-direction: column;
+  }
+}

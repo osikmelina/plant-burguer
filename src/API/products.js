@@ -1,13 +1,7 @@
-const API_URL = 'http://localhost:8080'
+import { request, getAuthorizationHeader} from "./request"
 
-const produtos = (token) => {
-  return fetch(`${API_URL}/products`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`
-    },
-  })
+const produtos = () => {
+  return request ('products', 'GET', getAuthorizationHeader())
 }
 
 export default produtos

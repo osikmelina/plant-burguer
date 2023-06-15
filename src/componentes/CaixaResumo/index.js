@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./CaixaResumo.module.css";
-import { ClienteContext } from "../../context/ClienteContext";
+import { ClienteContext } from "../../context/clienteContext";
 import Botao from "../Botao";
 import { useNavigate } from "react-router-dom";
 import { pedidos } from "../../API/orders";
@@ -11,7 +11,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   const navegar = useNavigate();
 
   const navegarParaCozinha = () => {
-    navegar("/cozinha");
+    navegar("/preparo");
   }
   
     const removerItem = (item) => {
@@ -34,9 +34,7 @@ const CaixaResumo = ({ itemSelecionado, setItemSelecionado }) => {
   };
 
   const enviarPedido = () => {
-    const token = localStorage.getItem("token")
-    const userId = localStorage.getItem("userId")
-    pedidos(token, userId, cliente, itemSelecionado)
+    pedidos(cliente, itemSelecionado)
   }
 
   return (
