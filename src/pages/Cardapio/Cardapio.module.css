@@ -17,5 +17,10 @@
 
 .caixasPedido {
   display: flex;
-  grid-template-columns: 1fr 1rem 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .caixasPedido {
+    flex-direction: column;
+  }
 }

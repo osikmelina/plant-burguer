@@ -37,10 +37,8 @@ const EmPreparo = () => {
       setItem("orderId", jsonData.id);
       setPedidos(prevStat => prevStat.filter(pedido => pedido.id !== orderId))
       if (jsonData.status === "finalizado") {
-      // const timer = formatDistance(new Date(), new Date(orderId.dateEntry))
         setErro("O pedido foi finalizado");
         abrirModal();
-        // navegar("/finalizados");
       } 
       // else {
       //   setErro("Ocorreu um erro ao finalizar o pedido.");
