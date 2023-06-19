@@ -53,7 +53,7 @@ const FormLogin = () => {
   return (
     <section className={styles.login}>
      <Logo />
-      <CaixaFundo>
+      <CaixaFundo className={styles.caixaFundo}>
       <h1> LOGIN </h1>
       <form onSubmit={aoLogar}>
         <CampoTexto

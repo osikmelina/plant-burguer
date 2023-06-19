@@ -16,7 +16,7 @@ const NovoPedido = () => {
   }
 
     return (
-        <section className={styles.login}>
+        <section className={styles.atendimento}>
           <Logo />
           <CaixaFundo>
           <CampoTexto 

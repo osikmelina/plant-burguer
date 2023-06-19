@@ -1,8 +1,27 @@
 .caixaFundo {
-  margin: 2rem;
+  margin-top: 2rem;
   background-color: #435C3D;
   width: 95%;
   padding: 3rem 0;
   border-radius: 15px;
   box-shadow: 0px 3px 3px #000000;
 }
+
+/* @media only screen and (max-width: 767px) {
+  .caixaFundo {
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .caixaFundo {
+    width: 70%;    
+  }
+}
+
+
+@media only screen and (min-width: 1025px) {
+  .caixaFundo {
+    width: 40%;
+  }
+} */

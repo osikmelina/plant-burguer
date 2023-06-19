@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.campo-texto input{
+.campo-texto input {
   width: 80%;
   height: 4rem;
   background-color: rgba(146, 184, 109, 0.85);
@@ -16,9 +16,29 @@
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.campo-texto ::placeholder{
+.campo-texto ::placeholder {
   color: #FFFFFF;
   font-size: 1.5rem;
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+@media only screen and (max-width: 767px) {
+  .campo-texto input {
+    font-size: 1.2rem;
+  }
+
+  .campo-texto ::placeholder {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .campo-texto input {  
+    font-size: 1.2rem;
+  }
+
+  .campo-texto ::placeholder {
+    font-size: 1.2rem;
+  }
 }

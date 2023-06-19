@@ -53,3 +53,42 @@
   font-size: 1.5rem;
   color: #435C3D;
 }
+
+@media only screen and (max-width: 767px) {
+  .modal {
+    width: 60%;
+  }
+
+  .modal-conteudo {
+    padding: 0.9rem;
+    text-align: center;
+  }
+
+  .botao-ok {
+    width: 40%;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .textoModal {
+    font-size: 1.3rem;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .modal {
+    width: 55%;
+  }
+
+  .modal-conteudo {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .botao-ok {
+    width: 30%;
+    height: 3rem;
+    font-size: 1.2rem;
+  }
+}
