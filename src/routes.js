@@ -6,6 +6,7 @@ import NovoPedido from "./pages/Atendimento";
 import Cardapio from "./pages/Cardapio";
 import EmPreparo from "./pages/Cozinha/EmPreparo";
 import Finalizados from "./pages/Cozinha/Finalizados";
+import Admin from "./pages/Admin";
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
@@ -19,6 +20,7 @@ function AppRoutes() {
         <Route path="/cardapio" element={<ClienteStore> <Cardapio /> </ClienteStore>}></Route>
         <Route path="/preparo" element={<ClienteStore> <EmPreparo /> </ClienteStore>}></Route>
         <Route path="/finalizados" element={<ClienteStore> <Finalizados /> </ClienteStore>}></Route>
+        <Route path="/admin" element={<ClienteStore> <Admin /> </ClienteStore>}></Route>
       </Routes>
     </BrowserRouter>
   )

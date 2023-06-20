@@ -24,18 +24,16 @@ const FormLogin = () => {
   try {
       const response = await login(email, senha);
       setItem("token", response.data.accessToken);
-      setItem("userId", response.data.user.id);
-      navegar('/atendimento')
-      
-      // if (loginUsuario.user.role === 'Atendimento') {
-      //   navegar('/atendimento')
-      // }
-      // if (loginUsuario.user.role === 'Cozinha') {
-      //   navegar('/cozinha')
-      // }
-      // if (loginUsuario === 'Admin') {
-      //   navegar('/admin')
-      // }
+      setItem("userId", response.data.user.id);      
+      if (response.data.user.role === 'atendimento') {
+        navegar('/atendimento')
+      }
+      if (response.data.user.role === 'cozinha') {
+        navegar('/preparo')
+      }
+      if (response.data.user.role === 'admin') {
+        navegar('/admin')
+      }
     } catch (error) {
       setErro('Algo inesperado aconteceu, tente novamente.')
       abrirModal()

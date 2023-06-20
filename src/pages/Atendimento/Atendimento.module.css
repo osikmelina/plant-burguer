@@ -13,7 +13,6 @@
 
 @media only screen and (max-width: 767px) {
   .atendimento {
-    display: flex;
     flex-direction: column;
     margin-top: 0;
     width: 80%;
