@@ -1,19 +1,19 @@
-import Botao from "../../componentes/Botao"
-import CaixaFundo from "../../componentes/CaixaFundo"
-import CampoTexto from "../../componentes/CampoTexto"
-import Logo from "../../componentes/Logo"
-import styles from "./Atendimento.module.css"
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { ClienteContext } from "../../context/ClienteContext";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Botao from '../../componentes/Botao';
+import CaixaFundo from '../../componentes/CaixaFundo';
+import CampoTexto from '../../componentes/CampoTexto';
+import Logo from '../../componentes/Logo';
+import styles from './Atendimento.module.css';
+import { ClienteContext } from '../../context/clienteContext';
 
-const NovoPedido = () => {
+function NovoPedido() {
   const { addCliente } = useContext(ClienteContext);
   const navegar = useNavigate();
 
   const clicar = () => {
-    navegar("/cardapio");
-  }
+    navegar('/cardapio');
+  };
 
     return (
         <section className={styles.pedido}>
@@ -31,4 +31,4 @@ const NovoPedido = () => {
     )
 }
 
-export default NovoPedido
+export default NovoPedido;
