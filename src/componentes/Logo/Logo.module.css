@@ -5,10 +5,17 @@ body {
 
 .logo {
   display: flex;
-  width: 100%;
+  
 }
 
-.logo img {
-  max-width: 38rem;
-  width: 100%;
+@media only screen and (max-width:500px) {
+   .logo img{
+    max-width: 22rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .logo img {
+    max-width: 28rem;
+  }
 }

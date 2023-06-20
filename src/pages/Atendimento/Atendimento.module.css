@@ -1,4 +1,16 @@
-.login {
+.atendimento {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.atendimentoRotas {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
+}
+.pedido {
   display: flex;
   align-items: center;
   background-size: auto;
@@ -10,3 +22,76 @@
   margin-top: 2rem;
   display: flex;
 }
+
+@media only screen and (max-width: 767px) {
+  .atendimento {
+    flex-direction: column;
+    margin-top: 0;
+    width: 80%;
+    padding-left: 10%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .atendimento {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 0;
+    width: 60%;
+    padding-left: 20%;
+  }
+
+  .botao {
+    width: 60%;
+    padding-left: 6rem;
+  }
+}
+
+@media (max-width: 1181px) and (orientation: landscape) {
+  .pedido {
+    width: 85%;
+    padding-left: 6%;
+    margin-top: 8rem;
+  }
+
+  .botao {
+    width: 65%;
+    padding-left: 18%;
+  }
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .atendimento {
+    width: 70%;
+    margin-top: 10rem;
+    margin-left: 10rem;
+
+  }
+  .pedido {
+    gap: 5px;
+    width: 70%;
+    padding-left: 10rem;
+    margin-top: 5rem;
+  }
+
+  .botao {
+    width: 70%;
+    padding-left: 15%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .pedido {
+    width: 40%;
+    margin-top: 10rem;
+    padding-left: 25%;
+  }
+
+  .botao {
+    width: 60%;
+    padding-left: 20%;
+  }
+}
+
+

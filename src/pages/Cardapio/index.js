@@ -17,9 +17,8 @@ const Cardapio = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const token = localStorage.getItem("token")
-      const response = await produtos(token)
-      const listaProdutos = await response.json()
+      const response = await produtos()
+      const listaProdutos = response.data
       setProdutosCardapio(listaProdutos)
       console.log(listaProdutos)
     }
@@ -46,7 +45,7 @@ const Cardapio = () => {
     console.log(itemSelecionado)
   }
 
-  return (
+   return (
     <section>
       <LogoMenor />
         <div className={styles.txtItens}>
@@ -54,21 +53,24 @@ const Cardapio = () => {
           <Tag onClick={() => filtrarTipoCardapio('Almuerzo')}texto="ALMOÇO E JANTAR" />
         </div>
       <div className={styles.caixasPedido}>
-      <>
-    <CaixaFundo>
-    {produtosCardapio &&
-      produtosFiltrados.map((item) => (
-      <div className={styles.tagProdutos} key={item.id}>
-      <Card         
-        texto={item.name}
-        imagem={item.image}
-        onClick={() => adicionarItem(item)}
+        <CaixaFundo>
+          <div className={styles.caixaProdutos}>
+          {produtosCardapio &&
+            produtosFiltrados.map((item) => (
+            <div className={styles.tagProdutos} key={item.id}>
+            <Card         
+              texto={item.name}
+              imagem={item.image}
+              onClick={() => adicionarItem(item)}
+              />
+            </div>
+          ))}
+          </div>
+        </CaixaFundo>
+        <CaixaResumo
+        itemSelecionado={itemSelecionado}
+        setItemSelecionado={setItemSelecionado}
         />
-        </div>
-  ))}
-    </CaixaFundo>
-    </>
-      <CaixaResumo itemSelecionado={itemSelecionado}/>
       </div>
     </section>
   )

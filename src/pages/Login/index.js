@@ -6,7 +6,8 @@ import styles from "./Login.module.css"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import login from "../../API/users";
-import Modal from "react-modal"
+import Modal from "react-modal";
+import { setItem } from "../../storage/localStorage";
 
 const FormLogin = () => {
 
@@ -21,26 +22,18 @@ const FormLogin = () => {
     setErro('')
 
   try {
-      console.log("Valor da senha: ", senha)
       const response = await login(email, senha);
-      const jsonData = await response.json()
-      localStorage.setItem("token", jsonData.accessToken);
-      if (response.status === 200){
-      navegar('/atendimento')
-      } else {
-        setErro('Ocorreu um erro ao efetuar o login')
-        abrirModal()
+      setItem("token", response.data.accessToken);
+      setItem("userId", response.data.user.id);      
+      if (response.data.user.role === 'atendimento') {
+        navegar('/atendimento')
       }
- 
-      // if (loginUsuario.user.role === 'Atendimento') {
-      //   navegar('/atendimento')
-      // }
-      // if (loginUsuario.user.role === 'Cozinha') {
-      //   navegar('/cozinha')
-      // }
-      // if (loginUsuario === 'Admin') {
-      //   navegar('/admin')
-      // }
+      if (response.data.user.role === 'cozinha') {
+        navegar('/preparo')
+      }
+      if (response.data.user.role === 'admin') {
+        navegar('/admin')
+      }
     } catch (error) {
       setErro('Algo inesperado aconteceu, tente novamente.')
       abrirModal()
@@ -58,7 +51,7 @@ const FormLogin = () => {
   return (
     <section className={styles.login}>
      <Logo />
-      <CaixaFundo>
+      <CaixaFundo className={styles.caixaFundo}>
       <h1> LOGIN </h1>
       <form onSubmit={aoLogar}>
         <CampoTexto
