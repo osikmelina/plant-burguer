@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styles from './Cardapio.module.css';
-import Tag from '../../componentes/Tag';
-import LogoMenor from '../../componentes/LogoMenor';
-import CaixaResumo from '../../componentes/CaixaResumo';
-import CaixaFundo from '../../componentes/CaixaFundo';
-import produtos from '../../API/products';
-import Card from '../../componentes/Card';
+import styles from "./Cardapio.module.css";
+import Tag from "../../componentes/Tag";
+import LogoMenor from "../../componentes/LogoMenor";
+import CaixaResumo from "../../componentes/CaixaResumo";
+import CaixaFundo from "../../componentes/CaixaFundo";
+import React, { useEffect, useState } from "react";
+import { produtos } from "../../API/products";
+import Card from "../../componentes/Card";
 
 function Cardapio() {
   // estado que armazena todos os produtos
@@ -76,6 +76,6 @@ function Cardapio() {
       </div>
     </section>
   );
-}
+};
 
 export default Cardapio;

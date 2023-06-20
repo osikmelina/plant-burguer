@@ -65,7 +65,6 @@ function Finalizados() {
           </div>
         </CaixaFundo>
       ))}
-
     </section>
   );
 }
