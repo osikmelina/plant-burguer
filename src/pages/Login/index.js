@@ -1,32 +1,40 @@
-import Botao from "../../componentes/Botao";
-import CaixaFundo from "../../componentes/CaixaFundo";
-import CampoTexto from "../../componentes/CampoTexto";
-import Logo from "../../componentes/Logo";
-import styles from "./Login.module.css"
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import login from "../../API/users";
-import Modal from "react-modal";
-import { setItem } from "../../storage/localStorage";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from 'react-modal';
+import Botao from '../../componentes/Botao';
+import CaixaFundo from '../../componentes/CaixaFundo';
+import CampoTexto from '../../componentes/CampoTexto';
+import Logo from '../../componentes/Logo';
+import styles from './Login.module.css';
+import login from '../../API/users';
+import { setItem } from '../../storage/localStorage';
 
-const FormLogin = () => {
-
-  const navegar = useNavigate()
+function FormLogin() {
+  const navegar = useNavigate();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const aoLogar = async (evento) => {
-    evento.preventDefault()
-    setErro('')
+  function abrirModal() {
+    setIsOpen(true);
+  }
 
-  try {
+  function fecharModal() {
+    setIsOpen(false);
+  }
+  const aoLogar = async (evento) => {
+    evento.preventDefault();
+    setErro('');
+
+    try {
       const response = await login(email, senha);
-      setItem("token", response.data.accessToken);
-      setItem("userId", response.data.user.id);
-      navegar('/atendimento')
-      
+      setItem('token', response.data.accessToken);
+      setItem('userId', response.data.user.id);
+      navegar('/atendimento');
+      console.log(response);
+
       // if (loginUsuario.user.role === 'Atendimento') {
       //   navegar('/atendimento')
       // }
@@ -37,54 +45,46 @@ const FormLogin = () => {
       //   navegar('/admin')
       // }
     } catch (error) {
-      setErro('Algo inesperado aconteceu, tente novamente.')
-      abrirModal()
+      setErro('Algo inesperado aconteceu, tente novamente.');
+      abrirModal();
     }
-  }
-
-  function abrirModal() {
-    setIsOpen(true);
-  }
-
-  function fecharModal() {
-    setIsOpen(false);
-  }
+  };
 
   return (
     <section className={styles.login}>
-     <Logo />
+      <Logo />
       <CaixaFundo>
-      <h1> LOGIN </h1>
-      <form onSubmit={aoLogar}>
-        <CampoTexto
-          type="e-mail"
-          obrigatorio={true}
-          placeholder="E-MAIL"
-          valor={email}
-          aoAlterado={valor => setEmail(valor)}
-        />
-        <CampoTexto
-          type="password"
-          obrigatorio={true}
-          secureTextEntry={true}
-          placeholder="SENHA"
-          valor={senha}
-          aoAlterado={valor => setSenha(valor)}
-        />
-        <div className={styles.botao}>
-          <Botao> ENTRAR </Botao>
-        </div>
-      </form>
+        <h1> LOGIN </h1>
+        <form onSubmit={aoLogar}>
+          <CampoTexto
+            type="e-mail"
+            obrigatorio
+            placeholder="E-MAIL"
+            valor={email}
+            aoAlterado={(valor) => setEmail(valor)}
+          />
+          <CampoTexto
+            type="password"
+            obrigatorio
+            secureTextEntry
+            placeholder="SENHA"
+            valor={senha}
+            aoAlterado={(valor) => setSenha(valor)}
+          />
+          <div className={styles.botao}>
+            <Botao onClick={aoLogar}> ENTRAR </Botao>
+          </div>
+        </form>
       </CaixaFundo>
       <Modal
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
-        onRequestClose={fecharModal}
+        onRequestClose={() => fecharModal()}
       >
         <div className="modal-conteudo">
           <p className="textoModal">{erro}</p>
-          <button className="botao-ok" onClick={fecharModal}>OK</button>
+          <button type="button" className="botao-ok" onClick={fecharModal}>OK</button>
         </div>
       </Modal>
     </section>

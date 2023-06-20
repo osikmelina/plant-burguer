@@ -1,0 +1,75 @@
+.txtItens {
+    margin-left: 2rem;
+  }
+  
+  .nomeCliente {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: bolder;
+    font-size: 1.2rem;
+  }
+  
+  .fundoBranco {
+    background-color: #FFF;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  
+  .qtdValor {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    font-weight: bold;
+  }
+  
+  .pedidosCozinha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  
+   .produtos {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-gap: 1rem;
+    font-size: larger;
+    padding: 0.2rem 0;
+  }
+  
+  .pedidosCozinha button {
+    width: 25%;
+    min-width: 10rem;
+    margin: 0 0 0 auto;
+  }
+
+  @media screen and (max-width: 900px) {
+
+    .txtItens {
+        margin-left: 2rem;
+      }
+    .qtdValor {
+      display: grid;
+   
+        font-weight: bold;
+    }
+
+  
+    .produtos {
+      grid-template-columns: 70% 30%;
+      display: grid;
+ 
+    grid-gap: 1rem;
+
+    padding: 0.2rem 0;
+    }
+  
+    .pedidosCozinha button {
+      width: 100%;
+      min-width: 10rem;
+      margin: auto;
+      
+    }
+}

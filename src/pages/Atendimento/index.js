@@ -1,34 +1,34 @@
-import Botao from "../../componentes/Botao"
-import CaixaFundo from "../../componentes/CaixaFundo"
-import CampoTexto from "../../componentes/CampoTexto"
-import Logo from "../../componentes/Logo"
-import styles from "./Atendimento.module.css"
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { ClienteContext } from "../../context/clienteContext";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Botao from '../../componentes/Botao';
+import CaixaFundo from '../../componentes/CaixaFundo';
+import CampoTexto from '../../componentes/CampoTexto';
+import Logo from '../../componentes/Logo';
+import styles from './Atendimento.module.css';
+import { ClienteContext } from '../../context/clienteContext';
 
-const NovoPedido = () => {
+function NovoPedido() {
   const { addCliente } = useContext(ClienteContext);
   const navegar = useNavigate();
 
   const clicar = () => {
-    navegar("/cardapio");
-  }
+    navegar('/cardapio');
+  };
 
-    return (
-        <section className={styles.login}>
-          <Logo />
-          <CaixaFundo>
-          <CampoTexto 
-            placeholder="NOME DO CLIENTE"
-            aoAlterado={(valor) => addCliente(valor) }
-          />
-          <div className={styles.botao}>
+  return (
+    <section className={styles.login}>
+      <Logo />
+      <CaixaFundo>
+        <CampoTexto
+          placeholder="NOME DO CLIENTE"
+          aoAlterado={(valor) => addCliente(valor)}
+        />
+        <div className={styles.botao}>
           <Botao onClick={clicar}> NOVO PEDIDO </Botao>
-          </div>
-          </CaixaFundo>
-        </section>    
-    )
+        </div>
+      </CaixaFundo>
+    </section>
+  );
 }
 
-export default NovoPedido
+export default NovoPedido;

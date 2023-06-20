@@ -1,11 +1,11 @@
-import styles from './CaixaFundo.module.css'
+import styles from './CaixaFundo.module.css';
 
-const CaixaFundo = (props) => {
+function CaixaFundo(props) {
   return (
     <div className={styles.caixaFundo}>
       {props.children}
     </div>
-  )
+  );
 }
 
-export default CaixaFundo
+export default CaixaFundo;
