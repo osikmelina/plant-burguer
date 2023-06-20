@@ -7,7 +7,6 @@
   box-shadow: 0px 3px 3px #000000;
 }
 
-
 @media screen and (max-width: 900px) {
   .caixaFundo {
     margin: 2rem auto;

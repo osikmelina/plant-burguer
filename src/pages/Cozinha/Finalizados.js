@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import { obterPedidos } from "../../API/orders";
 import Botao from "../../componentes/Botao";
 import { differenceInMinutes } from 'date-fns';
+import { useNavigate } from "react-router-dom";
 
 const Finalizados = () => {
   const [pedidos, setPedidos] = useState([]);
+  const navegar = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +26,7 @@ const Finalizados = () => {
     <section>
       <LogoMenor />
       <div className={styles.txtItens}>
-        <Tag texto="EM PREPARO" />
+        <Tag onClick={() => navegar('/preparo')}texto="EM PREPARO" />
         <Tag texto="PEDIDOS FINALIZADOS" />
       </div>
       {pedidos.map((pedido) => (
@@ -53,7 +55,6 @@ const Finalizados = () => {
           </div>
         </CaixaFundo>
       ))}
-
     </section>
   )
 }

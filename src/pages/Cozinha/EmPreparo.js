@@ -46,7 +46,7 @@ const EmPreparo = () => {
       // }
     } catch (error) {
       console.log(error)
-      setErro("Algo inesperado aconteceu, tente novamente.");
+      setErro("Não foi possível finalizar o pedido, tente novamente.");
       abrirModal();
     }
   };

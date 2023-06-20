@@ -1,7 +1,9 @@
 import { request, getAuthorizationHeader} from "./request"
 
-const produtos = () => {
+export const produtos = () => {
   return request ('products', 'GET', getAuthorizationHeader())
-}
+};
 
-export default produtos
+export const deleteProduto = (productId) => {
+  return request (`products/${productId}`, 'DELETE', getAuthorizationHeader(), {})
+};
