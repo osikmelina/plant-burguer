@@ -1,8 +1,4 @@
-import { request, getAuthorizationHeader } from './request';
-
-export const produtos = () => {
-  return request ('products', 'GET', getAuthorizationHeader())
-};
+import { request, getAuthorizationHeader} from "./request"
 
 export const deleteProduto = (productId) => {
   return request (`products/${productId}`, 'DELETE', getAuthorizationHeader(), {})

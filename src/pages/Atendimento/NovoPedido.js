@@ -15,20 +15,20 @@ function NovoPedido() {
     navegar('/cardapio');
   };
 
-  return (
-    <section className={styles.atendimento}>
-      <Logo />
-      <CaixaFundo>
-        <CampoTexto
-          placeholder="NOME DO CLIENTE"
-          aoAlterado={(valor) => addCliente(valor)}
-        />
-        <div className={styles.botao}>
-         <Botao onClick={clicar}> NOVO PEDIDO </Botao>
-        </div>
-      </CaixaFundo>
-    </section>
-  );
+    return (
+        <section className={styles.pedido}>
+          <Logo />
+          <CaixaFundo>
+          <CampoTexto 
+            placeholder="NOME DO CLIENTE"
+            aoAlterado={(valor) => addCliente(valor) }
+          />
+          <div className={styles.botao}>
+          <Botao onClick={clicar}> NOVO PEDIDO </Botao>
+          </div>
+          </CaixaFundo>
+        </section>    
+    )
 }
 
 export default NovoPedido;
