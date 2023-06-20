@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
@@ -107,7 +106,7 @@ function EmPreparo() {
       >
         <div className="modal-conteudo">
           <p className="textoModal">{erro}</p>
-          <button className="botao-ok" onClick={fecharModal}>
+          <button type="button" className="botao-ok" onClick={fecharModal}>
             OK
           </button>
         </div>

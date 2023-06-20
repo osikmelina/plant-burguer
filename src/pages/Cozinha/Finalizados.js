@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { differenceInMinutes } from 'date-fns';
-import styles from './Cozinha.module.css';
+import styles from './Finalizados.module.css';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
@@ -38,12 +38,11 @@ function Finalizados() {
               {pedido.client.toUpperCase()}
             </span>
             <div className={styles.fundoBranco}>
-              <div className={styles.qtdValor}>
+              <div className={styles.qtdValorTempo}>
                 <span>ITEM</span>
                 <span>QTD</span>
-                <span>TEMPO</span>
               </div>
-              <div className={styles.pedidosCozinha}>
+              <div className={styles.pedidosFinalizados}>
                 <div>
                   {pedido.products.map((product) => (
                     <div className={styles.produtos} key={product.id}>
@@ -52,13 +51,15 @@ function Finalizados() {
                     </div>
                   ))}
                 </div>
-                <Botao>
-                  Tempo de preparo:
-                  {' '}
-                  {differenceInMinutes(new Date(pedido.dateFinal), new Date(pedido.dateEntry))}
-                  {' '}
-                  minuto(s)
-                </Botao>
+                <div className={styles.qtdValorTempo}>
+                  <Botao>
+                    Tempo de preparo:
+                    {' '}
+                    {differenceInMinutes(new Date(pedido.dateFinal), new Date(pedido.dateEntry))}
+                    {' '}
+                    minuto(s)
+                  </Botao>
+                </div>
               </div>
             </div>
           </div>

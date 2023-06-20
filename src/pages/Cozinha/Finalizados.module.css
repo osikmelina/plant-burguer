@@ -1,75 +1,67 @@
 .txtItens {
-    margin-left: 2rem;
+  margin-left: 2rem;
+}
+
+.nomeCliente {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.fundoBranco {
+  background-color: #FFF;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 15px;
+}
+
+.qtdValorTempo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-gap: 17%;
+  font-weight: bold;
+}
+
+.pedidosFinalizados{
+  display: grid;
+  grid-template-columns: 50vw 5vw;
+  grid-gap: 15%;
+}
+
+.produtos {
+  display: grid;
+  grid-template-columns: 72% 30%;
+}
+
+.pedidosFinalizados button {
+  width: 20%;
+  min-width: 12rem;
+  margin: 0 0 0 auto;
+  color: black;
+  background-color: #92B86D;
+}
+
+@media (max-width: 860px) {
+
+  .qtdValorTempo span {
+    display: none;;
   }
-  
-  .nomeCliente {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    color: #FFFFFF;
-    font-weight: bolder;
-    font-size: 1.2rem;
-  }
-  
-  .fundoBranco {
-    background-color: #FFF;
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 15px;
-  }
-  
-  .qtdValor {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    font-weight: bold;
-  }
-  
-  .pedidosCozinha {
+  .pedidosFinalizados{
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    margin: auto;
   }
-  
-   .produtos {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-gap: 1rem;
-    font-size: larger;
-    padding: 0.2rem 0;
+
+  .produtos {
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between; 
   }
-  
-  .pedidosCozinha button {
-    width: 25%;
+  .pedidosFinalizados button {
+    min-height: 5rem;
     min-width: 10rem;
-    margin: 0 0 0 auto;
+    margin-top: auto;
   }
-
-  @media screen and (max-width: 900px) {
-
-    .txtItens {
-        margin-left: 2rem;
-      }
-    .qtdValor {
-      display: grid;
-   
-        font-weight: bold;
-    }
-
-  
-    .produtos {
-      grid-template-columns: 70% 30%;
-      display: grid;
- 
-    grid-gap: 1rem;
-
-    padding: 0.2rem 0;
-    }
-  
-    .pedidosCozinha button {
-      width: 100%;
-      min-width: 10rem;
-      margin: auto;
-      
-    }
 }

@@ -29,6 +29,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 1rem 0;
+  
 }
 
 .produtos {
@@ -43,4 +44,26 @@
   width: 20%;
   min-width: 10rem;
   margin: 0 0 0 auto;
+}
+
+@media (max-width: 767px) {
+  /* Estilos para telas menores (até 767px) */
+  .qtdValor span {
+    display: none;;
+  }
+  .pedidosCozinha{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .produtos {
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between; 
+  }
+  .pedidosCozinha button {
+    min-height: 5rem;
+    min-width: 10rem;
+    margin-top: auto;
+  }
 }
