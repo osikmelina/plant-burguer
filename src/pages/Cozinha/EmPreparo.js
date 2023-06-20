@@ -7,7 +7,6 @@ import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos, finalizados } from '../../API/orders';
 import Botao from '../../componentes/Botao';
-
 import { setItem } from '../../storage/localStorage';
 
 function EmPreparo() {
