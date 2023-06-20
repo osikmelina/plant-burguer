@@ -24,7 +24,7 @@ function NovoPedido() {
           aoAlterado={(valor) => addCliente(valor)}
         />
         <div className={styles.botao}>
-         <Botao onClick={clicar}> NOVO PEDIDO </Botao>
+          <Botao onClick={clicar}> NOVO PEDIDO </Botao>
         </div>
       </CaixaFundo>
     </section>
