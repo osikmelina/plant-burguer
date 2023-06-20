@@ -1,11 +1,11 @@
-import styles from './Logo.module.css'
+import styles from './Logo.module.css';
 
-const Logo = () => {
-    return (
+function Logo() {
+  return (
     <section className={styles.logo}>
-        <img src="/imagens/logo.png" alt="logo plant & burguer" />
+      <img src="/imagens/logo.png" alt="logo plant & burguer" />
     </section>
-    )
+  );
 }
 
-export default Logo
+export default Logo;

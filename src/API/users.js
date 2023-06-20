@@ -1,7 +1,5 @@
-import { request } from "./request"
+import { request } from './request';
 
-const login = (email, senha) => {
- return request( 'login', 'POST', {}, {email, password:senha} )
-}
+const login = (email, senha) => request('login', { email, password: senha }, 'POST', {});
 
-export default login
+export default login;

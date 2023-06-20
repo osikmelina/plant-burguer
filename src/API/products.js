@@ -1,7 +1,5 @@
-import { request, getAuthorizationHeader} from "./request"
+import { request, getAuthorizationHeader } from './request';
 
-const produtos = () => {
-  return request ('products', 'GET', getAuthorizationHeader())
-}
+const produtos = () => request('products', null, 'GET', getAuthorizationHeader());
 
-export default produtos
+export default produtos;

@@ -1,42 +1,48 @@
-import styles from "./Cozinha.module.css";
-import LogoMenor from "../../componentes/LogoMenor";
-import Tag from "../../componentes/Tag";
-import CaixaFundo from "../../componentes/CaixaFundo";
-import { useEffect, useState } from "react";
-import { obterPedidos } from "../../API/orders";
-import Botao from "../../componentes/Botao";
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { differenceInMinutes } from 'date-fns';
+import styles from './Finalizados.module.css';
+import LogoMenor from '../../componentes/LogoMenor';
+import Tag from '../../componentes/Tag';
+import CaixaFundo from '../../componentes/CaixaFundo';
+import { obterPedidos } from '../../API/orders';
+import Botao from '../../componentes/Botao';
 
-const Finalizados = () => {
+function Finalizados() {
   const [pedidos, setPedidos] = useState([]);
+  const navegar = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
-      setPedidos(listaPedidos.filter(pedido => pedido.status === "finalizado"));
-      console.log(listaPedidos)
+      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'finalizado'));
+      console.log(listaPedidos);
     }
-    fetchData()
+    fetchData();
   }, []);
 
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <section>
       <LogoMenor />
       <div className={styles.txtItens}>
-        <Tag texto="EM PREPARO" />
+        <Tag onClick={() => navegar('/preparo')} texto="EM PREPARO" />
         <Tag texto="PEDIDOS FINALIZADOS" />
       </div>
       {pedidos.map((pedido) => (
         <CaixaFundo>
           <div key={pedido.id}>
-            <span className={styles.nomeCliente}>Cliente: {pedido.client.toUpperCase()}</span>
+            <span className={styles.nomeCliente}>
+              Cliente:
+              {pedido.client.toUpperCase()}
+            </span>
             <div className={styles.fundoBranco}>
-              <div className={styles.qtdValor}>
+              <div className={styles.qtdValorTempo}>
                 <span>ITEM</span>
                 <span>QTD</span>
               </div>
-              <div className={styles.pedidosCozinha}>
+              <div className={styles.pedidosFinalizados}>
                 <div>
                   {pedido.products.map((product) => (
                     <div className={styles.produtos} key={product.id}>
@@ -45,9 +51,15 @@ const Finalizados = () => {
                     </div>
                   ))}
                 </div>
-              <Botao>
-                Tempo de preparo: {differenceInMinutes (new Date(pedido.dateFinal), new Date(pedido.dateEntry))} minuto(s)
-              </Botao>
+                <div className={styles.qtdValorTempo}>
+                  <Botao>
+                    Tempo de preparo:
+                    {' '}
+                    {differenceInMinutes(new Date(pedido.dateFinal), new Date(pedido.dateEntry))}
+                    {' '}
+                    minuto(s)
+                  </Botao>
+                </div>
               </div>
             </div>
           </div>
@@ -55,7 +67,7 @@ const Finalizados = () => {
       ))}
 
     </section>
-  )
+  );
 }
 
-export default Finalizados
+export default Finalizados;
