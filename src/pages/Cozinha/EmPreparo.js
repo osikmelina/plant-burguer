@@ -54,8 +54,8 @@ function EmPreparo() {
       //   abrirModal();
       // }
     } catch (error) {
-      console.log(error)
-      setErro("Não foi possível finalizar o pedido, tente novamente.");
+      console.log(error);
+      setErro('Não foi possível finalizar o pedido, tente novamente.');
       abrirModal();
     }
   };

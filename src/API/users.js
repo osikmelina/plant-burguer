@@ -1,5 +1,7 @@
 import { request } from './request';
 
-const login = (email, senha) => request('login', { email, password: senha }, 'POST', {});
+export const login = (email, senha) => request('login', { email, password: senha }, 'POST', {});
 
 export default login;
+
+// export const produtos = () => request('products', null, 'GET', getAuthorizationHeader());

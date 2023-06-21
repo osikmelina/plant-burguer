@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';
@@ -7,10 +8,11 @@ import Botao from '../../componentes/Botao';
 import styles from './Admin.module.css';
 import { deleteProduto, produtos } from '../../API/products';
 import { setItem } from '../../storage/localStorage';
+import Card from '../../componentes/Card';
 
-function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
+function AdmProdutos({ setItemSelecionado }) {
   const [produtosLista, setProdutosLista] = useState([]);
-  const [erro, setErro] = useState('');
+  const [setErro] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [produtoExcluido, setProdutoExcluido] = useState([]);
 
@@ -23,16 +25,16 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
     fetchData();
   }, []);
 
+  function abrirModal() {
+    setIsOpen(true);
+  }
+
+  function fecharModal() {
+    setIsOpen(false);
+  }
   const excluirProduto = async (productId) => {
     console.log(productId);
     setErro('');
-    function abrirModal() {
-      setIsOpen(true);
-    }
-  
-    function fecharModal() {
-      setIsOpen(false);
-    }
 
     try {
       const response = await deleteProduto(productId);
@@ -40,14 +42,14 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
       setItem('productId', response.data.product.id);
       setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
       if (produtoExcluido) {
-      setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
+        setItemSelecionado((prevState) => prevState.filter((i) => i.id !== productId));
+        // setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
       }
     } catch (error) {
       setErro('Não foi possível excluir o produto.');
       abrirModal();
     }
   };
-
 
   return (
     <section>
@@ -70,7 +72,7 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
                   <span>{item.name}</span>
                   <span>{item.price}</span>
                   <span>{item.type}</span>
-                  <img
+                  <Card
                     className={styles.imgLixo}
                     src="/imagens/icon-lixo.png"
                     alt="icone lixo"
@@ -91,7 +93,7 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
       >
         <div className="modal-conteudo">
           <p className="textoModal" />
-          <button className="botao-salvar" onClick={fecharModal}>SALVAR</button>
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
     </section>
