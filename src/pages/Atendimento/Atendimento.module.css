@@ -1,6 +1,18 @@
 .atendimento {
   display: flex;
   align-items: center;
+  width: 90%;
+}
+
+.atendimentoRotas {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
+}
+.pedido {
+  display: flex;
+  align-items: center;
   background-size: auto;
   width: 100%;
   margin-top: 8rem;
@@ -13,7 +25,6 @@
 
 @media only screen and (max-width: 767px) {
   .atendimento {
-    display: flex;
     flex-direction: column;
     margin-top: 0;
     width: 80%;
@@ -37,7 +48,7 @@
 }
 
 @media (max-width: 1181px) and (orientation: landscape) {
-  .atendimento {
+  .pedido {
     width: 85%;
     padding-left: 6%;
     margin-top: 8rem;
@@ -50,9 +61,14 @@
 }
 
 
-@media only screen and (min-width: 1181px) {
+@media only screen and (min-width: 1000px) {
   .atendimento {
-    display: flex;
+    width: 70%;
+    margin-top: 10rem;
+    margin-left: 10rem;
+
+  }
+  .pedido {
     gap: 5px;
     width: 70%;
     padding-left: 10rem;
@@ -66,7 +82,7 @@
 }
 
 @media only screen and (min-width: 2000px) {
-  .atendimento{
+  .pedido {
     width: 40%;
     margin-top: 10rem;
     padding-left: 25%;
