@@ -1,15 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Modal from 'react-modal';
-import FormLogin from "./pages/Login";
-import NovoPedido from "./pages/Atendimento/NovoPedido";
-import Cardapio from "./pages/Cardapio";
-import EmPreparo from "./pages/Cozinha/EmPreparo";
-import Finalizados from "./pages/Cozinha/Finalizados";
-import Atendimento from "./pages/Atendimento/Atendimento";
-import AdmProdutos from "./pages/Admin/Produtos";
+import FormLogin from './pages/Login';
+import NovoPedido from './pages/Atendimento/NovoPedido';
+import Cardapio from './pages/Cardapio';
+import EmPreparo from './pages/Cozinha/EmPreparo';
+import Finalizados from './pages/Cozinha/Finalizados';
+import Atendimento from './pages/Atendimento/Atendimento';
+import AdmProdutos from './pages/Admin/Produtos';
 import { ClienteStore } from './context/clienteContext';
-
+import Admin from './pages/Admin/Admin';
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
@@ -24,11 +23,31 @@ function AppRoutes() {
           element={(
             <ClienteStore>
               {' '}
+              <Atendimento />
+              {' '}
+            </ClienteStore>
+)}
+        />
+        <Route
+          path="/atendimento/pedido"
+          element={(
+            <ClienteStore>
+              {' '}
               <NovoPedido />
               {' '}
             </ClienteStore>
 )}
         />
+        {/* <Route
+          path="atendimento/paraservir"
+          element={(
+            <ClienteStore>
+              {' '}
+              <Finalizados />
+              {' '}
+            </ClienteStore>
+)}
+        /> */}
         <Route
           path="/cardapio"
           element={(
@@ -61,41 +80,21 @@ function AppRoutes() {
         />
         <Route path="/" element={<FormLogin />} />
         <Route
-          path="/atendimento"
+          path="/admin"
           element={(
             <ClienteStore>
               {' '}
-              <NovoPedido />
+              <Admin />
               {' '}
             </ClienteStore>
 )}
         />
         <Route
-          path="/cardapio"
+          path="/admin/produtos"
           element={(
             <ClienteStore>
               {' '}
-              <Cardapio />
-              {' '}
-            </ClienteStore>
-)}
-        />
-        <Route
-          path="/preparo"
-          element={(
-            <ClienteStore>
-              {' '}
-              <EmPreparo />
-              {' '}
-            </ClienteStore>
-)}
-        />
-        <Route
-          path="/finalizados"
-          element={(
-            <ClienteStore>
-              {' '}
-              <Finalizados />
+              <AdmProdutos />
               {' '}
             </ClienteStore>
 )}
@@ -106,4 +105,3 @@ function AppRoutes() {
 }
 
 export default AppRoutes;
-
