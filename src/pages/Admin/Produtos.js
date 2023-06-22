@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';

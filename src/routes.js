@@ -30,7 +30,7 @@ function AppRoutes() {
 )}
         />
         <Route
-          path="/atendimento/pedido"
+          path="atendimento/pedido"
           element={(
             <ClienteStore>
               {' '}
@@ -39,16 +39,6 @@ function AppRoutes() {
             </ClienteStore>
 )}
         />
-        {/* <Route
-          path="atendimento/paraservir"
-          element={(
-            <ClienteStore>
-              {' '}
-              <Finalizados />
-              {' '}
-            </ClienteStore>
-)}
-        /> */}
         <Route
           path="/cardapio"
           element={(
@@ -79,7 +69,6 @@ function AppRoutes() {
             </ClienteStore>
 )}
         />
-        <Route path="/" element={<FormLogin />} />
         <Route
           path="/admin"
           element={(
