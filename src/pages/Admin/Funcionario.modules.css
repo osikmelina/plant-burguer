@@ -1,0 +1,50 @@
+.txtItens {
+  margin-left: 2rem;
+}
+
+.logo {
+    width: 3rem;
+  }
+  
+  /* .fundo {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 60%;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px #000000;
+    padding: 1rem 0;
+    height: fit-content;
+  } */
+
+  /* .funcionario {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 60%;
+    border-radius: 15px;
+    box-shadow: 0px 3px 3px #000000;
+    padding: 1rem 0;
+    height: fit-content;
+  } */
+
+  .consultaFuncionario{
+    background-color: #ffffff;
+  }
+
+  .opcao {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+  }
+
+  .itemFuncionario{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+ 

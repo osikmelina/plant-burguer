@@ -33,7 +33,7 @@
 
 .produtos {
   display: grid;
-  grid-template-columns: 72% 30%;
+  grid-template-columns: 54% 30%;
 }
 
 .pedidosFinalizados button {

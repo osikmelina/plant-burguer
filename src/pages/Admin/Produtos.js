@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';
@@ -26,22 +28,19 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   function abrirModal() {
     setIsOpen(true);
   }
-
   function fecharModal() {
     setIsOpen(false);
   }
-
   const excluirProduto = async (productId) => {
     console.log(productId);
     setErro('');
-
     try {
       const response = await deleteProduto(productId);
       setItem('token', response.data.accessToken);
       setItem('productId', response.data.product.id);
       setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
       if (produtoExcluido) {
-        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId));
+        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId.id));
       }
     } catch (error) {
       setErro('Não foi possível excluir o produto.');
@@ -92,6 +91,8 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
+          <p className="textoModal" />
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
           <p className="textoModal" />
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>

@@ -20,7 +20,7 @@ export async function request(endpoint, body, method = 'GET', headers = {}) {
 
   const value = { data, status: response.status };
   if (!response.ok) {
-    throw new Error(value);
+    throw new Error(`Request failed with status ${response.status}`);
   }
   return value;
 }

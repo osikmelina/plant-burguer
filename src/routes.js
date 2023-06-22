@@ -9,6 +9,7 @@ import Atendimento from './pages/Atendimento/Atendimento';
 import AdmProdutos from './pages/Admin/Produtos';
 import { ClienteStore } from './context/clienteContext';
 import Admin from './pages/Admin/Admin';
+import Funcionario from './pages/Admin/Funcionario';
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
@@ -95,6 +96,16 @@ function AppRoutes() {
             <ClienteStore>
               {' '}
               <AdmProdutos />
+              {' '}
+            </ClienteStore>
+)}
+        />
+        <Route
+          path="/admin/funcionario"
+          element={(
+            <ClienteStore>
+              {' '}
+              <Funcionario />
               {' '}
             </ClienteStore>
 )}
