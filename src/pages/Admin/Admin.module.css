@@ -1,0 +1,40 @@
+.admin {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.adminRotas {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
+}
+
+@media only screen and (max-width: 767px) {
+  .admin {
+    flex-direction: column;
+    margin-top: 0;
+    width: 80%;
+    padding-left: 10%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .admin {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 0;
+    width: 60%;
+    padding-left: 20%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .admin {
+    width: 70%;
+    margin-top: 10rem;
+    margin-left: 10rem;
+
+  }
+}

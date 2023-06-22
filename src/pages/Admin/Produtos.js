@@ -23,31 +23,28 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
     fetchData();
   }, []);
 
+  function abrirModal() {
+    setIsOpen(true);
+  }
+  function fecharModal() {
+    setIsOpen(false);
+  }
   const excluirProduto = async (productId) => {
     console.log(productId);
     setErro('');
-
     try {
       const response = await deleteProduto(productId);
       setItem('token', response.data.accessToken);
       setItem('productId', response.data.product.id);
       setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
       if (produtoExcluido) {
-        setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
+        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId.id));
       }
     } catch (error) {
       setErro('Não foi possível excluir o produto.');
       abrirModal();
     }
   };
-
-  function abrirModal() {
-    setIsOpen(true);
-  }
-
-  function fecharModal() {
-    setIsOpen(false);
-  }
 
   return (
     <section>
@@ -70,11 +67,12 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
                   <span>{item.name}</span>
                   <span>{item.price}</span>
                   <span>{item.type}</span>
-                  <img
+                  <input
+                    type="image"
                     className={styles.imgLixo}
                     src="/imagens/icon-lixo.png"
                     alt="icone lixo"
-                    onClick={() => (excluirProduto())(abrirModal())}
+                    onClick={() => (excluirProduto())(abrirModal(erro))}
                   />
                 </div>
               ))}
@@ -87,11 +85,14 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
+        // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
           <p className="textoModal" />
-          <button className="botao-salvar" onClick={fecharModal}>SALVAR</button>
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
+          <p className="textoModal" />
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
     </section>
