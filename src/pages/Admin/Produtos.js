@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import Modal from "react-modal";
-import LogoMenor from "../../componentes/LogoMenor";
-import Tag from "../../componentes/Tag";
-import CaixaFundo from "../../componentes/CaixaFundo";
-import Botao from "../../componentes/Botao";
-import styles from "./Admin.module.css";
-import { deleteProduto, produtos } from "../../API/products";
-import { setItem } from "../../storage/localStorage";
+import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import LogoMenor from '../../componentes/LogoMenor';
+import Tag from '../../componentes/Tag';
+import CaixaFundo from '../../componentes/CaixaFundo';
+import Botao from '../../componentes/Botao';
+import styles from './Admin.module.css';
+import { deleteProduto, produtos } from '../../API/products';
+import { setItem } from '../../storage/localStorage';
 
-const AdmProdutos = ({ itemSelecionado, setItemSelecionado }) => {
+function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   const [produtosLista, setProdutosLista] = useState([]);
-  const [erro, setErro] = useState("");
+  const [erro, setErro] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [produtoExcluido, setProdutoExcluido] = useState([]);
 
@@ -23,31 +23,31 @@ const AdmProdutos = ({ itemSelecionado, setItemSelecionado }) => {
     fetchData();
   }, []);
 
+  function abrirModal() {
+    setIsOpen(true);
+  }
+
+  function fecharModal() {
+    setIsOpen(false);
+  }
+
   const excluirProduto = async (productId) => {
-    console.log(productId)
-    setErro("")
+    console.log(productId);
+    setErro('');
 
     try {
       const response = await deleteProduto(productId);
-      setItem("token", response.data.accessToken);
-      setItem("productId", response.data.product.id);
-      setProdutoExcluido(prevStat => prevStat.filter(produto => produto.id !== productId))
+      setItem('token', response.data.accessToken);
+      setItem('productId', response.data.product.id);
+      setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
       if (produtoExcluido) {
-        setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
+        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId));
       }
     } catch (error) {
-      setErro('Não foi possível excluir o produto.')
-      abrirModal()
+      setErro('Não foi possível excluir o produto.');
+      abrirModal();
     }
-  }
-
-    function abrirModal() {
-      setIsOpen(true);
-    }
-  
-    function fecharModal() {
-      setIsOpen(false);
-    }
+  };
 
   return (
     <section>
@@ -70,13 +70,13 @@ const AdmProdutos = ({ itemSelecionado, setItemSelecionado }) => {
                   <span>{item.name}</span>
                   <span>{item.price}</span>
                   <span>{item.type}</span>
-                  <img
-                  className={styles.imgLixo}
-                  src="/imagens/icon-lixo.png"
-                  alt="icone lixo"
-                  onClick={() => (excluirProduto()) (abrirModal())}
-                  >
-                  </img>
+                  <input
+                    type="image"
+                    className={styles.imgLixo}
+                    src="/imagens/icon-lixo.png"
+                    alt="icone lixo"
+                    onClick={() => (excluirProduto())(abrirModal(erro))}
+                  />
                 </div>
               ))}
             </div>
@@ -88,15 +88,16 @@ const AdmProdutos = ({ itemSelecionado, setItemSelecionado }) => {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
+        // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
-          <p className="textoModal"></p>
-          <button className="botao-salvar" onClick={fecharModal}>SALVAR</button>
+          <p className="textoModal" />
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
     </section>
   );
-};
+}
 
 export default AdmProdutos;
