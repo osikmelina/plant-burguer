@@ -92,7 +92,6 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
           <p className="textoModal" />
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
           <p className="textoModal" />
-          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
     </section>
