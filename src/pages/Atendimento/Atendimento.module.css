@@ -26,6 +26,11 @@
 @media only screen and (max-width: 767px) {
   .atendimento {
     flex-direction: column;
+    width: 80%;
+    padding-left: 10%;
+  }
+  .pedido {
+    flex-direction: column;
     margin-top: 0;
     width: 80%;
     padding-left: 10%;
@@ -34,23 +39,33 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .atendimento {
-    display: flex;
+    flex-direction: column;
+    width: 55%;
+    padding-left: 22%;
+  }
+  .pedido {
     flex-direction: column; 
     margin-top: 0;
-    width: 60%;
-    padding-left: 20%;
+    width: 55%;
+    padding-left: 22%;
   }
 
   .botao {
-    width: 60%;
-    padding-left: 6rem;
+    width: 70%;
+    padding-left: 15%;;
   }
 }
 
 @media (max-width: 1181px) and (orientation: landscape) {
+  .atendimento {
+    width:85%;
+    padding-left: 8%;
+    margin-top: 8rem;
+  }
+
   .pedido {
     width: 85%;
-    padding-left: 6%;
+    padding-left: 8%;
     margin-top: 8rem;
   }
 
@@ -61,11 +76,11 @@
 }
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
   .atendimento {
-    width: 70%;
-    margin-top: 10rem;
-    margin-left: 10rem;
+    width: 80%;
+    margin-top: 5rem;
+    margin-left: 8rem;
 
   }
   .pedido {
@@ -82,10 +97,15 @@
 }
 
 @media only screen and (min-width: 2000px) {
-  .pedido {
+  .atendimento {
     width: 40%;
     margin-top: 10rem;
     padding-left: 25%;
+  }
+  .pedido {
+    width: 40%;
+    margin-top: 10rem;
+    padding-left: 30%;
   }
 
   .botao {
