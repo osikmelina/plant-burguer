@@ -1,14 +1,11 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-shadow */
-/* eslint-disable no-undef */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-no-bind */
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { funcionario, deleteFuncionario } from '../../API/users';
-import { setItem } from '../../storage/localStorage';
 import styles from './Funcionario.modules.css';
 import Logo from '../../componentes/Logo';
+import FormModal from '../../componentes/FormModal/FormModal';
 
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -35,19 +32,19 @@ function Funcionario() {
   }
 
   const editarFuncionario = () => {
-    setFuncionarioSelecionado(funcionario);
+    // setFuncionarioSelecionado(funcionario);
+    //abre modal
+    
   };
 
   const excluirFuncionario = async (item) => {
     setMensagem('');
     try {
-      const response = await deleteFuncionario(item.id);
-      setItem('token', response.data.accessToken);
-      setItem('id', response.data.id);
-      setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((funcionario) => funcionario.id !== item.id));
+      await deleteFuncionario(item.id);
+      setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((colaborador) => colaborador.id !== item.id));
       setMensagem('Funcionário Excluído com Sucesso');
       abrirModal();
-      fetchData(); // Atualiza a lista de funcionários após a exclusão
+      // fetchData(); // Atualiza a lista de funcionários após a exclusão
     } catch (error) {
       console.log(error);
       setMensagem('Não foi possível excluir o funcionário');
@@ -94,6 +91,10 @@ function Funcionario() {
               </button>
             </div>
           </Modal>
+          <FormModal />
+
+          // funcionarioselecionado.email
+          funcionarioselecionado.role
         </section>
       </div>
     </>

@@ -90,7 +90,7 @@ function AppRoutes() {
 )}
         />
         <Route
-          path="/admin/funcionario"
+          path="/admin/funcionarios"
           element={(
             <ClienteStore>
               {' '}
