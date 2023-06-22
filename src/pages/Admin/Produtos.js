@@ -11,6 +11,7 @@ import { deleteProduto, produtos } from '../../API/products';
 import { setItem } from '../../storage/localStorage';
 
 function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
+function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   const [produtosLista, setProdutosLista] = useState([]);
   const [setErro] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -69,11 +70,12 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
                   <span>{item.name}</span>
                   <span>{item.price}</span>
                   <span>{item.type}</span>
-                  <img
+                  <input
+                    type="image"
                     className={styles.imgLixo}
                     src="/imagens/icon-lixo.png"
                     alt="icone lixo"
-                    onClick={() => (excluirProduto())(abrirModal())}
+                    onClick={() => (excluirProduto())(abrirModal(erro))}
                   />
                 </div>
               ))}
@@ -86,9 +88,12 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
+        // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
+          <p className="textoModal" />
+          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
           <p className="textoModal" />
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
