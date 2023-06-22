@@ -11,9 +11,8 @@ import { deleteProduto, produtos } from '../../API/products';
 import { setItem } from '../../storage/localStorage';
 
 function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
-function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   const [produtosLista, setProdutosLista] = useState([]);
-  const [setErro] = useState('');
+  const [erro, setErro] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [produtoExcluido, setProdutoExcluido] = useState([]);
 
