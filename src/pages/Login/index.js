@@ -45,7 +45,7 @@ function FormLogin() {
       //   navegar('/admin')
       // }
     } catch (error) {
-      setErro('Algo inesperado aconteceu, tente novamente.');
+      setErro('E-mail ou senha incorretos');
       abrirModal();
     }
   };
