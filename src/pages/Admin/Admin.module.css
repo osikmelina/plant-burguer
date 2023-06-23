@@ -7,8 +7,7 @@
 .adminRotas {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  
+  gap: 40px; 
 }
 
 @media only screen and (max-width: 767px) {

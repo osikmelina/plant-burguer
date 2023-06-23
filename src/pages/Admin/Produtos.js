@@ -4,13 +4,12 @@ import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
-import styles from './Admin.module.css';
+import styles from './Produtos.module.css';
 import { deleteProduto, produtos } from '../../API/products';
-import { setItem } from '../../storage/localStorage';
 
-function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
-  const [produtosLista, setProdutosLista] = useState([]);
-  const [erro, setErro] = useState('');
+function AdmProdutos() {
+  // const [produtosLista, setProdutosLista] = useState([]);
+  const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [produtoExcluido, setProdutoExcluido] = useState([]);
 
@@ -18,7 +17,7 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
     async function fetchData() {
       const response = await produtos();
       const listaProdutos = response.data;
-      setProdutosLista(listaProdutos);
+      setProdutoExcluido(listaProdutos);
     }
     fetchData();
   }, []);
@@ -29,19 +28,28 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   function fecharModal() {
     setIsOpen(false);
   }
-  const excluirProduto = async (productId) => {
-    console.log(productId);
-    setErro('');
+
+  // function abrirFormModal() {
+  //   setIsOpen(true);
+  // }
+  // function fecharFormModal() {
+  //   setIsOpen(false);
+  // }
+
+  // const editarProduto = (item) => {
+  //   setProdutoSelecionado(produto);
+  //   abrirFormModal()
+  // };
+
+  const excluirProduto = async (item) => {
+    setMensagem('');
     try {
-      const response = await deleteProduto(productId);
-      setItem('token', response.data.accessToken);
-      setItem('productId', response.data.product.id);
-      setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
-      if (produtoExcluido) {
-        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId.id));
-      }
+      await deleteProduto(item.id);
+      setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== item.id));
+      setMensagem('Produto excluído com sucesso');
+      abrirModal();
     } catch (error) {
-      setErro('Não foi possível excluir o produto.');
+      setMensagem('Não foi possível excluir o produto');
       abrirModal();
     }
   };
@@ -62,7 +70,7 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
           </div>
           <div className={styles.listaDados}>
             <div>
-              {produtosLista.map((item) => (
+              {produtoExcluido.map((item) => (
                 <div className={styles.listaItens} key={item.id}>
                   <span>{item.name}</span>
                   <span>{item.price}</span>
@@ -72,7 +80,7 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
                     className={styles.imgLixo}
                     src="/imagens/icon-lixo.png"
                     alt="icone lixo"
-                    onClick={() => (excluirProduto())(abrirModal(erro))}
+                    onClick={() => (excluirProduto(item))}
                   />
                 </div>
               ))}
@@ -89,9 +97,8 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
-          <p className="textoModal" />
+          <p className="textoModal">{mensagem}</p>
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
-          <p className="textoModal" />
         </div>
       </Modal>
     </section>
