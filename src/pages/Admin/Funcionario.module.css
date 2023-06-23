@@ -15,7 +15,7 @@
 
 .titulosLista {
   display: grid;
-  grid-template-columns: 47% 15% 20% 5% 5%;
+  grid-template-columns: 21% 20% 43% 8%;
   grid-gap: 2%;
   font-weight: bold;
   font-size: larger;
@@ -24,7 +24,7 @@
 
 .listaItens {
   display: grid;
-  grid-template-columns: 47% 15% 20% 5% 5%;
+  grid-template-columns: 21% 20% 43% 8%;
   grid-gap: 2%;
   font-size: larger;
   padding: 0.5rem 0;
@@ -53,14 +53,30 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 768px) {
+  .titulosLista {
+    grid-template-columns: 30% 70%;
+  }
+
   .listaItens {
     grid-template-rows: 1fr 1fr;
+    grid-template-columns: 30% 70%;
     padding: 0.5rem 0 1rem;
+  }
+
+  .tituloEmail {
+    display: none;
   }
 
   .icones {
     grid-column: 1;
     grid-row: 2;
   }
+
+  .email {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
+
+ 
