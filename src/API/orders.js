@@ -19,25 +19,13 @@ export const pedidos = (cliente, produtos) => {
 
 export const obterPedidos = () => request('orders', null, 'GET', getAuthorizationHeader());
 
-export const finalizados = (orderId) => request(
+export const mudarStatus = (orderId, statusPedido) => request(
   `orders/${orderId}`,
   {
     orderId,
-    status: 'finalizado',
+    status: statusPedido,
     dateFinal: new Date(),
   },
   'PATCH',
   getAuthorizationHeader(),
 );
-// return fetch(`${API_URL}/orders/${orderId}`, {
-//   method: "PATCH",
-//   headers: {
-//     "Content-Type": "application/json",
-//     'Authorization': `Bearer ${token}`
-//   },
-//   body: JSON.stringify({
-//     orderId,
-//     status: "finalizado",
-//     dateEntry: new Date()
-//   })
-// })

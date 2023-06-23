@@ -8,7 +8,7 @@ import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos } from '../../API/orders';
 import Botao from '../../componentes/Botao';
 
-function Finalizados() {
+function FinalizadosCozinha() {
   const [pedidos, setPedidos] = useState([]);
   const navegar = useNavigate();
 
@@ -16,7 +16,7 @@ function Finalizados() {
     async function fetchData() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
-      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'finalizado'));
+      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Pronto'));
       console.log(listaPedidos);
     }
     fetchData();
@@ -69,4 +69,4 @@ function Finalizados() {
   );
 }
 
-export default Finalizados;
+export default FinalizadosCozinha;

@@ -12,7 +12,7 @@ function Atendimento() {
       <CaixaFundo>
         <div className={styles.atendimentoRotas}>
           <Botao onClick={() => navegar('./pedido')}> NOVO PEDIDO </Botao>
-          <Botao onClick={() => navegar('./paraservir')}> PEDIDOS PARA SERVIR </Botao>
+          <Botao onClick={() => navegar('./prontos')}> PEDIDOS PARA SERVIR </Botao>
         </div>
       </CaixaFundo>
 

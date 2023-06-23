@@ -4,12 +4,13 @@ import FormLogin from './pages/Login';
 import NovoPedido from './pages/Atendimento/NovoPedido';
 import Cardapio from './pages/Cardapio';
 import EmPreparo from './pages/Cozinha/EmPreparo';
-import Finalizados from './pages/Cozinha/Finalizados';
+import FinalizadosCozinha from './pages/Cozinha/FinalizadosCozinha';
 import Atendimento from './pages/Atendimento/Atendimento';
 import AdmProdutos from './pages/Admin/Produtos';
 import { ClienteStore } from './context/clienteContext';
 import Admin from './pages/Admin/Admin';
 import Funcionario from './pages/Admin/Funcionario';
+import PedidosProntos from './pages/Atendimento/PedidosProntos';
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
@@ -40,6 +41,16 @@ function AppRoutes() {
 )}
         />
         <Route
+          path="atendimento/prontos"
+          element={(
+            <ClienteStore>
+              {' '}
+              <PedidosProntos />
+              {' '}
+            </ClienteStore>
+)}
+        />
+        <Route
           path="/cardapio"
           element={(
             <ClienteStore>
@@ -64,7 +75,7 @@ function AppRoutes() {
           element={(
             <ClienteStore>
               {' '}
-              <Finalizados />
+              <FinalizadosCozinha />
               {' '}
             </ClienteStore>
 )}
