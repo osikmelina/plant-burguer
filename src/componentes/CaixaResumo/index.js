@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useState, useContext } from 'react';
+import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 import styles from './CaixaResumo.module.css';
 import { ClienteContext } from '../../context/clienteContext';
@@ -10,9 +11,9 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
 
   const navegar = useNavigate();
 
-  const navegarParaCozinha = () => {
-    navegar('/preparo');
-  };
+  // const navegarParaCozinha = () => {
+  //   navegar('/preparo');
+  // };
 
   const removerItem = (item) => {
     const itemResumo = itemSelecionado.find((i) => i.id === item.id);
@@ -35,8 +36,11 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
     return total;
   };
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   const enviarPedido = () => {
     pedidos(cliente, itemSelecionado);
+    setIsOpen(true);
   };
 
   return (
@@ -79,7 +83,20 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
           </p>
         </div>
       </div>
-      <Botao onClick={() => { enviarPedido(); navegarParaCozinha(); }}> ENVIAR </Botao>
+      <Botao onClick={() => enviarPedido()}> ENVIAR </Botao>
+      <Modal
+        className="modal"
+        overlayClassName="modal-fundo"
+        isOpen={modalIsOpen}
+        onRequestClose={() => setIsOpen(false)}
+      >
+        <div className="modal-conteudo">
+          <p className="textoModal">O pedido foi enviado para a cozinha!</p>
+          <button type="button" className="botao-ok" onClick={() => { setIsOpen(false); navegar('/atendimento'); }}>
+            OK
+          </button>
+        </div>
+      </Modal>
     </section>
   );
 }

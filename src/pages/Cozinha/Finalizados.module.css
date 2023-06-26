@@ -33,7 +33,7 @@
 
 .produtos {
   display: grid;
-  grid-template-columns: 72% 30%;
+  grid-template-columns: 54% 30%;
 }
 
 .pedidosFinalizados button {
@@ -49,6 +49,7 @@
   .qtdValorTempo span {
     display: none;;
   }
+
   .pedidosFinalizados{
     display: flex;
     flex-wrap: wrap;
@@ -59,6 +60,7 @@
     gap: 5rem;
     justify-content: space-between; 
   }
+  
   .pedidosFinalizados button {
     min-height: 5rem;
     min-width: 10rem;

@@ -1,0 +1,66 @@
+.tags button {
+  width: 14rem;
+}
+
+.tags {
+  margin-left: 2rem;
+}
+
+.fundoBranco {
+  background-color: #FFF;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.titulosLista {
+  display: grid;
+  grid-template-columns: 47% 15% 20% 5% 5%;
+  grid-gap: 2%;
+  font-weight: bold;
+  font-size: larger;
+  padding: 1rem 0;
+}
+
+.listaItens {
+  display: grid;
+  grid-template-columns: 47% 15% 20% 5% 5%;
+  grid-gap: 2%;
+  font-size: larger;
+  padding: 0.5rem 0;
+}
+
+.icones {
+  display: flex;
+  width: 100%;
+}
+
+.icone {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.icone + .icone {
+  margin-left: 20%;
+}
+
+.listaDados button {
+  display: flex;
+  width: 5%;
+  min-width: 12rem;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 450px) {
+  .listaItens {
+    grid-template-rows: 1fr 1fr;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .icones {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}

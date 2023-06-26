@@ -1,26 +1,29 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-no-bind */
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import { funcionario, deleteFuncionario } from '../../API/users';
+import styles from './Funcionario.module.css';
+import FormModal from '../../componentes/FormModal/FormModal';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
-import styles from './Produtos.module.css';
-import { deleteProduto, produtos } from '../../API/products';
-import FormModal from '../../componentes/FormModal/FormModal';
 
-function AdmProdutos() {
-  const [produtosLista, setProdutosLista] = useState([]);
+function Funcionario() {
+  const [funcionarios, setFuncionarios] = useState([]);
+  // const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [produtoSelecionado, setProdutoSelecionado] = useState([]);
   const navegar = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
-      const response = await produtos();
-      const listaProdutos = response.data;
-      setProdutosLista(listaProdutos);
+      const response = await funcionario();
+      const listaFuncionario = response.data;
+      setFuncionarios(listaFuncionario);
+      console.log(listaFuncionario);
     }
     fetchData();
   }, []);
@@ -28,31 +31,28 @@ function AdmProdutos() {
   function abrirModal() {
     setIsOpen(true);
   }
+
   function fecharModal() {
     setIsOpen(false);
   }
 
-  // function abrirFormModal() {
-  //   setIsOpen(true);
-  // }
-  // function fecharFormModal() {
-  //   setIsOpen(false);
-  // }
+  const editarFuncionario = () => {
+    // setFuncionarioSelecionado(funcionario);
+    // abre modal
 
-  const editarProduto = () => {
-    // setProdutoSelecionado(produto);
-    // abrirFormModal()
   };
 
-  const excluirProduto = async (item) => {
+  const excluirFuncionario = async (item) => {
     setMensagem('');
     try {
-      await deleteProduto(item.id);
-      setProdutosLista((prevStat) => prevStat.filter((produto) => produto.id !== item.id));
-      setMensagem('Produto excluído com sucesso');
+      await deleteFuncionario(item.id);
+      setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((colaborador) => colaborador.id !== item.id));
+      setMensagem('Funcionário Excluído com Sucesso');
       abrirModal();
+      // fetchData(); // Atualiza a lista de funcionários após a exclusão
     } catch (error) {
-      setMensagem('Não foi possível excluir o produto');
+      console.log(error);
+      setMensagem('Não foi possível excluir o funcionário');
       abrirModal();
     }
   };
@@ -61,43 +61,43 @@ function AdmProdutos() {
     <section>
       <LogoMenor />
       <div className={styles.tags}>
-        <Tag texto="PRODUTOS" />
-        <Tag onClick={() => navegar('/admin/funcionarios')} texto="FUNCIONÁRIOS" />
+        <Tag onClick={() => navegar('/admin/produtos')} texto="PRODUTOS" />
+        <Tag texto="FUNCIONÁRIOS" />
       </div>
       <CaixaFundo>
         <div className={styles.fundoBranco}>
           <div className={styles.titulosLista}>
-            <span>ITEM</span>
-            <span>PREÇO</span>
-            <span>CARDÁPIO</span>
+            <span>NOME</span>
+            <span>FUNÇÃO</span>
+            <span className={styles.tituloEmail}>E-MAIL</span>
           </div>
           <div className={styles.listaDados}>
             <div>
-              {produtosLista.map((item) => (
+              {funcionarios.map((item) => (
                 <div className={styles.listaItens} key={item.id}>
                   <span>{item.name}</span>
-                  <span>{item.price}</span>
-                  <span>{item.type}</span>
+                  <span>{item.role}</span>
+                  <span className={styles.email}>{item.email}</span>
                   <div className={styles.icones}>
                     <input
                       type="image"
                       className={styles.icone}
                       src="/imagens/icon-edit.png"
                       alt="icone edição"
-                      onClick={() => (editarProduto(item))}
+                      onClick={() => (editarFuncionario(item))}
                     />
                     <input
                       type="image"
                       className={styles.icone}
                       src="/imagens/icon-lixo.png"
                       alt="icone lixo"
-                      onClick={() => (excluirProduto(item))}
+                      onClick={() => excluirFuncionario(item)}
                     />
                   </div>
                 </div>
               ))}
             </div>
-            <Botao>NOVO PRODUTO</Botao>
+            <Botao>NOVO FUNCIONÁRIO</Botao>
           </div>
         </div>
       </CaixaFundo>
@@ -105,7 +105,6 @@ function AdmProdutos() {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
-        // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
@@ -114,8 +113,11 @@ function AdmProdutos() {
         </div>
       </Modal>
       <FormModal />
+
+      {/* funcionarioselecionado.email
+      funcionarioselecionado.role */}
     </section>
   );
 }
 
-export default AdmProdutos;
+export default Funcionario;

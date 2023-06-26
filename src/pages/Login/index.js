@@ -6,7 +6,7 @@ import CaixaFundo from '../../componentes/CaixaFundo';
 import CampoTexto from '../../componentes/CampoTexto';
 import Logo from '../../componentes/Logo';
 import styles from './Login.module.css';
-import login from '../../API/users';
+import { login } from '../../API/users';
 import { setItem } from '../../storage/localStorage';
 
 function FormLogin() {
@@ -42,7 +42,7 @@ function FormLogin() {
         navegar('/admin');
       }
     } catch (error) {
-      setErro('Algo inesperado aconteceu, tente novamente.');
+      setErro('Não foi possível realizar o login, tente novamente.');
       abrirModal();
     }
   };

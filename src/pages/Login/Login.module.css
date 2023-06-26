@@ -7,12 +7,10 @@
   margin-top: 6rem;
   }
 
-
 .botao {
   margin-top: 2rem;
   display: flex;
 }
-
 
 @media only screen and (max-width: 767px) {
   .login {
@@ -42,9 +40,9 @@
 
 @media (max-width: 1180px) and (orientation: landscape) {
   .login {
-    width: 75%;
+    width: 70%;
     margin-top: 12%;
-    padding-left: 10%
+    padding-left: 15%
   }
 
   .botao {
