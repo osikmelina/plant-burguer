@@ -6,7 +6,7 @@ import CaixaFundo from '../../componentes/CaixaFundo';
 import CampoTexto from '../../componentes/CampoTexto';
 import Logo from '../../componentes/Logo';
 import styles from './Login.module.css';
-import login from '../../API/users';
+import { login } from '../../API/users';
 import { setItem } from '../../storage/localStorage';
 
 function FormLogin() {

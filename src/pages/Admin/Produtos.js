@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
-import styles from './Admin.module.css';
+import styles from './Produtos.module.css';
 import { deleteProduto, produtos } from '../../API/products';
-import { setItem } from '../../storage/localStorage';
+import FormModal from '../../componentes/FormModal/FormModal';
 
-function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
+function AdmProdutos() {
   const [produtosLista, setProdutosLista] = useState([]);
-  const [erro, setErro] = useState('');
+  const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [produtoExcluido, setProdutoExcluido] = useState([]);
+  // const [produtoSelecionado, setProdutoSelecionado] = useState([]);
+  const navegar = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,19 +31,28 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   function fecharModal() {
     setIsOpen(false);
   }
-  const excluirProduto = async (productId) => {
-    console.log(productId);
-    setErro('');
+
+  // function abrirFormModal() {
+  //   setIsOpen(true);
+  // }
+  // function fecharFormModal() {
+  //   setIsOpen(false);
+  // }
+
+  const editarProduto = () => {
+    // setProdutoSelecionado(produto);
+    // abrirFormModal()
+  };
+
+  const excluirProduto = async (item) => {
+    setMensagem('');
     try {
-      const response = await deleteProduto(productId);
-      setItem('token', response.data.accessToken);
-      setItem('productId', response.data.product.id);
-      setProdutoExcluido((prevStat) => prevStat.filter((produto) => produto.id !== productId));
-      if (produtoExcluido) {
-        setItemSelecionado(itemSelecionado.filter((i) => i.id !== productId.id));
-      }
+      await deleteProduto(item.id);
+      setProdutosLista((prevStat) => prevStat.filter((produto) => produto.id !== item.id));
+      setMensagem('Produto excluído com sucesso');
+      abrirModal();
     } catch (error) {
-      setErro('Não foi possível excluir o produto.');
+      setMensagem('Não foi possível excluir o produto');
       abrirModal();
     }
   };
@@ -49,16 +60,16 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
   return (
     <section>
       <LogoMenor />
-      <div>
+      <div className={styles.tags}>
         <Tag texto="PRODUTOS" />
-        <Tag texto="FUNCIONÁRIOS" />
+        <Tag onClick={() => navegar('/admin/funcionarios')} texto="FUNCIONÁRIOS" />
       </div>
       <CaixaFundo>
         <div className={styles.fundoBranco}>
           <div className={styles.titulosLista}>
             <span>ITEM</span>
             <span>PREÇO</span>
-            <span>TIPO</span>
+            <span>CARDÁPIO</span>
           </div>
           <div className={styles.listaDados}>
             <div>
@@ -67,13 +78,22 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
                   <span>{item.name}</span>
                   <span>{item.price}</span>
                   <span>{item.type}</span>
-                  <input
-                    type="image"
-                    className={styles.imgLixo}
-                    src="/imagens/icon-lixo.png"
-                    alt="icone lixo"
-                    onClick={() => (excluirProduto())(abrirModal(erro))}
-                  />
+                  <div className={styles.icones}>
+                    <input
+                      type="image"
+                      className={styles.icone}
+                      src="/imagens/icon-edit.png"
+                      alt="icone edição"
+                      onClick={() => (editarProduto(item))}
+                    />
+                    <input
+                      type="image"
+                      className={styles.icone}
+                      src="/imagens/icon-lixo.png"
+                      alt="icone lixo"
+                      onClick={() => (excluirProduto(item))}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -89,11 +109,11 @@ function AdmProdutos({ itemSelecionado, setItemSelecionado }) {
         onRequestClose={fecharModal}
       >
         <div className="modal-conteudo">
-          <p className="textoModal" />
+          <p className="textoModal">{mensagem}</p>
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
-          <p className="textoModal" />
         </div>
       </Modal>
+      <FormModal />
     </section>
   );
 }
