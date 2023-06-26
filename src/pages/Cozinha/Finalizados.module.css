@@ -1,67 +1,69 @@
 .txtItens {
-  margin-left: 2rem;
-}
-
-.nomeCliente {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  color: #FFFFFF;
-  font-weight: bolder;
-  font-size: 1.2rem;
-}
-
-.fundoBranco {
-  background-color: #FFF;
-  margin: 1%;
-  padding: 1%;
-  border-radius: 15px;
-}
-
-.qtdValorTempo {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  grid-gap: 17%;
-  font-weight: bold;
-}
-
-.pedidosFinalizados{
-  display: grid;
-  grid-template-columns: 50vw 5vw;
-  grid-gap: 15%;
-}
-
-.produtos {
-  display: grid;
-  grid-template-columns: 54% 30%;
-}
-
-.pedidosFinalizados button {
-  width: 20%;
-  min-width: 12rem;
-  margin: 0 0 0 auto;
-  color: black;
-  background-color: #92B86D;
-}
-
-@media (max-width: 860px) {
-
-  .qtdValorTempo span {
-    display: none;;
+    margin-left: 2rem;
   }
+  
+  .nomeCliente {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-weight: bolder;
+    font-size: 1.2rem;
+  }
+  
+  .fundoBranco {
+    background-color: #FFF;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 15px;
+  }
+  
+  .qtdValorTempo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-gap: 17%;
+    font-weight: bold;
+  }
+  
   .pedidosFinalizados{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 50vw 5vw;
+    grid-gap: 15%;
   }
-
+  
   .produtos {
-    display: flex;
-    gap: 5rem;
-    justify-content: space-between; 
+    display: grid;
+    grid-template-columns: 54% 30%;
   }
+  
   .pedidosFinalizados button {
-    min-height: 5rem;
-    min-width: 10rem;
-    margin-top: auto;
+    width: 20%;
+    min-width: 12rem;
+    margin: 0 0 0 auto;
+    color: black;
+    background-color: #92B86D;
   }
-}
+  
+  @media (max-width: 860px) {
+  
+    .qtdValorTempo span {
+      display: none;;
+    }
+  
+    .pedidosFinalizados{
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .produtos {
+      display: flex;
+      gap: 5rem;
+      justify-content: space-between; 
+    }
+    
+    .pedidosFinalizados button {
+      min-height: 5rem;
+      min-width: 10rem;
+      margin-top: auto;
+    }
+  }

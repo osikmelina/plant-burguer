@@ -11,6 +11,7 @@ import { ClienteStore } from './context/clienteContext';
 import Admin from './pages/Admin/Admin';
 import Funcionario from './pages/Admin/Funcionario';
 import PedidosProntos from './pages/Atendimento/PedidosProntos';
+import PedidosEntregues from './pages/Atendimento/PedidosEntregues';
 
 // Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
@@ -41,11 +42,21 @@ function AppRoutes() {
 )}
         />
         <Route
-          path="atendimento/prontos"
+          path="/prontos"
           element={(
             <ClienteStore>
               {' '}
               <PedidosProntos />
+              {' '}
+            </ClienteStore>
+)}
+        />
+        <Route
+          path="/entregues"
+          element={(
+            <ClienteStore>
+              {' '}
+              <PedidosEntregues />
               {' '}
             </ClienteStore>
 )}

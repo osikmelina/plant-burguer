@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Cozinha.module.css';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
-import CaixaFundo from '../../componentes/CaixaFundo';
+// import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos, mudarStatus } from '../../API/orders';
-import Botao from '../../componentes/Botao';
+// import Botao from '../../componentes/Botao';
 import { setItem } from '../../storage/localStorage';
+import MandarPedido from '../../componentes/MandarPedidos';
 
 function EmPreparo() {
   const [pedidos, setPedidos] = useState([]);
@@ -62,32 +63,7 @@ function EmPreparo() {
         <Tag onClick={() => navegar('/finalizados')} texto="PEDIDOS FINALIZADOS" />
       </nav>
       {pedidos.map((pedido) => (
-        <CaixaFundo>
-          <div key={pedido.id}>
-            <span className={styles.nomeCliente}>
-              Cliente:
-              {' '}
-              {pedido.client.toUpperCase()}
-            </span>
-            <div className={styles.fundoBranco}>
-              <div className={styles.qtdValor}>
-                <span>ITEM</span>
-                <span>QTD</span>
-              </div>
-              <div className={styles.pedidosCozinha}>
-                <div>
-                  {pedido.products.map((product) => (
-                    <div className={styles.produtos} key={product.id}>
-                      <span>{product.name}</span>
-                      <span>{product.quantidade}</span>
-                    </div>
-                  ))}
-                </div>
-                <Botao onClick={() => finalizarPedido(pedido.id)}>PRONTO</Botao>
-              </div>
-            </div>
-          </div>
-        </CaixaFundo>
+        <MandarPedido pedido={pedido} mudarStatusPedido={finalizarPedido} texto="PRONTO" />
       ))}
       <Modal
         className="modal"

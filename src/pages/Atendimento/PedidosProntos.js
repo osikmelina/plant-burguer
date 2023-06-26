@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
-import styles from './PedidosProntos.module.css';
 import { obterPedidos, mudarStatus } from '../../API/orders';
-import Botao from '../../componentes/Botao';
-import CaixaFundo from '../../componentes/CaixaFundo';
+import MandarPedido from '../../componentes/MandarPedidos';
+import styles from './Atendimento.module.css';
 
 function PedidosProntos() {
   const [pedidos, setPedidos] = useState([]);
@@ -55,35 +54,10 @@ function PedidosProntos() {
       <LogoMenor />
       <nav className={styles.txtItens}>
         <Tag texto="PARA SERVIR" />
-        <Tag onClick={() => navegar('./entregues')} texto="PEDIDOS ENTREGUE" />
+        <Tag onClick={() => navegar('/entregues')} texto="PEDIDOS ENTREGUES" />
       </nav>
       {pedidos.map((pedido) => (
-        <CaixaFundo>
-          <div key={pedido.id}>
-            <span className={styles.nomeCliente}>
-              Cliente:
-              {' '}
-              {pedido.client.toUpperCase()}
-            </span>
-            <div className={styles.fundoBranco}>
-              <div className={styles.qtdValor}>
-                <span>ITEM</span>
-                <span>QTD</span>
-              </div>
-              <div className={styles.pedidosCozinha}>
-                <div>
-                  {pedido.products.map((product) => (
-                    <div className={styles.produtos} key={product.id}>
-                      <span>{product.name}</span>
-                      <span>{product.quantidade}</span>
-                    </div>
-                  ))}
-                </div>
-                <Botao onClick={() => finalizarEntrega(pedido.id)}>PRONTO</Botao>
-              </div>
-            </div>
-          </div>
-        </CaixaFundo>
+        <MandarPedido pedido={pedido} mudarStatusPedido={finalizarEntrega} texto="FINALIZAR" />
       ))}
       <Modal
         className="modal"
