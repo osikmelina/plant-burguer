@@ -8,12 +8,8 @@ import { pedidos } from '../../API/orders';
 
 function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
   const { cliente } = useContext(ClienteContext);
-
+  const [modalIsOpen, setIsOpen] = useState(false);
   const navegar = useNavigate();
-
-  // const navegarParaCozinha = () => {
-  //   navegar('/preparo');
-  // };
 
   const removerItem = (item) => {
     const itemResumo = itemSelecionado.find((i) => i.id === item.id);
@@ -35,8 +31,6 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
     });
     return total;
   };
-
-  const [modalIsOpen, setIsOpen] = useState(false);
 
   const enviarPedido = () => {
     pedidos(cliente, itemSelecionado);

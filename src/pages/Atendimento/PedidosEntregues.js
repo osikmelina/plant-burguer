@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { differenceInMinutes } from 'date-fns';
-import styles from './Finalizados.module.css';
+import styles from './Atendimento.module.css';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos } from '../../API/orders';
 import Botao from '../../componentes/Botao';
 
-function Finalizados() {
+function PedidosEntregues() {
   const [pedidos, setPedidos] = useState([]);
   const navegar = useNavigate();
 
@@ -16,7 +15,7 @@ function Finalizados() {
     async function fetchData() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
-      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'finalizado'));
+      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Finalizado'));
       console.log(listaPedidos);
     }
     fetchData();
@@ -26,10 +25,10 @@ function Finalizados() {
     // eslint-disable-next-line react/jsx-filename-extension
     <section>
       <LogoMenor />
-      <div className={styles.txtItens}>
-        <Tag onClick={() => navegar('/preparo')} texto="EM PREPARO" />
-        <Tag texto="PEDIDOS FINALIZADOS" />
-      </div>
+      <nav className={styles.txtItens}>
+        <Tag onClick={() => navegar('/prontos')} texto="PARA SERVIR" />
+        <Tag texto="PEDIDOS ENTREGUES" />
+      </nav>
       {pedidos.map((pedido) => (
         <CaixaFundo>
           <div key={pedido.id}>
@@ -38,7 +37,7 @@ function Finalizados() {
               {pedido.client.toUpperCase()}
             </span>
             <div className={styles.fundoBranco}>
-              <div className={styles.qtdValorTempo}>
+              <div className={styles.qtdValor}>
                 <span>ITEM</span>
                 <span>QTD</span>
               </div>
@@ -51,15 +50,9 @@ function Finalizados() {
                     </div>
                   ))}
                 </div>
-                <div className={styles.qtdValorTempo}>
-                  <Botao>
-                    Tempo de preparo:
-                    {' '}
-                    {differenceInMinutes(new Date(pedido.dateFinal), new Date(pedido.dateEntry))}
-                    {' '}
-                    minuto(s)
-                  </Botao>
-                </div>
+                <Botao>
+                  PEDIDO FINALIZADO
+                </Botao>
               </div>
             </div>
           </div>
@@ -68,5 +61,4 @@ function Finalizados() {
     </section>
   );
 }
-
-export default Finalizados;
+export default PedidosEntregues;

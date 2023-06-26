@@ -1,3 +1,7 @@
+.txtItens {
+  margin-left: 2rem;
+}
+
 .atendimento {
   display: flex;
   align-items: center;
@@ -23,6 +27,51 @@
   display: flex;
 }
 
+.nomeCliente {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.fundoBranco {
+  background-color: #FFF;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.qtdValor {
+  display: grid;
+  grid-template-columns: 31rem 2.5rem;
+  font-weight: bold;
+}
+
+.pedidosFinalizados {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.pedidosFinalizados button {
+  width: 20%;
+  min-width: 10rem;
+  margin: 0 0 0 auto;
+  background-color: #92B86D;
+  color: #5C3B14;
+}
+
+.produtos {
+  display: grid;
+  grid-template-columns: 31rem 2.5rem;
+  grid-gap: 1rem;
+  font-size: larger;
+  padding: 0.2rem 0;
+}
+
 @media only screen and (max-width: 767px) {
   .atendimento {
     flex-direction: column;
@@ -34,6 +83,25 @@
     margin-top: 0;
     width: 80%;
     padding-left: 10%;
+  }
+
+  .qtdValor span {
+    display: none;;
+  }
+  .pedidosFinalizados {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .produtos {
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between; 
+  }
+  .pedidosFinalizados button {
+    min-height: 5rem;
+    min-width: 10rem;
+    margin-top: auto;
   }
 }
 
@@ -113,5 +181,7 @@
     padding-left: 20%;
   }
 }
+
+
 
 
