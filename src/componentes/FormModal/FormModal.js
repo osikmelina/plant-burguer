@@ -6,12 +6,12 @@ function FormModal(props) {
   return (
     <Modal isOpen={props.isOpen}>
       <CampoTexto
-        value={props.email}
-        onChange={props.onChangeEmail}
+        valor={props.email}
+        aoAlterado={props.onChangeEmail}
       />
       <CampoTexto
-        value={props.role}
-        onChange={props.onChangeRole}
+        valor={props.role}
+        aoAlterado={props.onChangeRole}
       />
       <Botao onClick={props.onClick}>
         SALVAR

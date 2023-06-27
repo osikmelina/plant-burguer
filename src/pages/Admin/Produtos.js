@@ -6,22 +6,23 @@ import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
 import styles from './Produtos.module.css';
-import { deleteProduto, produtos } from '../../API/products';
+import { deleteProduto, editarProduto, produtos } from '../../API/products';
 import FormModal from '../../componentes/FormModal/FormModal';
 
 function AdmProdutos() {
   const [produtosLista, setProdutosLista] = useState([]);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [produtoSelecionado, setProdutoSelecionado] = useState([]);
+  const [produtoSelecionado, setProdutoSelecionado] = useState([]);
   const navegar = useNavigate();
 
+  async function fetchData() {
+    const response = await produtos();
+    const listaProdutos = response.data;
+    setProdutosLista(listaProdutos);
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await produtos();
-      const listaProdutos = response.data;
-      setProdutosLista(listaProdutos);
-    }
     fetchData();
   }, []);
 
@@ -32,16 +33,35 @@ function AdmProdutos() {
     setIsOpen(false);
   }
 
-  // function abrirFormModal() {
-  //   setIsOpen(true);
-  // }
-  // function fecharFormModal() {
-  //   setIsOpen(false);
-  // }
+  function abrirFormModal() {
+    setIsOpen(true);
+  }
+  function fecharFormModal() {
+    setIsOpen(false);
+  }
 
-  const editarProduto = () => {
-    // setProdutoSelecionado(produto);
-    // abrirFormModal()
+  const atualizarProduto = async (item) => {
+    setProdutoSelecionado(item);
+    console.log(item);
+    abrirFormModal();
+  };
+
+  const salvarProdutoEditado = async () => {
+    try {
+      const response = await editarProduto(
+        produtoSelecionado.id,
+        produtoSelecionado.name,
+        produtoSelecionado.price,
+        produtoSelecionado.type,
+      );
+      const jsonData = response.data;
+      setProdutoSelecionado(jsonData.id);
+      await fetchData();
+      fecharFormModal();
+    } catch (error) {
+      setMensagem('Não foi possível atualizar o produto');
+      abrirModal();
+    }
   };
 
   const excluirProduto = async (item) => {
@@ -84,7 +104,7 @@ function AdmProdutos() {
                       className={styles.icone}
                       src="/imagens/icon-edit.png"
                       alt="icone edição"
-                      onClick={() => (editarProduto(item))}
+                      onClick={() => (atualizarProduto(item))}
                     />
                     <input
                       type="image"
@@ -113,7 +133,17 @@ function AdmProdutos() {
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
-      <FormModal />
+      <FormModal
+        className={styles.modal}
+        overlayClassName={styles.modalFundo}
+        isOpen={modalIsOpen}
+        type="text"
+        name={produtoSelecionado?.email}
+        onChangeName={(value) => (setProdutoSelecionado)(value)}
+        // eslint-disable-next-line react/jsx-no-bind
+        onRequestClose={fecharFormModal}
+        onClick={salvarProdutoEditado}
+      />
     </section>
   );
 }
