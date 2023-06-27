@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
-import { funcionario, deleteFuncionario } from '../../API/users';
+import { funcionario, deleteFuncionario, editarFuncionario } from '../../API/users';
 import styles from './Funcionario.module.css';
 import FormModal from '../../componentes/FormModal/FormModal';
 import LogoMenor from '../../componentes/LogoMenor';
@@ -13,18 +13,19 @@ import Botao from '../../componentes/Botao';
 
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
-  // const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const navegar = useNavigate();
 
+  async function fetchData() {
+    const response = await funcionario();
+    const listaFuncionario = response.data;
+    setFuncionarios(listaFuncionario);
+    console.log(listaFuncionario);
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await funcionario();
-      const listaFuncionario = response.data;
-      setFuncionarios(listaFuncionario);
-      console.log(listaFuncionario);
-    }
     fetchData();
   }, []);
 
@@ -36,10 +37,33 @@ function Funcionario() {
     setIsOpen(false);
   }
 
-  const editarFuncionario = () => {
-    // setFuncionarioSelecionado(funcionario);
-    // abre modal
+  function abrirFormModal() {
+    setIsOpen(true);
+  }
 
+  function fecharFormModal() {
+    setIsOpen(false);
+  }
+
+  const atualizarFuncionario = async (item) => {
+    setFuncionarioSelecionado(item);
+    console.log(item);
+    abrirFormModal();
+  };
+
+  const salvarFuncionarioEditado = async () => {
+    try {
+      const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email);
+      const jsonData = response.data;
+      console.log(jsonData);
+      setFuncionarioSelecionado(jsonData.id);
+      await fetchData();
+      fecharFormModal();
+    } catch (error) {
+      console.log(error);
+      setMensagem('Não foi possível editar os dados do funcionário');
+      abrirModal();
+    }
   };
 
   const excluirFuncionario = async (item) => {
@@ -49,7 +73,6 @@ function Funcionario() {
       setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((colaborador) => colaborador.id !== item.id));
       setMensagem('Funcionário Excluído com Sucesso');
       abrirModal();
-      // fetchData(); // Atualiza a lista de funcionários após a exclusão
     } catch (error) {
       console.log(error);
       setMensagem('Não foi possível excluir o funcionário');
@@ -84,7 +107,7 @@ function Funcionario() {
                       className={styles.icone}
                       src="/imagens/icon-edit.png"
                       alt="icone edição"
-                      onClick={() => (editarFuncionario(item))}
+                      onClick={() => (atualizarFuncionario(item))}
                     />
                     <input
                       type="image"
@@ -112,10 +135,19 @@ function Funcionario() {
           <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
-      <FormModal />
-
-      {/* funcionarioselecionado.email
-      funcionarioselecionado.role */}
+      <FormModal
+        className="modal"
+        overlayClassName="modal-fundo"
+        isOpen={modalIsOpen}
+        name={funcionarioSelecionado?.name}
+        email={funcionarioSelecionado?.email}
+        role={funcionarioSelecionado?.role}
+        onChangeName={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, name: value })}
+        onChangeEmail={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, email: value })}
+        onChangeRole={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, role: value })}
+        onRequestClose={fecharFormModal}
+        onClick={salvarFuncionarioEditado}
+      />
     </section>
   );
 }
