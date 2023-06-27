@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import {
-  funcionario, deleteFuncionario, editarFuncionario, criarFuncionario,
-} from '../../API/users';
+  funcionario,
+  deleteFuncionario,
+  editarFuncionario,
+}
+  from '../../API/users';
 import styles from './Funcionario.module.css';
 import FormModal from '../../componentes/FormModal/FormModal';
 import LogoMenor from '../../componentes/LogoMenor';
@@ -16,10 +19,8 @@ import Botao from '../../componentes/Botao';
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
-  // const [novoColaborador, setNovoColaborador] = useState(null);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [modalExclusaoIsOpen, setExclusaoIsOpen] = useState(false);
   const navegar = useNavigate();
 
   async function fetchData() {
