@@ -1,23 +1,27 @@
 import Modal from 'react-modal';
 import CampoTexto from '../CampoTexto';
 import Botao from '../Botao';
+// import styles from './FormModal.module.css';
 
 function FormModal(props) {
   return (
     <Modal isOpen={props.isOpen}>
       <CampoTexto
-        value={props.email}
-        onChange={props.onChangeEmail}
+        valor={props.name}
+        aoAlterado={props.onChangeName}
       />
       <CampoTexto
-        value={props.role}
-        onChange={props.onChangeRole}
+        valor={props.email}
+        aoAlterado={props.onChangeEmail}
+      />
+      <CampoTexto
+        valor={props.role}
+        aoAlterado={props.onChangeRole}
       />
       <Botao onClick={props.onClick}>
         SALVAR
       </Botao>
     </Modal>
-
   );
 }
 export default FormModal;
