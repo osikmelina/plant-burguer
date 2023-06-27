@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
-import styles from './Cozinha.module.css';
+import Modal from 'react-modal';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
-// import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos, mudarStatus } from '../../API/orders';
-// import Botao from '../../componentes/Botao';
-import { setItem } from '../../storage/localStorage';
 import MandarPedido from '../../componentes/MandarPedidos';
+import styles from './Atendimento.module.css';
 
-function EmPreparo() {
+function PedidosProntos() {
   const [pedidos, setPedidos] = useState([]);
   const [erro, setErro] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -20,7 +17,7 @@ function EmPreparo() {
     async function fetchData() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
-      setPedidos(listaPedidos.filter((pedido) => pedido.status !== 'Pronto'));
+      setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Pronto'));
       console.log(listaPedidos);
     }
     fetchData();
@@ -34,17 +31,15 @@ function EmPreparo() {
     setIsOpen(false);
   }
 
-  const finalizarPedido = async (orderId) => {
+  const finalizarEntrega = async (orderId) => {
     console.log(orderId);
-    setErro('');
     try {
-      const response = await mudarStatus(orderId, 'Pronto');
+      const response = await mudarStatus(orderId, 'Finalizado');
       const jsonData = response.data;
       console.log(jsonData);
-      setItem('orderId', jsonData.id);
       setPedidos((prevStat) => prevStat.filter((pedido) => pedido.id !== orderId));
-      if (jsonData.status === 'Pronto') {
-        setErro('O pedido está pronto e foi enviado para o atendente');
+      if (jsonData.status === 'Finalizado') {
+        setErro('O pedido foi entregue e finalizado com sucesso');
         abrirModal();
       }
     } catch (error) {
@@ -55,15 +50,14 @@ function EmPreparo() {
   };
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <section>
       <LogoMenor />
       <nav className={styles.txtItens}>
-        <Tag texto="EM PREPARO" />
-        <Tag onClick={() => navegar('/finalizados')} texto="PEDIDOS FINALIZADOS" />
+        <Tag texto="PARA SERVIR" />
+        <Tag onClick={() => navegar('/entregues')} texto="PEDIDOS ENTREGUES" />
       </nav>
       {pedidos.map((pedido) => (
-        <MandarPedido pedido={pedido} mudarStatusPedido={finalizarPedido} texto="PRONTO" />
+        <MandarPedido pedido={pedido} mudarStatusPedido={finalizarEntrega} texto="FINALIZAR" />
       ))}
       <Modal
         className="modal"
@@ -83,4 +77,4 @@ function EmPreparo() {
   );
 }
 
-export default EmPreparo;
+export default PedidosProntos;

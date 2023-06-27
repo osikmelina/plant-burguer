@@ -1,8 +1,4 @@
-.txtItens {
-    margin-left: 2rem;
-  }
-  
-  .nomeCliente {
+.nomeCliente {
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -13,44 +9,47 @@
   
   .fundoBranco {
     background-color: #FFF;
-    margin: 1%;
-    padding: 1%;
+    margin: 1rem;
+    padding: 1rem;
     border-radius: 15px;
   }
   
-  .qtdValorTempo {
+  .qtdValor {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-    grid-gap: 17%;
+    grid-template-columns: 31rem 2.5rem;
     font-weight: bold;
   }
   
-  .pedidosFinalizados{
-    display: grid;
-    grid-template-columns: 50vw 5vw;
-    grid-gap: 15%;
+  .pedidosCozinha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    
   }
   
+  
+  .pedidosCozinha button {
+    width: 20%;
+    min-width: 10rem;
+    margin: 0 0 0 auto;
+  }
+
   .produtos {
     display: grid;
-    grid-template-columns: 54% 30%;
+    grid-template-columns: 31rem 2.5rem;
+    grid-gap: 1rem;
+    font-size: larger;
+    padding: 0.2rem 0;
   }
   
-  .pedidosFinalizados button {
-    width: 20%;
-    min-width: 12rem;
-    margin: 0 0 0 auto;
-    color: black;
-    background-color: #92B86D;
-  }
   
-  @media (max-width: 860px) {
-  
-    .qtdValorTempo span {
+  @media (max-width: 767px) {
+    /* Estilos para telas menores (até 767px) */
+    .qtdValor span {
       display: none;;
     }
-  
-    .pedidosFinalizados{
+    .pedidosCozinha{
       display: flex;
       flex-wrap: wrap;
     }
@@ -60,8 +59,7 @@
       gap: 5rem;
       justify-content: space-between; 
     }
-    
-    .pedidosFinalizados button {
+    .pedidosCozinha button {
       min-height: 5rem;
       min-width: 10rem;
       margin-top: auto;
