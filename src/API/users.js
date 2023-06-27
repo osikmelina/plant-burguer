@@ -16,3 +16,16 @@ export const editarFuncionario = (userId, name, role, email) => request(
   'PATCH',
   getAuthorizationHeader(),
 );
+
+export const criarFuncionario = (userId, name, role, email, password) => request(
+  'users',
+  {
+    userId,
+    name,
+    role,
+    email,
+    password,
+  },
+  'POST',
+  getAuthorizationHeader(),
+);
