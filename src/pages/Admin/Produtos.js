@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import FormModal from '../../componentes/FormModal/FormModal';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
 import styles from './Produtos.module.css';
-import { deleteProduto, editarProduto, produtos } from '../../API/products';
-import FormModal from '../../componentes/FormModal/FormModal';
+import {
+  produtos,
+  deleteProduto,
+  editarProduto,
+  criarProduto
+} from '../../API/products';
 
 function AdmProdutos() {
   const [produtosLista, setProdutosLista] = useState([]);
@@ -15,6 +20,7 @@ function AdmProdutos() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFormIsOpen, setFormIsOpen] = useState(false);
   const [produtoSelecionado, setProdutoSelecionado] = useState([]);
+  const [novoProduto, setNovoProduto] = useState([]);
   const navegar = useNavigate();
 
   async function fetchData() {
@@ -41,9 +47,17 @@ function AdmProdutos() {
     setFormIsOpen(false);
   }
 
+  const adicionarProduto = async () => {
+    setNovoProduto();
+    abrirFormModal();
+  };
+
+  const salvarNovoProduto = async () => {
+    
+  };
+
   const atualizarProduto = async (item) => {
     setProdutoSelecionado(item);
-    console.log(item);
     abrirFormModal();
   };
 
@@ -135,15 +149,23 @@ function AdmProdutos() {
         </div>
       </Modal>
       <FormModal
-        className={styles.modal}
-        overlayClassName={styles.modalFundo}
+        className="modal"
+        overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}
-        type="text"
         name={produtoSelecionado?.email}
-        onChangeName={(value) => (setProdutoSelecionado)(value)}
+        price={produtoSelecionado?.price}
+        type={produtoSelecionado?.type}
+        onChangeName={(value) => setProdutoSelecionado({ ...produtoSelecionado, name: value })}
+        onChangePrice={(value) => setProdutoSelecionado({ ...produtoSelecionado, price: value })}
+        onChangeType={(value) => setProdutoSelecionado({ ...produtoSelecionado, type: value })}
         // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharFormModal}
         onClick={salvarProdutoEditado}
+      />
+      <FormModal
+        className="modal"
+        overlayClassName="modal-fundo"
+        isOpen={modalFormIsOpen}
       />
     </section>
   );
