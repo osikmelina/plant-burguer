@@ -3,12 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
-import {
-  funcionario,
-  deleteFuncionario,
-  editarFuncionario,
-}
-  from '../../API/users';
+import { funcionario, deleteFuncionario, editarFuncionario } from '../../API/users';
 import styles from './Funcionario.module.css';
 import FormModal from '../../componentes/FormModal/FormModal';
 import LogoMenor from '../../componentes/LogoMenor';
@@ -19,6 +14,7 @@ import Botao from '../../componentes/Botao';
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
+  // const [novoColaborador, setNovoColaborador] = useState(null);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const navegar = useNavigate();
@@ -79,7 +75,7 @@ function Funcionario() {
 
   const salvarFuncionarioEditado = async () => {
     try {
-      const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email);
+      const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email, funcionarioSelecionado.password);
       const jsonData = response.data;
       console.log(jsonData);
       setFuncionarioSelecionado(jsonData.id);
@@ -146,7 +142,9 @@ function Funcionario() {
                 </div>
               ))}
             </div>
-            <Botao>NOVO FUNCIONÁRIO</Botao>
+            <Botao>
+              NOVO FUNCIONÁRIO
+            </Botao>
           </div>
         </div>
       </CaixaFundo>
@@ -162,32 +160,41 @@ function Funcionario() {
         </div>
       </Modal>
       <FormModal
+        isFuncionarioForm
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
         name={funcionarioSelecionado?.name}
         email={funcionarioSelecionado?.email}
         role={funcionarioSelecionado?.role}
+        password={funcionarioSelecionado?.password}
         onChangeName={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, name: value })}
         onChangeEmail={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, email: value })}
         onChangeRole={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, role: value })}
+        onChangePassword={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, password: value })}
         onRequestClose={fecharFormModal}
         onClick={salvarFuncionarioEditado}
       />
-      {/*
-      <FormModal
+    </section>
+  );
+}
+
+export default Funcionario;
+// eslint-disable-next-line no-lone-blocks
+{ /* <FormModal
+        isFuncionarioForm
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalIsOpen}
+        name={novoColaborador?.name}
+        email={novoColaborador?.email}
+        role={novoColaborador?.role}
+        password={novoColaborador?.password}
         onChangeName={(value) => setNovoColaborador({ ...novoColaborador, name: value })}
         onChangeEmail={(value) => setNovoColaborador({ ...novoColaborador, email: value })}
         onChangeRole={(value) => setNovoColaborador({ ...novoColaborador, role: value })}
         onChangePassword={(value) => setNovoColaborador({ ...novoColaborador, password: value })}
         onRequestClose={fecharFormModal}
               onClick={salvarNovoFuncionario}
-      /> */}
-    </section>
-  );
-}
 
-export default Funcionario;
+      /> */ }

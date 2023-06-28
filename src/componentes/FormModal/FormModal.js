@@ -6,22 +6,43 @@ import Botao from '../Botao';
 function FormModal(props) {
   return (
     <Modal isOpen={props.isOpen}>
-      <CampoTexto
-        valor={props.name}
-        aoAlterado={props.onChangeName}
-      />
-      <CampoTexto
-        valor={props.email}
-        aoAlterado={props.onChangeEmail}
-      />
-      <CampoTexto
-        valor={props.role}
-        aoAlterado={props.onChangeRole}
-      />
-      <CampoTexto
-        valor={props.password}
-        aoAlterado={props.onChangePassword}
-      />
+      {props.isFuncionarioForm ? (
+        <>
+          <CampoTexto
+            valor={props.name}
+            aoAlterado={props.onChangeName}
+          />
+          <CampoTexto
+            valor={props.email}
+            aoAlterado={props.onChangeEmail}
+          />
+          <CampoTexto
+            valor={props.role}
+            aoAlterado={props.onChangeRole}
+          />
+          <CampoTexto
+            valor={props.password}
+            aoAlterado={props.onChangePassword}
+          />
+        </>
+      )
+        : (
+          <>
+            <CampoTexto
+              valor={props.name}
+              aoAlterado={props.onChangeName}
+            />
+            <CampoTexto
+              valor={props.price}
+              aoAlterado={props.onChangePrice}
+            />
+            <CampoTexto
+              valor={props.type}
+              aoAlterado={props.onChangeType}
+            />
+          </>
+        )}
+
       <Botao onClick={props.onClick}>
         SALVAR
       </Botao>
@@ -111,7 +132,6 @@ export default FormModal;
 //     onChange: changeDoRole
 //   },
 
-
 // ]
 
 // <FormModal inputs={inputsForm} />
@@ -129,8 +149,6 @@ export default FormModal;
 //     valor: produtoSelecionado.type,
 //     onChange: changeDoType
 //   },
-
-
 // ]
 
 // <FormModal inputs={inputsForm} />

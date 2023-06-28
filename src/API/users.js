@@ -6,12 +6,13 @@ export const funcionario = () => request('users', null, 'GET', getAuthorizationH
 
 export const deleteFuncionario = (id) => request(`users/${id}`, null, 'DELETE', getAuthorizationHeader());
 
-export const editarFuncionario = (userId, name, role, email) => request(
+export const editarFuncionario = (userId, name, role, email, password) => request(
   `users/${userId}`,
   {
     name,
     role,
     email,
+    password,
   },
   'PATCH',
   getAuthorizationHeader(),
