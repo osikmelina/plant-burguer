@@ -10,17 +10,24 @@
 }
 
 .txtItens {
+  display:flex;
   font-size: 20px;
   color: #FFFFFF;
-  margin-left: 2rem;
+  margin-left: 5%;
 }
 
 .caixasPedido {
   display: flex;
-}
+  justify-content: center;
+ }
 
 @media screen and (max-width: 900px) {
   .caixasPedido {
     flex-direction: column;
   }
+
+  .txtItens{
+    margin-left: 15px;
+  }
 }
+
