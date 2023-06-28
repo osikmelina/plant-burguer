@@ -13,6 +13,7 @@ function AdmProdutos() {
   const [produtosLista, setProdutosLista] = useState([]);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalFormIsOpen, setFormIsOpen] = useState(false);
   const [produtoSelecionado, setProdutoSelecionado] = useState([]);
   const navegar = useNavigate();
 
@@ -34,10 +35,10 @@ function AdmProdutos() {
   }
 
   function abrirFormModal() {
-    setIsOpen(true);
+    setFormIsOpen(true);
   }
   function fecharFormModal() {
-    setIsOpen(false);
+    setFormIsOpen(false);
   }
 
   const atualizarProduto = async (item) => {
@@ -136,7 +137,7 @@ function AdmProdutos() {
       <FormModal
         className={styles.modal}
         overlayClassName={styles.modalFundo}
-        isOpen={modalIsOpen}
+        isOpen={modalFormIsOpen}
         type="text"
         name={produtoSelecionado?.email}
         onChangeName={(value) => (setProdutoSelecionado)(value)}

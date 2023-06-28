@@ -111,7 +111,6 @@ export default FormModal;
 //     onChange: changeDoRole
 //   },
 
-
 // ]
 
 // <FormModal inputs={inputsForm} />
@@ -129,7 +128,6 @@ export default FormModal;
 //     valor: produtoSelecionado.type,
 //     onChange: changeDoType
 //   },
-
 
 // ]
 

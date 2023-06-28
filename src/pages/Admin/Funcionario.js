@@ -21,6 +21,7 @@ function Funcionario() {
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalFormIsOpen, setFormIsOpen] = useState(false);
   const navegar = useNavigate();
 
   async function fetchData() {
@@ -43,11 +44,11 @@ function Funcionario() {
   }
 
   function abrirFormModal() {
-    setIsOpen(true);
+    setFormIsOpen(true);
   }
 
   function fecharFormModal() {
-    setIsOpen(false);
+    setFormIsOpen(false);
   }
 
   // const novoFuncionario = async (item) => {
@@ -164,7 +165,7 @@ function Funcionario() {
       <FormModal
         className="modal"
         overlayClassName="modal-fundo"
-        isOpen={modalIsOpen}
+        isOpen={modalFormIsOpen}
         name={funcionarioSelecionado?.name}
         email={funcionarioSelecionado?.email}
         role={funcionarioSelecionado?.role}
