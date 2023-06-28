@@ -7,6 +7,7 @@ import {
   funcionario,
   deleteFuncionario,
   editarFuncionario,
+  criarFuncionario,
 }
   from '../../API/users';
 import styles from './Funcionario.module.css';
@@ -18,11 +19,12 @@ import Botao from '../../componentes/Botao';
 
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
-  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState(null);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState({});
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFormIsOpen, setFormIsOpen] = useState(false);
   const navegar = useNavigate();
+  const [novoColaborador, setNovoColaborador] = useState({});
 
   async function fetchData() {
     const response = await funcionario();
@@ -43,34 +45,33 @@ function Funcionario() {
     setIsOpen(false);
   }
 
-  function abrirFormModal() {
+  const abrirFormModal = () => {
     setFormIsOpen(true);
-  }
+  };
 
   function fecharFormModal() {
     setFormIsOpen(false);
   }
 
-  // const novoFuncionario = async (item) => {
-  //   setNovoColaborador();
-  //   console.log(item);
-  //   abrirFormModal();
-  // };
+  const novoFuncionario = async () => {
+    setNovoColaborador();
+    abrirFormModal();
+  };
 
-  // const salvarNovoFuncionario = async () => {
-  //   try {
-  //     const response = await criarFuncionario(novoColaborador.id, novoColaborador.name, novoColaborador.role, novoColaborador.email, novoColaborador.password);
-  //     const jsonData = response.data;
-  //     console.log(jsonData);
-  //     setNovoColaborador(jsonData);
-  //     await fetchData();
-  //     fecharFormModal();
-  //   } catch (error) {
-  //     console.log(error);
-  //     setMensagem('Não foi possível editar os dados do funcionário');
-  //     abrirModal();
-  //   }
-  // };
+  const salvarNovoFuncionario = async () => {
+    try {
+      const response = await criarFuncionario(novoColaborador.id, novoColaborador.name, novoColaborador.role, novoColaborador.email, novoColaborador.password);
+      const jsonData = response.data;
+      console.log(jsonData);
+      setNovoColaborador(novoColaborador.id);
+      await fetchData();
+      fecharFormModal();
+    } catch (error) {
+      console.log(error);
+      setMensagem('Não foi possível editar os dados do funcionário');
+      abrirModal();
+    }
+  };
 
   const atualizarFuncionario = async (item) => {
     setFuncionarioSelecionado(item);
@@ -79,18 +80,12 @@ function Funcionario() {
   };
 
   const salvarFuncionarioEditado = async () => {
-    try {
-      const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email);
-      const jsonData = response.data;
-      console.log(jsonData);
-      setFuncionarioSelecionado(jsonData.id);
-      await fetchData();
-      fecharFormModal();
-    } catch (error) {
-      console.log(error);
-      setMensagem('Não foi possível editar os dados do funcionário');
-      abrirModal();
-    }
+    const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email, funcionarioSelecionado.password);
+    const jsonData = response.data;
+    console.log(jsonData);
+    setFuncionarioSelecionado(jsonData.id);
+    await fetchData();
+    fecharFormModal();
   };
 
   const excluirFuncionario = async (item) => {
@@ -147,7 +142,7 @@ function Funcionario() {
                 </div>
               ))}
             </div>
-            <Botao>NOVO FUNCIONÁRIO</Botao>
+            <Botao onClick={() => (novoFuncionario())}>NOVO FUNCIONÁRIO</Botao>
           </div>
         </div>
       </CaixaFundo>
@@ -167,27 +162,25 @@ function Funcionario() {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}
-        name={funcionarioSelecionado?.name}
-        email={funcionarioSelecionado?.email}
-        role={funcionarioSelecionado?.role}
-        onChangeName={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, name: value })}
-        onChangeEmail={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, email: value })}
-        onChangeRole={(value) => setFuncionarioSelecionado({ ...funcionarioSelecionado, role: value })}
+        name={funcionarioSelecionado?.name || novoColaborador?.name}
+        email={funcionarioSelecionado?.email || novoColaborador?.email}
+        role={funcionarioSelecionado?.role || novoColaborador?.role}
+        password={funcionarioSelecionado?.password || novoColaborador?.password}
+        onChangeName={(value) => (Object.keys(funcionarioSelecionado).length !== 0
+          ? setFuncionarioSelecionado({ ...funcionarioSelecionado, name: value })
+          : setNovoColaborador({ ...novoColaborador, name: value }))}
+        onChangeEmail={(value) => (Object.keys(funcionarioSelecionado).length !== 0
+          ? setFuncionarioSelecionado({ ...funcionarioSelecionado, email: value })
+          : setNovoColaborador({ ...novoColaborador, email: value }))}
+        onChangeRole={(value) => (Object.keys(funcionarioSelecionado).length !== 0
+          ? setFuncionarioSelecionado({ ...funcionarioSelecionado, role: value })
+          : setNovoColaborador({ ...novoColaborador, role: value }))}
+        onChangePassword={(value) => (Object.keys(funcionarioSelecionado).length !== 0
+          ? setFuncionarioSelecionado({ ...funcionarioSelecionado, password: value })
+          : setNovoColaborador({ ...novoColaborador, password: value }))}
         onRequestClose={fecharFormModal}
-        onClick={salvarFuncionarioEditado}
+        onClick={Object.keys(funcionarioSelecionado).length !== 0 ? salvarFuncionarioEditado : salvarNovoFuncionario}
       />
-      {/*
-      <FormModal
-        className="modal"
-        overlayClassName="modal-fundo"
-        isOpen={modalIsOpen}
-        onChangeName={(value) => setNovoColaborador({ ...novoColaborador, name: value })}
-        onChangeEmail={(value) => setNovoColaborador({ ...novoColaborador, email: value })}
-        onChangeRole={(value) => setNovoColaborador({ ...novoColaborador, role: value })}
-        onChangePassword={(value) => setNovoColaborador({ ...novoColaborador, password: value })}
-        onRequestClose={fecharFormModal}
-              onClick={salvarNovoFuncionario}
-      /> */}
     </section>
   );
 }
