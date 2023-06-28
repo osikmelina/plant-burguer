@@ -8,9 +8,4 @@
   box-shadow: 0px 3px 3px #000000;
 }
 
-@media screen and (min-width: 1100px) {
-  .caixaFundo {
-    width: 600px; 
-    /* ou qualquer outra largura fixa desejada */
-  }
-}
+

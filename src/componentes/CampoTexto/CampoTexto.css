@@ -32,9 +32,11 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 500px) {
   .campo-texto input {  
-    font-size: 1.2rem;
+    font-size: 1rem;
+    width: 65%;
+    height: 2.5rem;;
   }
 
   .campo-texto ::placeholder {
