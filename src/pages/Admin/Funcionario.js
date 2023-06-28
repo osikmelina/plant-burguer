@@ -163,6 +163,7 @@ function Funcionario() {
         </div>
       </Modal>
       <FormModal
+        isFuncionarioForm
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}
