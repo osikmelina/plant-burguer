@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
@@ -11,7 +12,7 @@ import {
   produtos,
   deleteProduto,
   editarProduto,
-  criarProduto
+  criarProduto,
 } from '../../API/products';
 
 function AdmProdutos() {
@@ -47,13 +48,23 @@ function AdmProdutos() {
     setFormIsOpen(false);
   }
 
-  const adicionarProduto = async () => {
-    setNovoProduto();
-    abrirFormModal();
-  };
-
   const salvarNovoProduto = async () => {
-    
+    try {
+      const response = await criarProduto(
+        novoProduto.id,
+        novoProduto.name,
+        novoProduto.price,
+        novoProduto.type,
+      );
+      const jsonData = response.data;
+      console.log(jsonData);
+      setNovoProduto(novoProduto.id);
+      await fetchData();
+      fecharFormModal();
+    } catch (error) {
+      setMensagem('Não foi possível adicionar um novo produto');
+      abrirModal();
+    }
   };
 
   const atualizarProduto = async (item) => {
@@ -152,15 +163,21 @@ function AdmProdutos() {
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}
-        name={produtoSelecionado?.email}
-        price={produtoSelecionado?.price}
-        type={produtoSelecionado?.type}
-        onChangeName={(value) => setProdutoSelecionado({ ...produtoSelecionado, name: value })}
-        onChangePrice={(value) => setProdutoSelecionado({ ...produtoSelecionado, price: value })}
-        onChangeType={(value) => setProdutoSelecionado({ ...produtoSelecionado, type: value })}
+        name={produtoSelecionado?.email || novoProduto?.name}
+        price={produtoSelecionado?.price || novoProduto?.price}
+        type={produtoSelecionado?.type || novoProduto?.type}
+        onChangeName={(value) => (Object.keys(produtoSelecionado).length !== 0
+          ? setProdutoSelecionado({ ...produtoSelecionado, name: value })
+          : setNovoProduto({ ...novoProduto, name: value }))}
+        onChangePrice={(value) => (Object.keys(produtoSelecionado).length !== 0
+          ? setProdutoSelecionado({ ...produtoSelecionado, price: value })
+          : setNovoProduto({ ...novoProduto, price: value }))}
+        onChangeType={(value) => (Object.keys(produtoSelecionado).length !== 0
+          ? setProdutoSelecionado({ ...produtoSelecionado, type: value })
+          : setNovoProduto({ ...novoProduto, type: value }))}
         // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharFormModal}
-        onClick={salvarProdutoEditado}
+        onClick={Object.keys(produtoSelecionado).length !== 0 ? salvarProdutoEditado : salvarNovoProduto}
       />
       <FormModal
         className="modal"
