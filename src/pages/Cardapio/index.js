@@ -51,8 +51,8 @@ function Cardapio() {
     <section>
       <LogoMenor />
       <div className={styles.txtItens}>
-        <Tag onClick={() => filtrarTipoCardapio('Desayuno')} texto="CAFÉ DA MANHÃ" />
-        <Tag onClick={() => filtrarTipoCardapio('Almuerzo')} texto="ALMOÇO E JANTAR" />
+        <Tag onClick={() => filtrarTipoCardapio('café da manhã')} texto="CAFÉ DA MANHÃ" />
+        <Tag onClick={() => filtrarTipoCardapio('almoço e janta')} texto="ALMOÇO E JANTAR" />
       </div>
       <div className={styles.caixasPedido}>
         <CaixaFundo>

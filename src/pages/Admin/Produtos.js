@@ -48,6 +48,11 @@ function AdmProdutos() {
     setFormIsOpen(false);
   }
 
+  const criaProduto = async () => {
+    setNovoProduto();
+    abrirFormModal();
+  };
+
   const salvarNovoProduto = async () => {
     try {
       const response = await criarProduto(
@@ -73,21 +78,16 @@ function AdmProdutos() {
   };
 
   const salvarProdutoEditado = async () => {
-    try {
-      const response = await editarProduto(
-        produtoSelecionado.id,
-        produtoSelecionado.name,
-        produtoSelecionado.price,
-        produtoSelecionado.type,
-      );
-      const jsonData = response.data;
-      setProdutoSelecionado(jsonData.id);
-      await fetchData();
-      fecharFormModal();
-    } catch (error) {
-      setMensagem('Não foi possível atualizar o produto');
-      abrirModal();
-    }
+    const response = await editarProduto(
+      produtoSelecionado.id,
+      produtoSelecionado.name,
+      produtoSelecionado.price,
+      produtoSelecionado.type,
+    );
+    const jsonData = response.data;
+    setProdutoSelecionado(jsonData.id);
+    await fetchData();
+    fecharFormModal();
   };
 
   const excluirProduto = async (item) => {
@@ -143,7 +143,7 @@ function AdmProdutos() {
                 </div>
               ))}
             </div>
-            <Botao>NOVO PRODUTO</Botao>
+            <Botao onClick={() => (criaProduto())}>NOVO PRODUTO</Botao>
           </div>
         </div>
       </CaixaFundo>
@@ -160,10 +160,11 @@ function AdmProdutos() {
         </div>
       </Modal>
       <FormModal
+        // isProdutoForm
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}
-        name={produtoSelecionado?.email || novoProduto?.name}
+        name={produtoSelecionado?.name || novoProduto?.name}
         price={produtoSelecionado?.price || novoProduto?.price}
         type={produtoSelecionado?.type || novoProduto?.type}
         onChangeName={(value) => (Object.keys(produtoSelecionado).length !== 0
@@ -178,11 +179,6 @@ function AdmProdutos() {
         // eslint-disable-next-line react/jsx-no-bind
         onRequestClose={fecharFormModal}
         onClick={Object.keys(produtoSelecionado).length !== 0 ? salvarProdutoEditado : salvarNovoProduto}
-      />
-      <FormModal
-        className="modal"
-        overlayClassName="modal-fundo"
-        isOpen={modalFormIsOpen}
       />
     </section>
   );
