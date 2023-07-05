@@ -1,6 +1,6 @@
 import { getItem } from '../storage/localStorage';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://burger-queen-api-mock-ten.vercel.app';
 
 export async function request(endpoint, body, method = 'GET', headers = {}) {
   const URL = `${API_URL}/${endpoint}`;
