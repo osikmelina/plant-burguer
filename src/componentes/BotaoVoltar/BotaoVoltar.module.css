@@ -1,0 +1,12 @@
+.botao {
+    border: none;
+    outline: none;
+    background: none;
+}
+.botaoVoltar {
+    background-color: #1C2E26;
+    border: none;
+    width: 3rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}

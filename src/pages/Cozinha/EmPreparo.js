@@ -9,6 +9,7 @@ import { obterPedidos, mudarStatus } from '../../API/orders';
 // import Botao from '../../componentes/Botao';
 import { setItem } from '../../storage/localStorage';
 import MandarPedido from '../../componentes/MandarPedidos';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function EmPreparo() {
   const [pedidos, setPedidos] = useState([]);
@@ -57,7 +58,10 @@ function EmPreparo() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <nav className={styles.txtItens}>
         <Tag texto="EM PREPARO" />
         <Tag onClick={() => navegar('/finalizados')} texto="PEDIDOS FINALIZADOS" />

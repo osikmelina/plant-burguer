@@ -9,3 +9,9 @@
 }
 
 
+@media screen and (min-width: 1444px) {
+  .caixaFundo{
+    width: 800px;
+  }
+}
+

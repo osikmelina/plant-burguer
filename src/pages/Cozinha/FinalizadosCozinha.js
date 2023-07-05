@@ -7,6 +7,7 @@ import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos } from '../../API/orders';
 import Botao from '../../componentes/Botao';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function FinalizadosCozinha() {
   const [pedidos, setPedidos] = useState([]);
@@ -25,33 +26,36 @@ function FinalizadosCozinha() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <nav className={styles.txtItens}>
         <Tag onClick={() => navegar('/preparo')} texto="EM PREPARO" />
         <Tag texto="PEDIDOS FINALIZADOS" />
       </nav>
-      {pedidos.map((pedido) => (
-        <CaixaFundo>
-          <div key={pedido.id}>
-            <span className={styles.nomeCliente}>
-              Cliente:
-              {pedido.client.toUpperCase()}
-            </span>
-            <div className={styles.fundoBranco}>
-              <div className={styles.qtdValorTempo}>
-                <span>ITEM</span>
-                <span>QTD</span>
-              </div>
-              <div className={styles.pedidosFinalizados}>
-                <div>
-                  {pedido.products.map((product) => (
-                    <div className={styles.produtos} key={product.id}>
-                      <span>{product.name}</span>
-                      <span>{product.quantidade}</span>
-                    </div>
-                  ))}
-                </div>
+      <section className={styles.pedidosProntos}>
+        {pedidos.map((pedido) => (
+          <CaixaFundo>
+            <div key={pedido.id}>
+              <span className={styles.nomeCliente}>
+                Cliente:
+                {pedido.client.toUpperCase()}
+              </span>
+              <div className={styles.fundoBranco}>
                 <div className={styles.qtdValorTempo}>
+                  <span>ITEM</span>
+                  <span>QTD</span>
+                </div>
+                <div className={styles.pedidosFinalizados}>
+                  <div>
+                    {pedido.products.map((product) => (
+                      <div className={styles.produtos} key={product.id}>
+                        <span>{product.name}</span>
+                        <span>{product.quantidade}</span>
+                      </div>
+                    ))}
+                  </div>
                   <Botao>
                     Tempo de preparo:
                     {' '}
@@ -62,9 +66,9 @@ function FinalizadosCozinha() {
                 </div>
               </div>
             </div>
-          </div>
-        </CaixaFundo>
-      ))}
+          </CaixaFundo>
+        ))}
+      </section>
     </section>
   );
 }

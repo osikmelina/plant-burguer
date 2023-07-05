@@ -11,7 +11,18 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const navegar = useNavigate();
 
-  const removerItem = (item) => {
+  const incrementarItem = (item) => {
+    const itemCardapio = itemSelecionado.find((i) => i.id === item.id);
+    if (itemCardapio) {
+      item.quantidade++;
+      setItemSelecionado([...itemSelecionado]);
+    } else {
+      item.quantidade = 1;
+      setItemSelecionado([...itemSelecionado, item]);
+    }
+  };
+
+  const decrementarItem = (item) => {
     const itemResumo = itemSelecionado.find((i) => i.id === item.id);
     if (itemResumo) {
       if (itemResumo.quantidade > 1) {
@@ -22,6 +33,10 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
         setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
       }
     }
+  };
+
+  const removerItem = (item) => {
+    setItemSelecionado(itemSelecionado.filter((i) => i.id !== item.id));
   };
 
   const calcularTotal = () => {
@@ -58,7 +73,23 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
         {itemSelecionado.map((item) => (
           <div className={styles.txtSpan} key={item.id}>
             <span>{item.name}</span>
-            <span className={styles.numerosResumo}>{item.quantidade}</span>
+            <div className={styles.quantidade}>
+              <input
+                type="image"
+                className={styles.iconMais}
+                src="/imagens/icon-mais.png"
+                alt="icone de aumentar"
+                onClick={() => incrementarItem(item)}
+              />
+              <span className={styles.numerosResumo}>{item.quantidade}</span>
+              <input
+                type="image"
+                className={styles.iconMenos}
+                src="/imagens/icon-menos.png"
+                alt="icone de diminuir"
+                onClick={() => decrementarItem(item)}
+              />
+            </div>
             <span>{`R$ ${item.price}`}</span>
             <input
               type="image"

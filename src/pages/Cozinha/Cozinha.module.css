@@ -1,3 +1,9 @@
+.cabecalho {
+  display:flex;
+  align-items: flex-start;
+  gap: 35%;
+}
+
 .txtItens {
   margin-left: 2rem;
 }
@@ -46,11 +52,11 @@
 }
 
 @media (max-width: 767px) {
-  /* Estilos para telas menores (até 767px) */
-  .qtdValor span {
-    display: none;;
+  .cabecalho {
+    gap: 13%;
   }
-  .pedidosCozinha{
+
+   .pedidosCozinha{
     display: flex;
     flex-wrap: wrap;
   }
@@ -65,4 +71,24 @@
     min-width: 10rem;
     margin-top: auto;
   }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cabecalho {
+    gap: 30%;
+  }
+}
+
+
+@media only screen and (min-width: 1444px){
+  .cabecalho{
+    gap:40%;
+  }
+
+  .txtItens{
+    display: flex;
+    justify-content: center;
+    margin-right: 450px;
+  }
+  
 }

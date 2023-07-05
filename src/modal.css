@@ -92,3 +92,21 @@
     font-size: 1.2rem;
   }
 }
+
+@media only screen and (min-width: 1444px) {
+  .modal {
+    width: 30%;
+}
+
+.botao-ok {
+  width: 30%;
+  height: 3rem;
+  font-size: 1.2rem;
+}
+}
+
+@media only screen and (min-width: 1800px) {
+  .modal {
+    width: 20%;
+}
+}

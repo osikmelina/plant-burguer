@@ -6,6 +6,7 @@ import Tag from '../../componentes/Tag';
 import { obterPedidos, mudarStatus } from '../../API/orders';
 import MandarPedido from '../../componentes/MandarPedidos';
 import styles from './Atendimento.module.css';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function PedidosProntos() {
   const [pedidos, setPedidos] = useState([]);
@@ -51,7 +52,10 @@ function PedidosProntos() {
 
   return (
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <nav className={styles.txtItens}>
         <Tag texto="PARA SERVIR" />
         <Tag onClick={() => navegar('/entregues')} texto="PEDIDOS ENTREGUES" />

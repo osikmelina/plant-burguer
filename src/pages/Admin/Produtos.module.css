@@ -1,9 +1,20 @@
+.cabecalho {
+  display: flex;
+  align-items: flex-start;
+  gap: 35%;
+}
+
 .tags button {
   width: 14rem;
 }
 
 .tags {
   margin-left: 2rem;
+}
+
+.listaProdutos {
+  display: flex;
+  justify-content: center;
 }
 
 .fundoBranco {
@@ -40,7 +51,7 @@
   height: 1.8rem;
 }
 
-.icone + .icone {
+.icone+.icone {
   margin-left: 20%;
 }
 
@@ -54,6 +65,10 @@
 }
 
 @media screen and (max-width: 450px) {
+  .cabecalho {
+    gap: 13%;
+  }
+
   .listaItens {
     grid-template-rows: 1fr 1fr;
     padding: 0.5rem 0 1rem;
@@ -62,5 +77,24 @@
   .icones {
     grid-column: 1;
     grid-row: 2;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cabecalho {
+    gap: 30%;
+  }
+}
+
+@media only screen and (min-width: 1444px) {
+  .cabecalho {
+    gap: 40%;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    margin-right: 390px;
+    margin-top: 40px;
   }
 }

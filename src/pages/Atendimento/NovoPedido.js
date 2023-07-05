@@ -6,6 +6,7 @@ import CampoTexto from '../../componentes/CampoTexto';
 import Logo from '../../componentes/Logo';
 import styles from './Atendimento.module.css';
 import { ClienteContext } from '../../context/clienteContext';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function NovoPedido() {
   const { addCliente } = useContext(ClienteContext);
@@ -16,18 +17,21 @@ function NovoPedido() {
   };
 
   return (
-    <section className={styles.pedido}>
-      <Logo />
-      <CaixaFundo>
-        <CampoTexto
-          placeholder="NOME DO CLIENTE"
-          aoAlterado={(valor) => addCliente(valor)}
-        />
-        <div className={styles.botao}>
-          <Botao onClick={clicar}> NOVO PEDIDO </Botao>
-        </div>
-      </CaixaFundo>
-    </section>
+    <>
+      <BotaoVoltar />
+      <section className={styles.pedido}>
+        <Logo />
+        <CaixaFundo>
+          <CampoTexto
+            placeholder="NOME DO CLIENTE"
+            aoAlterado={(valor) => addCliente(valor)}
+          />
+          <div className={styles.botao}>
+            <Botao onClick={clicar}> NOVO PEDIDO </Botao>
+          </div>
+        </CaixaFundo>
+      </section>
+    </>
   );
 }
 
