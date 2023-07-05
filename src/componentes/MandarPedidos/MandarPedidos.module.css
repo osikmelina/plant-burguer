@@ -1,3 +1,7 @@
+.mandarPedidos {
+  display: flex;
+  justify-content: center;
+}
 .nomeCliente {
     display:flex;
     flex-direction: column;
@@ -6,7 +10,7 @@
     font-weight: bolder;
     font-size: 1.2rem;
   }
-  
+
   .fundoBranco {
     background-color: #FFF;
     margin: 1rem;
@@ -46,9 +50,6 @@
   
   @media (max-width: 767px) {
     /* Estilos para telas menores (até 767px) */
-    .qtdValor span {
-      display: none;;
-    }
     .pedidosCozinha{
       display: flex;
       flex-wrap: wrap;
@@ -63,5 +64,31 @@
       min-height: 5rem;
       min-width: 10rem;
       margin-top: auto;
+    }
+
+    .qtdValor {
+      grid-template-columns: 15rem 2.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 1444px){
+    .cabecalho{
+      gap:40%;
+    }
+  
+    .txtItens{
+      display: flex;
+      justify-content: center;
+      margin-right: 450px;
+    }
+
+    .produtos {
+      display: flex;
+      gap: 12rem;
+      justify-content: space-between; 
+    }
+
+    .qtdValor {
+      grid-template-columns: 22rem 2.5rem;
     }
   }

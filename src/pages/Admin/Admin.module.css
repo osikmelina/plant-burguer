@@ -37,3 +37,11 @@
 
   }
 }
+
+@media only screen and (min-width: 2000px) {
+  .admin {
+    width: 40%;
+    margin-top: 10rem;
+    padding-left: 24%;
+  }
+}

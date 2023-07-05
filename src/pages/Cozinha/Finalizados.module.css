@@ -1,7 +1,19 @@
+.cabecalho {
+  display:flex;
+  align-items: flex-start;
+  gap: 35%;
+}
+
 .txtItens {
-    margin-left: 2rem;
+    margin-left: 2%;;
   }
-  
+
+.pedidosProntos{
+  display:flex;
+  justify-content: center;
+}
+
+
   .nomeCliente {
     display:flex;
     flex-direction: column;
@@ -10,30 +22,33 @@
     font-weight: bolder;
     font-size: 1.2rem;
   }
+ 
+  .pedidosFinalizados {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+
   
   .fundoBranco {
     background-color: #FFF;
-    margin: 1%;
-    padding: 1%;
+    margin: 1rem;
+    padding: 1rem;
     border-radius: 15px;
-  }
+}
   
   .qtdValorTempo {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-    grid-gap: 17%;
+    grid-template-columns: 31rem 2.5rem;
     font-weight: bold;
-  }
-  
-  .pedidosFinalizados{
-    display: grid;
-    grid-template-columns: 50vw 5vw;
-    grid-gap: 15%;
   }
   
   .produtos {
     display: grid;
-    grid-template-columns: 54% 30%;
+    grid-template-columns: 31rem 2.5rem;
+    font-size: larger;
+    padding: 0.2rem 0;
   }
   
   .pedidosFinalizados button {
@@ -45,11 +60,11 @@
   }
   
   @media (max-width: 860px) {
-  
-    .qtdValorTempo span {
-      display: none;;
+    .cabecalho {
+      gap: 13%;
     }
-  
+
+
     .pedidosFinalizados{
       display: flex;
       flex-wrap: wrap;
@@ -65,5 +80,37 @@
       min-height: 5rem;
       min-width: 10rem;
       margin-top: auto;
+    }
+
+    .qtdValorTempo {
+      grid-template-columns: 15rem 2.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .cabecalho {
+      gap: 30%;
+    }
+  }
+
+  @media only screen and (min-width: 1444px){
+    .cabecalho{
+      gap:40%;
+    }
+  
+    .txtItens{
+      display: flex;
+      justify-content: center;
+      margin-right: 450px;
+    }
+
+    .produtos {
+      display: flex;
+      gap: 12rem;
+      justify-content: space-between; 
+    }
+
+    .qtdValorTempo {
+      grid-template-columns: 22rem 2.5rem;
     }
   }

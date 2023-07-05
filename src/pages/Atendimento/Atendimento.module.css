@@ -1,3 +1,13 @@
+.cabecalho {
+  display:flex;
+  align-items: flex-start;
+  gap: 35%;
+}
+
+.pedidosEntregues {
+  display: flex;
+  justify-content: center;
+}
 .txtItens {
   margin-left: 2rem;
 }
@@ -73,10 +83,17 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .cabecalho {
+    gap: 13%;
+  }
   .atendimento {
     flex-direction: column;
     width: 80%;
     padding-left: 10%;
+  }
+
+  .qtdValor{
+    grid-template-columns: 15rem 2.5rem;
   }
   .pedido {
     flex-direction: column;
@@ -85,9 +102,7 @@
     padding-left: 10%;
   }
 
-  .qtdValor span {
-    display: none;;
-  }
+
   .pedidosFinalizados {
     display: flex;
     flex-wrap: wrap;
@@ -106,6 +121,10 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cabecalho {
+    gap: 30%;
+  }
+
   .atendimento {
     flex-direction: column;
     width: 55%;
@@ -128,7 +147,7 @@
   .atendimento {
     width:85%;
     padding-left: 8%;
-    margin-top: 8rem;
+    margin-top: 6rem;
   }
 
   .pedido {
@@ -164,16 +183,29 @@
   }
 }
 
+@media only screen and (min-width: 1444px) {
+  .cabecalho {
+    gap: 40%;
+  }
+
+  .txtItens {
+    display: flex;
+    justify-content: center;
+    margin-right: 430px;
+    margin-top: 40px;
+  }
+}
+
 @media only screen and (min-width: 2000px) {
   .atendimento {
     width: 40%;
     margin-top: 10rem;
-    padding-left: 25%;
+    padding-left: 24%;
   }
   .pedido {
     width: 40%;
     margin-top: 10rem;
-    padding-left: 30%;
+    padding-left: 28%;
   }
 
   .botao {

@@ -6,6 +6,7 @@ import CaixaResumo from '../../componentes/CaixaResumo';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import { produtos } from '../../API/products';
 import Card from '../../componentes/Card';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function Cardapio() {
   // estado que armazena todos os produtos
@@ -43,16 +44,17 @@ function Cardapio() {
       item.quantidade = 1;
       setItemSelecionado([...itemSelecionado, item]);
     }
-    console.log(itemCardapio);
-    console.log(itemSelecionado);
   };
 
   return (
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <div className={styles.txtItens}>
         <Tag onClick={() => filtrarTipoCardapio('café da manhã')} texto="CAFÉ DA MANHÃ" />
-        <Tag onClick={() => filtrarTipoCardapio('almoço e janta')} texto="ALMOÇO E JANTAR" />
+        <Tag onClick={() => filtrarTipoCardapio('almoço e jantar')} texto="ALMOÇO E JANTAR" />
       </div>
       <div className={styles.caixasPedido}>
         <CaixaFundo>

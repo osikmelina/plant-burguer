@@ -6,6 +6,7 @@ import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos } from '../../API/orders';
 import Botao from '../../componentes/Botao';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function PedidosEntregues() {
   const [pedidos, setPedidos] = useState([]);
@@ -22,42 +23,47 @@ function PedidosEntregues() {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
+  // eslint-disable-next-line react/jsx-filename-extension
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <nav className={styles.txtItens}>
         <Tag onClick={() => navegar('/prontos')} texto="PARA SERVIR" />
         <Tag texto="PEDIDOS ENTREGUES" />
       </nav>
-      {pedidos.map((pedido) => (
-        <CaixaFundo>
-          <div key={pedido.id}>
-            <span className={styles.nomeCliente}>
-              Cliente:
-              {pedido.client.toUpperCase()}
-            </span>
-            <div className={styles.fundoBranco}>
-              <div className={styles.qtdValor}>
-                <span>ITEM</span>
-                <span>QTD</span>
-              </div>
-              <div className={styles.pedidosFinalizados}>
-                <div>
-                  {pedido.products.map((product) => (
-                    <div className={styles.produtos} key={product.id}>
-                      <span>{product.name}</span>
-                      <span>{product.quantidade}</span>
-                    </div>
-                  ))}
+      <section className={styles.pedidosEntregues}>
+        {pedidos.map((pedido) => (
+          <CaixaFundo>
+            <div key={pedido.id}>
+              <span className={styles.nomeCliente}>
+                Cliente:
+                {pedido.client.toUpperCase()}
+              </span>
+              <div className={styles.fundoBranco}>
+                <div className={styles.qtdValor}>
+                  <span>ITEM</span>
+                  <span>QTD</span>
                 </div>
-                <Botao>
-                  PEDIDO FINALIZADO
-                </Botao>
+                <div className={styles.pedidosFinalizados}>
+                  <div>
+                    {pedido.products.map((product) => (
+                      <div className={styles.produtos} key={product.id}>
+                        <span>{product.name}</span>
+                        <span>{product.quantidade}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Botao>
+                    PEDIDO FINALIZADO
+                  </Botao>
+                </div>
               </div>
             </div>
-          </div>
-        </CaixaFundo>
-      ))}
+          </CaixaFundo>
+        ))}
+      </section>
     </section>
   );
 }

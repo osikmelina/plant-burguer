@@ -1,9 +1,20 @@
+.cabecalho {
+  display:flex;
+  align-items: flex-start;
+  gap: 35%;
+}
+
 .tags button {
   width: 14rem;
 }
 
 .tags {
   margin-left: 2rem;
+}
+
+.funcionariosLista {
+  display: flex;
+  justify-content: center
 }
 
 .fundoBranco {
@@ -54,6 +65,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .cabecalho {
+    gap: 13%;
+  }
+
   .titulosLista {
     grid-template-columns: 30% 70%;
   }
@@ -79,4 +94,22 @@
   }
 }
 
- 
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cabecalho {
+    gap: 30%;
+  }
+}
+
+@media only screen and (min-width: 1444px) {
+  .cabecalho {
+    gap: 40%;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    margin-right: 390px;
+    margin-top: 40px;
+  }
+}
+

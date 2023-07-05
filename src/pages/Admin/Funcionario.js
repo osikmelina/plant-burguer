@@ -16,6 +16,7 @@ import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
 import CaixaFundo from '../../componentes/CaixaFundo';
 import Botao from '../../componentes/Botao';
+import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function Funcionario() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -93,7 +94,7 @@ function Funcionario() {
     try {
       await deleteFuncionario(item.id);
       setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((colaborador) => colaborador.id !== item.id));
-      setMensagem('Funcionário Excluído com Sucesso');
+      setMensagem('Funcionário excluído com sucesso');
       abrirModal();
     } catch (error) {
       console.log(error);
@@ -104,48 +105,53 @@ function Funcionario() {
 
   return (
     <section>
-      <LogoMenor />
+      <div className={styles.cabecalho}>
+        <BotaoVoltar />
+        <LogoMenor />
+      </div>
       <div className={styles.tags}>
         <Tag onClick={() => navegar('/admin/produtos')} texto="PRODUTOS" />
         <Tag texto="FUNCIONÁRIOS" />
       </div>
-      <CaixaFundo>
-        <div className={styles.fundoBranco}>
-          <div className={styles.titulosLista}>
-            <span>NOME</span>
-            <span>FUNÇÃO</span>
-            <span className={styles.tituloEmail}>E-MAIL</span>
-          </div>
-          <div className={styles.listaDados}>
-            <div>
-              {funcionarios.map((item) => (
-                <div className={styles.listaItens} key={item.id}>
-                  <span>{item.name}</span>
-                  <span>{item.role}</span>
-                  <span className={styles.email}>{item.email}</span>
-                  <div className={styles.icones}>
-                    <input
-                      type="image"
-                      className={styles.icone}
-                      src="/imagens/icon-edit.png"
-                      alt="icone edição"
-                      onClick={() => (atualizarFuncionario(item))}
-                    />
-                    <input
-                      type="image"
-                      className={styles.icone}
-                      src="/imagens/icon-lixo.png"
-                      alt="icone lixo"
-                      onClick={() => excluirFuncionario(item)}
-                    />
-                  </div>
-                </div>
-              ))}
+      <section className={styles.funcionariosLista}>
+        <CaixaFundo>
+          <div className={styles.fundoBranco}>
+            <div className={styles.titulosLista}>
+              <span>NOME</span>
+              <span>FUNÇÃO</span>
+              <span className={styles.tituloEmail}>E-MAIL</span>
             </div>
-            <Botao onClick={() => (novoFuncionario())}>NOVO FUNCIONÁRIO</Botao>
+            <div className={styles.listaDados}>
+              <div>
+                {funcionarios.map((item) => (
+                  <div className={styles.listaItens} key={item.id}>
+                    <span>{item.name}</span>
+                    <span>{item.role}</span>
+                    <span className={styles.email}>{item.email}</span>
+                    <div className={styles.icones}>
+                      <input
+                        type="image"
+                        className={styles.icone}
+                        src="/imagens/icon-edit.png"
+                        alt="icone edição"
+                        onClick={() => (atualizarFuncionario(item))}
+                      />
+                      <input
+                        type="image"
+                        className={styles.icone}
+                        src="/imagens/icon-lixo.png"
+                        alt="icone lixo"
+                        onClick={() => excluirFuncionario(item)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Botao onClick={() => (novoFuncionario())}>NOVO FUNCIONÁRIO</Botao>
+            </div>
           </div>
-        </div>
-      </CaixaFundo>
+        </CaixaFundo>
+      </section>
       <Modal
         className="modal"
         overlayClassName="modal-fundo"
@@ -154,7 +160,7 @@ function Funcionario() {
       >
         <div className="modal-conteudo">
           <p className="textoModal">{mensagem}</p>
-          <button type="button" className="botao-salvar" onClick={fecharModal}>SALVAR</button>
+          <button type="button" className="botao-ok" onClick={fecharModal}>SALVAR</button>
         </div>
       </Modal>
       <FormModal
