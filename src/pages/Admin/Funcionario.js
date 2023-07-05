@@ -24,14 +24,13 @@ function Funcionario() {
   const [mensagem, setMensagem] = useState('');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalFormIsOpen, setFormIsOpen] = useState(false);
-  const navegar = useNavigate();
   const [novoColaborador, setNovoColaborador] = useState({});
+  const navegar = useNavigate();
 
   async function fetchData() {
     const response = await funcionario();
     const listaFuncionario = response.data;
     setFuncionarios(listaFuncionario);
-    console.log(listaFuncionario);
   }
 
   useEffect(() => {
@@ -68,7 +67,6 @@ function Funcionario() {
       await fetchData();
       fecharFormModal();
     } catch (error) {
-      console.log(error);
       setMensagem('Não foi possível editar os dados do funcionário');
       abrirModal();
     }
@@ -76,14 +74,12 @@ function Funcionario() {
 
   const atualizarFuncionario = async (item) => {
     setFuncionarioSelecionado(item);
-    console.log(item);
     abrirFormModal();
   };
 
   const salvarFuncionarioEditado = async () => {
     const response = await editarFuncionario(funcionarioSelecionado.id, funcionarioSelecionado.name, funcionarioSelecionado.role, funcionarioSelecionado.email, funcionarioSelecionado.password);
     const jsonData = response.data;
-    console.log(jsonData);
     setFuncionarioSelecionado(jsonData.id);
     await fetchData();
     fecharFormModal();
@@ -94,11 +90,10 @@ function Funcionario() {
     try {
       await deleteFuncionario(item.id);
       setFuncionarios((prevFuncionarios) => prevFuncionarios.filter((colaborador) => colaborador.id !== item.id));
-      setMensagem('Funcionário excluído com sucesso');
+      setMensagem('Funcionário excluído com sucesso!');
       abrirModal();
     } catch (error) {
-      console.log(error);
-      setMensagem('Não foi possível excluir o funcionário');
+      setMensagem('Não foi possível excluir o funcionário.');
       abrirModal();
     }
   };

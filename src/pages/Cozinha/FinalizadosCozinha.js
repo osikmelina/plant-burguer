@@ -18,7 +18,6 @@ function FinalizadosCozinha() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
       setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Pronto'));
-      console.log(listaPedidos);
     }
     fetchData();
   }, []);
@@ -40,6 +39,7 @@ function FinalizadosCozinha() {
             <div key={pedido.id}>
               <span className={styles.nomeCliente}>
                 Cliente:
+                {' '}
                 {pedido.client.toUpperCase()}
               </span>
               <div className={styles.fundoBranco}>

@@ -9,19 +9,19 @@ body {
 }
 
 @media only screen and (max-width:500px) {
-   .logo img{
+   .logo input {
     max-width: 22rem;
   }
 }
 
 @media only screen and (min-width:501px) and (max-width:900px) {
-  .logo img{
+  .logo input {
    max-width: 25rem;
  }
 }
 
 @media only screen and (min-width: 1024px) {
-  .logo img {
+  .logo input {
     max-width: 25rem;
   }
 }

@@ -96,10 +96,10 @@ function AdmProdutos() {
     try {
       await deleteProduto(item.id);
       setProdutosLista((prevStat) => prevStat.filter((produto) => produto.id !== item.id));
-      setMensagem('Produto excluído com sucesso');
+      setMensagem('Produto excluído com sucesso!');
       abrirModal();
     } catch (error) {
-      setMensagem('Não foi possível excluir o produto');
+      setMensagem('Não foi possível excluir o produto.');
       abrirModal();
     }
   };
@@ -166,7 +166,6 @@ function AdmProdutos() {
         </div>
       </Modal>
       <FormModal
-        // isProdutoForm
         className="modal"
         overlayClassName="modal-fundo"
         isOpen={modalFormIsOpen}

@@ -58,6 +58,7 @@ function CaixaResumo({ itemSelecionado, setItemSelecionado }) {
       <div className={styles.textoResumo}>
         <h3>
           Cliente:
+          {' '}
           {cliente.toUpperCase()}
         </h3>
         <h3>Resumo do Pedido</h3>

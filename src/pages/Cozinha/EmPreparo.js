@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Cozinha.module.css';
 import LogoMenor from '../../componentes/LogoMenor';
 import Tag from '../../componentes/Tag';
-// import CaixaFundo from '../../componentes/CaixaFundo';
 import { obterPedidos, mudarStatus } from '../../API/orders';
-// import Botao from '../../componentes/Botao';
 import { setItem } from '../../storage/localStorage';
 import MandarPedido from '../../componentes/MandarPedidos';
 import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
@@ -22,7 +20,6 @@ function EmPreparo() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
       setPedidos(listaPedidos.filter((pedido) => pedido.status !== 'Pronto'));
-      console.log(listaPedidos);
     }
     fetchData();
   }, []);
@@ -36,20 +33,17 @@ function EmPreparo() {
   }
 
   const finalizarPedido = async (orderId) => {
-    console.log(orderId);
     setErro('');
     try {
       const response = await mudarStatus(orderId, 'Pronto');
       const jsonData = response.data;
-      console.log(jsonData);
       setItem('orderId', jsonData.id);
       setPedidos((prevStat) => prevStat.filter((pedido) => pedido.id !== orderId));
       if (jsonData.status === 'Pronto') {
-        setErro('O pedido está pronto e foi enviado para o atendente');
+        setErro('O pedido está pronto e foi enviado para o atendente!');
         abrirModal();
       }
     } catch (error) {
-      console.log(error);
       setErro('Não foi possível finalizar o pedido, tente novamente.');
       abrirModal();
     }

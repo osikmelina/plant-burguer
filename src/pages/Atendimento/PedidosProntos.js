@@ -19,7 +19,6 @@ function PedidosProntos() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
       setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Pronto'));
-      console.log(listaPedidos);
     }
     fetchData();
   }, []);
@@ -33,18 +32,15 @@ function PedidosProntos() {
   }
 
   const finalizarEntrega = async (orderId) => {
-    console.log(orderId);
     try {
       const response = await mudarStatus(orderId, 'Finalizado');
       const jsonData = response.data;
-      console.log(jsonData);
       setPedidos((prevStat) => prevStat.filter((pedido) => pedido.id !== orderId));
       if (jsonData.status === 'Finalizado') {
-        setErro('O pedido foi entregue e finalizado com sucesso');
+        setErro('O pedido foi entregue e finalizado com sucesso!');
         abrirModal();
       }
     } catch (error) {
-      console.log(error);
       setErro('Não foi possível finalizar o pedido, tente novamente.');
       abrirModal();
     }
