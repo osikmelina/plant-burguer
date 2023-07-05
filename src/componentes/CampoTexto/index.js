@@ -3,7 +3,6 @@ import './CampoTexto.css';
 function CampoTexto(props) {
   const aoDigitado = (evento) => {
     props.aoAlterado(evento.target.value);
-    console.log(evento.target.value);
   };
 
   return (

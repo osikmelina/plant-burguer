@@ -9,14 +9,9 @@ import Card from '../../componentes/Card';
 import BotaoVoltar from '../../componentes/BotaoVoltar/BotaoVoltar';
 
 function Cardapio() {
-  // estado que armazena todos os produtos
   const [produtosCardapio, setProdutosCardapio] = useState([]);
   const [itemSelecionado, setItemSelecionado] = useState([]);
-  const [tipoCardapio, setTipoCardapio] = useState(''); // estado que armazena os produtos filtrados
-  // aqui o useState vai ser usado para criar uma variável de estado
-  // chamada produtosCafe que o valor inicial é um array vazio;
-  // produtosCafe é uma variavel que está vazia
-  // setProdutos é a função que vai adicionar os produtos dentro da variavel produtosCafe
+  const [tipoCardapio, setTipoCardapio] = useState('');
 
   useEffect(() => {
     async function fetchData() {

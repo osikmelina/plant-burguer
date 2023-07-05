@@ -14,7 +14,6 @@ function FormLogin() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
-
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function abrirModal() {

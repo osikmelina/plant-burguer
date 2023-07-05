@@ -17,7 +17,6 @@ function PedidosEntregues() {
       const response = await obterPedidos();
       const listaPedidos = response.data;
       setPedidos(listaPedidos.filter((pedido) => pedido.status === 'Finalizado'));
-      console.log(listaPedidos);
     }
     fetchData();
   }, []);
@@ -39,6 +38,7 @@ function PedidosEntregues() {
             <div key={pedido.id}>
               <span className={styles.nomeCliente}>
                 Cliente:
+                {' '}
                 {pedido.client.toUpperCase()}
               </span>
               <div className={styles.fundoBranco}>
