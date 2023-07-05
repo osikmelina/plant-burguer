@@ -5,7 +5,7 @@
 ## Índice
 
 * [1. Resumo do projeto](#1-resumo-do-projeto)
-* [2. Histórias de usuário](#2-historias-de-usuario)
+* [2. Histórias de usuário](#2-histórias-de-usuário)
 * [3. Detalhamento do projeto](#3-detalhamento-do-projeto)
 * [4. Ferramentas utilizadas](#4-ferramentas-utilizadas)
 * [5. Desenvolvedoras](#5-desenvolvedoras)
@@ -16,7 +16,7 @@
 Neste projeto foi desenvolvido uma interface para uma hamburgueria contendo diferentes telas destinadas ao atendimento, cozinha e administração. A aplicação foi desenvolvida utilizando o REACT e com consumo de uma API.
 
 
-## 2. Histórias de usuários
+## 2. Histórias de usuário
 
 #### [Historia de usuario 1] Garçom/Garçonete deve poder entrar no sistema, caso o admin já lhe tenha dado as credenciais
 #### [História de usuário 2] Garçom/Garçonete deve ser capaz de anotar o pedido do cliente
@@ -26,10 +26,10 @@ Neste projeto foi desenvolvido uma interface para uma hamburgueria contendo dife
 #### [História de usuário 6] Administrador(a) de loja deve administrar os produtos
 
 
-## 3. Detalhamentos do projeto 
+## 3. Detalhamento do projeto 
 A aplicação contêm três tipos de rotas, uma para o atendimento, outra para a cozinha e outra para o administrador.
 
-Para acessar qualquer uma dessas rotas, faça login usando os seguintes usuários:
+Para entrar e acessar qualquer uma das rotas clique em https://plant-burguer.vercel.app, e faça login com as credenciais abaixo:
 
 | USUÁRIO                      |SENHA|
 |------------------------------|:----:|
