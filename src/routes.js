@@ -13,7 +13,6 @@ import Funcionario from './pages/Admin/Funcionario';
 import PedidosProntos from './pages/Atendimento/PedidosProntos';
 import PedidosEntregues from './pages/Atendimento/PedidosEntregues';
 
-// Código necessário para os recursos de acessibilidade
 Modal.setAppElement('#root');
 
 function AppRoutes() {
