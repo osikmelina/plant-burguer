@@ -18,7 +18,6 @@ function Cardapio() {
       const response = await produtos();
       const listaProdutos = response.data;
       setProdutosCardapio(listaProdutos);
-      console.log(listaProdutos);
     }
     fetchData();
   }, []);

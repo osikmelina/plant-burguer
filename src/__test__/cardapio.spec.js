@@ -16,7 +16,6 @@
 //         expect(screen.getByText('Produto 1')).toBeInTheDocument();
 //         expect(screen.getByText('Produto 2')).toBeInTheDocument();
 //         expect(screen.getByText('Produto 3')).toBeInTheDocument();
-        
 
 //     })
 // })

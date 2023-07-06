@@ -111,4 +111,10 @@
     .qtdValorTempo {
       grid-template-columns: 22rem 2.5rem;
     }
+
+    .pedidosProntos{
+      display: flex;
+      flex-direction: column;
+      align-items:  center;
+    }
   }
